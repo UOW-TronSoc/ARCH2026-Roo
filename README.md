@@ -21,6 +21,7 @@ Example: $3~Hi`
 
 | Component/System | Device ID | Message Format | Notes |
 |---------|----------|----------|------|
+| ** RaspberryPi > ESP32 |
 | Gimbal Servo 1 | 1 | Angle in degrees | Position servos, 0–180° |
 | Gimbal Servo 2 | 2 | Angle in degrees | Position servos, 0–180° |
 | Gimbal Servo 3 | 3 | Angle in degrees  | Position servos, 0–180° |
@@ -28,7 +29,9 @@ Example: $3~Hi`
 | Suspension Servo Back | 5 | speed -10-+10 | Servo speed, -10–+10 |
 | Motor Driver Left | 6 | speed -10-+10 | Servo speed, -10–+10 |
 | Motor Driver Right | 7 | speed -10-+10 | Servo speed, -10–+10 |
-
+| ESP32 > RaspberryPi |
+| INA226 | 10 | V<voltage>-I<current> | Absolute angles of suspensions |
+| Suspension Encoders | 11 | F<Angle>B<Angle> | Absolute angles of suspensions |
 
 ---
 
