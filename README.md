@@ -33,6 +33,7 @@ Example: $3~Hi`
 | **ESP32 -> RaspberryPi** |
 | INA226 | 10 | V[voltage]-I[current] | Absolute angles of suspensions |
 | Suspension Encoders | 11 | F[Angle]B[Angle] | Absolute angles of suspensions |
+| Tilt Sensor | 12 | P[Angle]R[Angle] | Absolute angles of pitch and roll |
 
 ---
 
@@ -52,8 +53,10 @@ Example: $3~Hi`
 | Motor Driver Right | G18 | IN2 | PWM Control |
 | Suspension Encoder Front | G39 | OUT | PWM Input |
 | Suspension Encoder Back | G36 | OUT | PWM Input |
-| INA226 | G21 | SDA | I2C Control |
-| INA226 | G22 | SCL | I2C Control |
+| INA226 | G21 | SDA | I2C Read |
+| INA226 | G22 | SCL | I2C Read |
+| GY-85 | G21 | SDA | I2C Read |
+| GY-85 | G22 | SCL | I2C Read |
 
 
 ### Actuators
@@ -64,6 +67,7 @@ Example: $3~Hi`
 ### Sensors
 - **2× MT6701 absolute encoders** in **PWM output mode** (measured via interrupt timing)
 - **1× INA226** current/voltage sensor over **I2C**
+- **1x GY-85** pitch and roll sensor over **I2C**
 
 ---
 
