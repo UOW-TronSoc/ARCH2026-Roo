@@ -35,7 +35,7 @@ Example: $3~Hi`
 ## Hardware
 
 ### Pin Assignments
-**| Device | ESP32 Pin | Component Pin | Description |**
+| Device | ESP32 Pin | Component Pin | Description |
 |---------|----|------|------|
 | Gimbal Servo 1 | G13 | SIG | PWM Control |
 | Gimbal Servo 2 | G12 | SIG | PWM Control |
