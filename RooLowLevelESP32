@@ -1,7 +1,32 @@
+/*
+  Roo – ESP32 Low-Level Controller
+
+  Serial framing (USB Serial to Raspberry Pi):
+    $<ID>~<message>`
+
+  Per README Device IDs (Pi -> ESP32):
+    1: Gimbal Servo 1 angle (deg 0..180)
+    2: Gimbal Servo 2 angle (deg 0..180)
+    3: Gimbal Servo 3 angle (deg 0..180)
+    4: Suspension Servo Front speed (-10..+10)
+    5: Suspension Servo Back  speed (-10..+10)
+    6: Motor Driver Left  speed (-10..+10)
+    7: Motor Driver Right speed (-10..+10)
+
+  ESP32 -> Pi telemetry:
+    10: INA226 "V<volts>-I<amps>" (default 2 Hz)
+    11: Encoders "F<deg>B<deg>" (default 10 Hz)
+    12: GY-85 Pitch/Roll "P<deg>R<deg>" (default 10 Hz, signed)
+
+  Notes:
+    - Ordered to avoid Arduino auto-prototype issues.
+    - LEDC API targets Arduino-ESP32 core v3.x: ledcAttach(pin,freq,resBits) + ledcWrite(pin,duty)
+*/
 
 #include <Arduino.h>
 #include <Wire.h>
 #include <ESP32Servo.h>
+#include <math.h>
 
 // =========================
 // ====== TYPES FIRST ======
@@ -33,9 +58,16 @@ struct IBT4Config {
   int pwmResolutionBits;
 };
 
+struct AccelReading {
+  int16_t x = 0;
+  int16_t y = 0;
+  int16_t z = 0;
+};
+
 // =========================
 // ====== PIN ASSIGNMENTS ===
 // =========================
+// From README table
 
 static const int PIN_GIM_SERVO_1 = 13;
 static const int PIN_GIM_SERVO_2 = 12;
@@ -52,11 +84,11 @@ static const int PIN_IBT_LEFT_IN2 = 16;
 static const int PIN_IBT_RIGHT_IN1 = 19;
 static const int PIN_IBT_RIGHT_IN2 = 18;
 
-// MT6701 PWM outputs
+// MT6701 PWM outputs (ESP32 input-only pins are OK here)
 static const int PIN_ENC_FRONT_PWM = 39;
 static const int PIN_ENC_BACK_PWM  = 36;
 
-// INA226 I2C
+// INA226 + GY-85 share I2C bus
 static const int PIN_I2C_SDA = 21;
 static const int PIN_I2C_SCL = 22;
 
@@ -66,9 +98,14 @@ static const int PIN_I2C_SCL = 22;
 
 static const uint32_t TELEMETRY_INA_MS = 500; // 2 Hz
 static const uint32_t TELEMETRY_ENC_MS = 100; // 10 Hz
+static const uint32_t TELEMETRY_IMU_MS = 100; // 10 Hz
 
+// INA226
 static const uint8_t INA226_ADDR = 0x40;
 static const float   INA226_RSHUNT_OHMS = 0.001f; // TODO: set your shunt value
+
+// GY-85 (we use its ADXL345 accel for pitch/roll)
+static const uint8_t ADXL345_ADDR = 0x53;
 
 static inline bool pinOK(int p) { return p >= 0; }
 
@@ -95,11 +132,20 @@ static IBT4Config DRIVE_R = { PIN_IBT_RIGHT_IN1, PIN_IBT_RIGHT_IN2, 20000, 10 };
 static void sendFrame(int id, const String &msg);
 static int  parseIntSafe(const String &s, int fallback = 0);
 
-// INA226
+// I2C helpers
+static bool i2cWrite8(uint8_t addr, uint8_t reg, uint8_t value);
 static bool i2cWrite16(uint8_t addr, uint8_t reg, uint16_t value);
 static bool i2cRead16(uint8_t addr, uint8_t reg, uint16_t &out);
+static bool i2cReadBytes(uint8_t addr, uint8_t startReg, uint8_t *buf, size_t len);
+
+// INA226
 static void ina226Init();
 static bool ina226ReadSample(Ina226Reading &r);
+
+// GY-85 / ADXL345
+static void gy85Init();
+static bool adxl345ReadRaw(AccelReading &a);
+static void computePitchRollDeg(const AccelReading &a, float &pitchDeg, float &rollDeg);
 
 // Encoders
 struct PwmAngleSensor;
@@ -282,8 +328,15 @@ static void IRAM_ATTR isrEncBack() {
 }
 
 // =========================
-// ====== INA226 I2C ======
+// ====== I2C HELPERS ======
 // =========================
+
+static bool i2cWrite8(uint8_t addr, uint8_t reg, uint8_t value) {
+  Wire.beginTransmission(addr);
+  Wire.write(reg);
+  Wire.write(value);
+  return Wire.endTransmission() == 0;
+}
 
 static bool i2cWrite16(uint8_t addr, uint8_t reg, uint16_t value) {
   Wire.beginTransmission(addr);
@@ -303,6 +356,20 @@ static bool i2cRead16(uint8_t addr, uint8_t reg, uint16_t &out) {
   out = ((uint16_t)msb << 8) | lsb;
   return true;
 }
+
+static bool i2cReadBytes(uint8_t addr, uint8_t startReg, uint8_t *buf, size_t len) {
+  Wire.beginTransmission(addr);
+  Wire.write(startReg);
+  if (Wire.endTransmission(false) != 0) return false;
+  int got = Wire.requestFrom((int)addr, (int)len);
+  if (got != (int)len) return false;
+  for (size_t i = 0; i < len; i++) buf[i] = (uint8_t)Wire.read();
+  return true;
+}
+
+// =========================
+// ====== INA226 I2C ======
+// =========================
 
 static void ina226Init() {
   // Optional: set INA226 configuration (averaging/conversion times/mode)
@@ -324,6 +391,52 @@ static bool ina226ReadSample(Ina226Reading &r) {
   r.currentA = vshunt / INA226_RSHUNT_OHMS;
 
   return true;
+}
+
+// =========================
+// ====== GY-85 (ADXL345) ===
+// =========================
+
+static void gy85Init() {
+  // ADXL345 init (GY-85 accel)
+  // Put into measurement mode.
+  // POWER_CTL (0x2D) = 0x08
+  i2cWrite8(ADXL345_ADDR, 0x2D, 0x08);
+
+  // DATA_FORMAT (0x31): Full resolution, +/-2g
+  // FULL_RES=1 (bit3), range=00
+  i2cWrite8(ADXL345_ADDR, 0x31, 0x08);
+
+  // BW_RATE (0x2C): output rate ~100Hz (0x0A)
+  i2cWrite8(ADXL345_ADDR, 0x2C, 0x0A);
+}
+
+static bool adxl345ReadRaw(AccelReading &a) {
+  uint8_t buf[6];
+  // DATAX0 = 0x32
+  if (!i2cReadBytes(ADXL345_ADDR, 0x32, buf, sizeof(buf))) return false;
+  a.x = (int16_t)((buf[1] << 8) | buf[0]);
+  a.y = (int16_t)((buf[3] << 8) | buf[2]);
+  a.z = (int16_t)((buf[5] << 8) | buf[4]);
+  return true;
+}
+
+static void computePitchRollDeg(const AccelReading &a, float &pitchDeg, float &rollDeg) {
+  // Using accelerometer-only tilt (good for low dynamics)
+  // roll  = atan2(ay, az)
+  // pitch = atan2(-ax, sqrt(ay^2 + az^2))
+  const float ax = (float)a.x;
+  const float ay = (float)a.y;
+  const float az = (float)a.z;
+
+  rollDeg  = atan2f(ay, az) * 180.0f / (float)M_PI;
+  pitchDeg = atan2f(-ax, sqrtf(ay * ay + az * az)) * 180.0f / (float)M_PI;
+
+  // Constrain to a sane range
+  if (rollDeg > 180.0f) rollDeg -= 360.0f;
+  if (rollDeg < -180.0f) rollDeg += 360.0f;
+  if (pitchDeg > 180.0f) pitchDeg -= 360.0f;
+  if (pitchDeg < -180.0f) pitchDeg += 360.0f;
 }
 
 // =========================
@@ -412,6 +525,7 @@ static void handleFrame(int id, const String &msg) {
 
 static uint32_t lastInaMs = 0;
 static uint32_t lastEncMs = 0;
+static uint32_t lastImuMs = 0;
 
 static void sendInaTelemetry() {
   Ina226Reading r;
@@ -434,6 +548,22 @@ static void sendEncTelemetry() {
   sendFrame(11, String(buf));
 }
 
+static void sendImuTelemetry() {
+  AccelReading a;
+  if (!adxl345ReadRaw(a)) return;
+
+  float pitch = 0.0f, roll = 0.0f;
+  computePitchRollDeg(a, pitch, roll);
+
+  int p = (int)lroundf(pitch);
+  int r = (int)lroundf(roll);
+
+  char buf[24];
+  // Signed degrees, format like P23R-24
+  snprintf(buf, sizeof(buf), "P%dR%d", p, r);
+  sendFrame(12, String(buf));
+}
+
 // =========================
 // ====== SETUP/LOOP ======
 // =========================
@@ -445,6 +575,7 @@ void setup() {
   // I2C
   Wire.begin(PIN_I2C_SDA, PIN_I2C_SCL);
   ina226Init();
+  gy85Init();
 
   // Gimbal servos
   for (int i = 0; i < 3; i++) {
@@ -498,6 +629,10 @@ void loop() {
   if (now - lastEncMs >= TELEMETRY_ENC_MS) {
     lastEncMs = now;
     sendEncTelemetry();
+  }
+  if (now - lastImuMs >= TELEMETRY_IMU_MS) {
+    lastImuMs = now;
+    sendImuTelemetry();
   }
 
   delay(2);
