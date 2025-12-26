@@ -17,6 +17,7 @@ $ID~message`
 - `~` = separator  
 - `<message>` = payload string  
 - `` ` `` = end of frame
+
 Example: $3~Hi`
 
 | Component/System | Device ID | Message Format | Notes |
