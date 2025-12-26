@@ -10,7 +10,7 @@ A Raspberry Pi communicates with the ESP32 over **USB serial** using a simple fr
 
 All messages use:
 
-$<ID>~<message>`
+$ID~message`
 
 - `$` = start of frame  
 - `<ID>` = numeric message/device ID  
@@ -21,13 +21,13 @@ Example: $3~Hi`
 
 | Component/System | Device ID | Message Format | Notes |
 |---------|----------|----------|------|
-| Gimbal Servo 1 | 1 | <Angle in degrees> | Position servos, 0–180° |
-| Gimbal Servo 2 | 2 | <Angle in degrees> | Position servos, 0–180° |
-| Gimbal Servo 3 | 3 | <Angle in degrees> | Position servos, 0–180° |
-| Suspension Servo Front | 4 | <speed -10-+10> | Servo speed, -10–+10 |
-| Suspension Servo Back | 5 | <speed -10-+10> | Servo speed, -10–+10 |
-| Motor Driver Left | 6 | <speed -10-+10> | Servo speed, -10–+10 |
-| Motor Driver Right | 7 | <speed -10-+10> | Servo speed, -10–+10 |
+| Gimbal Servo 1 | 1 | Angle in degrees | Position servos, 0–180° |
+| Gimbal Servo 2 | 2 | Angle in degrees | Position servos, 0–180° |
+| Gimbal Servo 3 | 3 | Angle in degrees  | Position servos, 0–180° |
+| Suspension Servo Front | 4 | speed -10-+10 | Servo speed, -10–+10 |
+| Suspension Servo Back | 5 | speed -10-+10 | Servo speed, -10–+10 |
+| Motor Driver Left | 6 | speed -10-+10 | Servo speed, -10–+10 |
+| Motor Driver Right | 7 | speed -10-+10 | Servo speed, -10–+10 |
 
 
 ---
