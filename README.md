@@ -30,8 +30,8 @@ Example: $3~Hi`
 | Motor Driver Left | 6 | speed -10-+10 | Servo speed, -10–+10 |
 | Motor Driver Right | 7 | speed -10-+10 | Servo speed, -10–+10 |
 | **ESP32 -> RaspberryPi** |
-| INA226 | 10 | V<voltage>-I<current> | Absolute angles of suspensions |
-| Suspension Encoders | 11 | F<Angle>B<Angle> | Absolute angles of suspensions |
+| INA226 | 10 | V[voltage]-I[current] | Absolute angles of suspensions |
+| Suspension Encoders | 11 | F[Angle]B[Angle] | Absolute angles of suspensions |
 
 ---
 
