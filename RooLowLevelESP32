@@ -1,0 +1,504 @@
+
+#include <Arduino.h>
+#include <Wire.h>
+#include <ESP32Servo.h>
+
+// =========================
+// ====== TYPES FIRST ======
+// =========================
+
+struct Ina226Reading {
+  float busV = 0.0f;
+  float currentA = 0.0f;
+};
+
+struct GimbalServoConfig {
+  int pin;
+  int minUs;
+  int maxUs;
+};
+
+struct SuspensionServoConfig {
+  int pin;
+  int neutralUs; // stop
+  int rangeUs;   // +/- around neutral for full speed
+  float minDeg;  // software lower limit
+  float maxDeg;  // software upper limit
+};
+
+struct IBT4Config {
+  int pinFwd;
+  int pinRev;
+  int pwmFreqHz;
+  int pwmResolutionBits;
+};
+
+// =========================
+// ====== PIN ASSIGNMENTS ===
+// =========================
+
+static const int PIN_GIM_SERVO_1 = 13;
+static const int PIN_GIM_SERVO_2 = 12;
+static const int PIN_GIM_SERVO_3 = 14;
+
+static const int PIN_SUS_SERVO_FRONT = 33;
+static const int PIN_SUS_SERVO_BACK  = 32;
+
+// IBT-4 Left
+static const int PIN_IBT_LEFT_IN1 = 17;
+static const int PIN_IBT_LEFT_IN2 = 16;
+
+// IBT-4 Right
+static const int PIN_IBT_RIGHT_IN1 = 19;
+static const int PIN_IBT_RIGHT_IN2 = 18;
+
+// MT6701 PWM outputs
+static const int PIN_ENC_FRONT_PWM = 39;
+static const int PIN_ENC_BACK_PWM  = 36;
+
+// INA226 I2C
+static const int PIN_I2C_SDA = 21;
+static const int PIN_I2C_SCL = 22;
+
+// =========================
+// ====== CONFIG ======
+// =========================
+
+static const uint32_t TELEMETRY_INA_MS = 500; // 2 Hz
+static const uint32_t TELEMETRY_ENC_MS = 100; // 10 Hz
+
+static const uint8_t INA226_ADDR = 0x40;
+static const float   INA226_RSHUNT_OHMS = 0.001f; // TODO: set your shunt value
+
+static inline bool pinOK(int p) { return p >= 0; }
+
+static GimbalServoConfig GIMBAL[3] = {
+  { PIN_GIM_SERVO_1, 500, 2500 },
+  { PIN_GIM_SERVO_2, 500, 2500 },
+  { PIN_GIM_SERVO_3, 500, 2500 }
+};
+
+static SuspensionServoConfig SUSP[2] = {
+  // Front / Back continuous rotation servos
+  // NOTE: tune neutralUs and rangeUs for your specific servos.
+  { PIN_SUS_SERVO_FRONT, 1500, 400, 10.0f, 170.0f },
+  { PIN_SUS_SERVO_BACK,  1500, 400, 10.0f, 170.0f }
+};
+
+static IBT4Config DRIVE_L = { PIN_IBT_LEFT_IN1,  PIN_IBT_LEFT_IN2,  20000, 10 };
+static IBT4Config DRIVE_R = { PIN_IBT_RIGHT_IN1, PIN_IBT_RIGHT_IN2, 20000, 10 };
+
+// =========================
+// ====== FORWARD DECLS =====
+// =========================
+
+static void sendFrame(int id, const String &msg);
+static int  parseIntSafe(const String &s, int fallback = 0);
+
+// INA226
+static bool i2cWrite16(uint8_t addr, uint8_t reg, uint16_t value);
+static bool i2cRead16(uint8_t addr, uint8_t reg, uint16_t &out);
+static void ina226Init();
+static bool ina226ReadSample(Ina226Reading &r);
+
+// Encoders
+struct PwmAngleSensor;
+static void IRAM_ATTR isrEncFront();
+static void IRAM_ATTR isrEncBack();
+
+// =========================
+// ====== SERIAL FRAME ======
+// =========================
+
+static String frameBuf;
+static bool inFrame = false;
+
+static bool readFrame(String &outIdStr, String &outMsg) {
+  while (Serial.available()) {
+    char c = (char)Serial.read();
+
+    if (!inFrame) {
+      if (c == '$') {
+        inFrame = true;
+        frameBuf = "";
+      }
+      continue;
+    }
+
+    if (c == '`') {
+      inFrame = false;
+      int sep = frameBuf.indexOf('~');
+      if (sep < 0) return false;
+      outIdStr = frameBuf.substring(0, sep);
+      outMsg   = frameBuf.substring(sep + 1);
+      outIdStr.trim();
+      outMsg.trim();
+      return true;
+    }
+
+    if (frameBuf.length() < 200) frameBuf += c;
+  }
+  return false;
+}
+
+static void sendFrame(int id, const String &msg) {
+  Serial.print('$');
+  Serial.print(id);
+  Serial.print('~');
+  Serial.print(msg);
+  Serial.print('`');
+}
+
+// =========================
+// ====== SERVOS ======
+// =========================
+
+static Servo gimbalServos[3];
+static Servo suspensionServos[2];
+
+static int gimbalTargetDeg[3] = {90, 90, 90};
+static int suspTargetSpeed10[2] = {0, 0}; // -10..+10 from Pi
+
+// =========================
+// ====== IBT-4 DRIVER ======
+// =========================
+
+struct IBT4Driver {
+  int pinFwd = -1;
+  int pinRev = -1;
+  int maxDuty = 1023;
+  int resolutionBits = 10;
+
+  void begin(const IBT4Config &cfg) {
+    pinFwd = cfg.pinFwd;
+    pinRev = cfg.pinRev;
+    resolutionBits = cfg.pwmResolutionBits;
+    maxDuty = (1 << resolutionBits) - 1;
+
+    if (!pinOK(pinFwd) || !pinOK(pinRev)) return;
+
+    ledcAttach(pinFwd, cfg.pwmFreqHz, resolutionBits);
+    ledcAttach(pinRev, cfg.pwmFreqHz, resolutionBits);
+
+    ledcWrite(pinFwd, 0);
+    ledcWrite(pinRev, 0);
+  }
+
+  void set(int cmd255) {
+    if (!pinOK(pinFwd) || !pinOK(pinRev)) return;
+
+    cmd255 = constrain(cmd255, -255, 255);
+    int duty = map(abs(cmd255), 0, 255, 0, maxDuty);
+
+    if (cmd255 > 0) {
+      ledcWrite(pinFwd, duty);
+      ledcWrite(pinRev, 0);
+    } else if (cmd255 < 0) {
+      ledcWrite(pinFwd, 0);
+      ledcWrite(pinRev, duty);
+    } else {
+      ledcWrite(pinFwd, 0);
+      ledcWrite(pinRev, 0);
+    }
+  }
+};
+
+static IBT4Driver driveLeft;
+static IBT4Driver driveRight;
+static int driveLeftCmd255  = 0;
+static int driveRightCmd255 = 0;
+
+// =========================
+// ====== MT6701 PWM ======
+// =========================
+
+struct PwmAngleSensor {
+  int pin = -1;
+  volatile uint32_t lastRiseUs = 0;
+  volatile uint32_t lastPeriodUs = 0;
+  volatile uint32_t lastHighUs = 0;
+
+  float angleDeg = 0.0f;
+
+  void begin(int p) {
+    pin = p;
+    if (!pinOK(pin)) return;
+    pinMode(pin, INPUT);
+  }
+
+  // ASSUMPTION: duty 0..1 -> 0..360 deg
+  float dutyToAngle(float d) {
+    d = constrain(d, 0.0f, 1.0f);
+    return d * 360.0f;
+  }
+
+  void update() {
+    uint32_t highUs, perUs;
+    noInterrupts();
+    highUs = lastHighUs;
+    perUs  = lastPeriodUs;
+    interrupts();
+
+    if (perUs > 0 && highUs < perUs) {
+      float duty = (float)highUs / (float)perUs;
+      angleDeg = dutyToAngle(duty);
+    }
+  }
+};
+
+static PwmAngleSensor encFront;
+static PwmAngleSensor encBack;
+static PwmAngleSensor *encFrontPtr = nullptr;
+static PwmAngleSensor *encBackPtr  = nullptr;
+
+static void IRAM_ATTR isrEncFront() {
+  if (!encFrontPtr) return;
+  int level = digitalRead(encFrontPtr->pin);
+  uint32_t now = micros();
+
+  if (level) {
+    uint32_t prev = encFrontPtr->lastRiseUs;
+    encFrontPtr->lastRiseUs = now;
+    if (prev != 0) encFrontPtr->lastPeriodUs = now - prev;
+  } else {
+    uint32_t rise = encFrontPtr->lastRiseUs;
+    if (rise != 0 && now > rise) encFrontPtr->lastHighUs = now - rise;
+  }
+}
+
+static void IRAM_ATTR isrEncBack() {
+  if (!encBackPtr) return;
+  int level = digitalRead(encBackPtr->pin);
+  uint32_t now = micros();
+
+  if (level) {
+    uint32_t prev = encBackPtr->lastRiseUs;
+    encBackPtr->lastRiseUs = now;
+    if (prev != 0) encBackPtr->lastPeriodUs = now - prev;
+  } else {
+    uint32_t rise = encBackPtr->lastRiseUs;
+    if (rise != 0 && now > rise) encBackPtr->lastHighUs = now - rise;
+  }
+}
+
+// =========================
+// ====== INA226 I2C ======
+// =========================
+
+static bool i2cWrite16(uint8_t addr, uint8_t reg, uint16_t value) {
+  Wire.beginTransmission(addr);
+  Wire.write(reg);
+  Wire.write((uint8_t)(value >> 8));
+  Wire.write((uint8_t)(value & 0xFF));
+  return Wire.endTransmission() == 0;
+}
+
+static bool i2cRead16(uint8_t addr, uint8_t reg, uint16_t &out) {
+  Wire.beginTransmission(addr);
+  Wire.write(reg);
+  if (Wire.endTransmission(false) != 0) return false;
+  if (Wire.requestFrom((int)addr, 2) != 2) return false;
+  uint8_t msb = Wire.read();
+  uint8_t lsb = Wire.read();
+  out = ((uint16_t)msb << 8) | lsb;
+  return true;
+}
+
+static void ina226Init() {
+  // Optional: set INA226 configuration (averaging/conversion times/mode)
+  // Safe to comment out if you want defaults.
+  i2cWrite16(INA226_ADDR, 0x00, 0x4527);
+}
+
+static bool ina226ReadSample(Ina226Reading &r) {
+  uint16_t busVraw = 0;
+  uint16_t shuntraw = 0;
+
+  if (!i2cRead16(INA226_ADDR, 0x02, busVraw)) return false; // bus voltage
+  if (!i2cRead16(INA226_ADDR, 0x01, shuntraw)) return false; // shunt voltage
+
+  r.busV = (float)busVraw * 0.00125f; // 1.25mV/bit
+
+  int16_t shuntSigned = (int16_t)shuntraw;
+  float vshunt = (float)shuntSigned * 2.5e-6f; // 2.5uV/bit
+  r.currentA = vshunt / INA226_RSHUNT_OHMS;
+
+  return true;
+}
+
+// =========================
+// ====== LIMITS + OUTPUTS ===
+// =========================
+
+static float getSuspAngleDeg(int suspIdx) {
+  return (suspIdx == 0) ? encFront.angleDeg : encBack.angleDeg;
+}
+
+static int enforceSuspLimits10(int suspIdx, int desiredSpeed10) {
+  float a = getSuspAngleDeg(suspIdx);
+  float minA = SUSP[suspIdx].minDeg;
+  float maxA = SUSP[suspIdx].maxDeg;
+
+  // We assume +speed drives angle upward. If your mechanics are inverted,
+  // swap the comparisons here.
+  if (desiredSpeed10 > 0 && a >= maxA) return 0;
+  if (desiredSpeed10 < 0 && a <= minA) return 0;
+  return desiredSpeed10;
+}
+
+static void applyGimbalServos() {
+  for (int i = 0; i < 3; i++) {
+    int a = constrain(gimbalTargetDeg[i], 0, 180);
+    gimbalServos[i].write(a);
+  }
+}
+
+static void applySuspensionServos() {
+  for (int i = 0; i < 2; i++) {
+    int spd10 = constrain(suspTargetSpeed10[i], -10, 10);
+    spd10 = enforceSuspLimits10(i, spd10);
+
+    // Map -10..+10 to microseconds around neutral.
+    int us = SUSP[i].neutralUs + (int)lroundf(SUSP[i].rangeUs * (spd10 / 10.0f));
+    us = constrain(us, SUSP[i].neutralUs - SUSP[i].rangeUs, SUSP[i].neutralUs + SUSP[i].rangeUs);
+    suspensionServos[i].writeMicroseconds(us);
+  }
+}
+
+static void applyDrive() {
+  driveLeft.set(driveLeftCmd255);
+  driveRight.set(driveRightCmd255);
+}
+
+// =========================
+// ====== PARSING / DISPATCH ===
+// =========================
+
+static int parseIntSafe(const String &s, int fallback) {
+  char *endp = nullptr;
+  long v = strtol(s.c_str(), &endp, 10);
+  if (endp == s.c_str()) return fallback;
+  return (int)v;
+}
+
+static void handleFrame(int id, const String &msg) {
+  // README: payloads are plain numeric strings
+  if (id >= 1 && id <= 3) {
+    int ang = parseIntSafe(msg, 90);
+    gimbalTargetDeg[id - 1] = constrain(ang, 0, 180);
+    return;
+  }
+
+  if (id == 4 || id == 5) {
+    int spd10 = parseIntSafe(msg, 0);
+    spd10 = constrain(spd10, -10, 10);
+    suspTargetSpeed10[id - 4] = spd10; // 0=front, 1=back
+    return;
+  }
+
+  if (id == 6 || id == 7) {
+    int spd10 = parseIntSafe(msg, 0);
+    spd10 = constrain(spd10, -10, 10);
+    int cmd255 = (int)lroundf((spd10 / 10.0f) * 255.0f);
+    if (id == 6) driveLeftCmd255 = cmd255;
+    else         driveRightCmd255 = cmd255;
+    return;
+  }
+}
+
+// =========================
+// ====== TELEMETRY ======
+// =========================
+
+static uint32_t lastInaMs = 0;
+static uint32_t lastEncMs = 0;
+
+static void sendInaTelemetry() {
+  Ina226Reading r;
+  if (!ina226ReadSample(r)) return;
+
+  char buf[48];
+  snprintf(buf, sizeof(buf), "V%.2f-I%.2f", r.busV, r.currentA);
+  sendFrame(10, String(buf));
+}
+
+static void sendEncTelemetry() {
+  encFront.update();
+  encBack.update();
+
+  int f = (int)lroundf(encFront.angleDeg);
+  int b = (int)lroundf(encBack.angleDeg);
+
+  char buf[32];
+  snprintf(buf, sizeof(buf), "F%dB%d", f, b);
+  sendFrame(11, String(buf));
+}
+
+// =========================
+// ====== SETUP/LOOP ======
+// =========================
+
+void setup() {
+  Serial.begin(115200);
+  delay(200);
+
+  // I2C
+  Wire.begin(PIN_I2C_SDA, PIN_I2C_SCL);
+  ina226Init();
+
+  // Gimbal servos
+  for (int i = 0; i < 3; i++) {
+    gimbalServos[i].setPeriodHertz(50);
+    gimbalServos[i].attach(GIMBAL[i].pin, GIMBAL[i].minUs, GIMBAL[i].maxUs);
+    gimbalServos[i].write(constrain(gimbalTargetDeg[i], 0, 180));
+  }
+
+  // Suspension servos
+  for (int i = 0; i < 2; i++) {
+    suspensionServos[i].setPeriodHertz(50);
+    // Continuous rotation servos still use 50Hz, but we drive microseconds around neutral.
+    suspensionServos[i].attach(SUSP[i].pin, 1000, 2000);
+    suspensionServos[i].writeMicroseconds(SUSP[i].neutralUs);
+  }
+
+  // Drive
+  driveLeft.begin(DRIVE_L);
+  driveRight.begin(DRIVE_R);
+
+  // Encoders
+  encFront.begin(PIN_ENC_FRONT_PWM);
+  encBack.begin(PIN_ENC_BACK_PWM);
+  encFrontPtr = &encFront;
+  encBackPtr  = &encBack;
+  attachInterrupt(digitalPinToInterrupt(PIN_ENC_FRONT_PWM), isrEncFront, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(PIN_ENC_BACK_PWM),  isrEncBack,  CHANGE);
+
+  sendFrame(0, "ESP32_OK");
+}
+
+void loop() {
+  // Read frames
+  String idStr, msg;
+  while (readFrame(idStr, msg)) {
+    int id = parseIntSafe(idStr, -1);
+    if (id >= 0) handleFrame(id, msg);
+  }
+
+  // Apply outputs
+  applyGimbalServos();
+  applySuspensionServos();
+  applyDrive();
+
+  // Telemetry
+  uint32_t now = millis();
+  if (now - lastInaMs >= TELEMETRY_INA_MS) {
+    lastInaMs = now;
+    sendInaTelemetry();
+  }
+  if (now - lastEncMs >= TELEMETRY_ENC_MS) {
+    lastEncMs = now;
+    sendEncTelemetry();
+  }
+
+  delay(2);
+}
