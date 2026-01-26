@@ -1,0 +1,26 @@
+# ROS 2 build artifacts
+/build/
+/install/
+/log/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+.env/
+
+# OS / editor junk
+.DS_Store
+.vscode/
+.idea/
+
+# Colcon
+*.log
+
+# Temporary files
+*~
