@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rover Dashboard</title>
+<link rel="icon" href="data:,">
+<style>
+  :root{
+    --bg:#0b1220; --panel:#111a2a; --panel-2:#0e1627; --ink:#e5e7eb; --ink-dim:#9aa5b1;
+    --accent:#2b66f6; --ok:#22c55e; --warn:#f59e0b; --danger:#ef4444; --card:#0e1627; --border:#1f2937;
+    --radius:14px; --gap:14px; --pad:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui, Segoe UI, Roboto, Arial; color:var(--ink); background:var(--bg)}
+  .app{padding:18px; max-width:1280px; margin:auto}
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:10px 16px; background:#0f1829; border:1px solid var(--border); border-radius:12px; font-weight:700; letter-spacing:.5px}
+  .mode{font-size:22px}
+  .cards{display:grid; grid-template-columns: repeat(12, 1fr); gap:var(--gap); margin-top:var(--gap)}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px}
+  .power{grid-column: span 3}
+  .conn{grid-column: span 3}
+  .tilt{grid-column: span 3}
+  .susp{grid-column: span 2}
+  .gimbal{grid-column: span 1}
+  .metric{display:flex; justify-content:space-between; margin:8px 0}
+  .big{font-size:32px; font-weight:800}
+  .circle{width:120px; height:120px; border-radius:50%; display:grid; place-items:center; background:radial-gradient(ellipse at center, #17223a, #0f1829); border:1px solid var(--border); margin:auto}
+  .status-ok{color:var(--ok); font-weight:700}
+  .status-badge{padding:2px 8px; border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--ink-dim)}
+  .row{display:flex; gap:var(--gap)}
+
+  /* Controls + Cameras */
+  .lower{display:grid; grid-template-columns: 350px 1fr; gap:var(--gap); margin-top:var(--gap)}
+  .stack{display:flex; flex-direction:column; gap:12px}
+  .ctl{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:10px 12px; background:var(--panel); border:1px solid var(--border); border-radius:12px; flex-wrap:wrap}
+  .pill{display:flex; gap:10px; background:transparent; border:none; padding:0; flex-wrap:wrap; max-width:100%}
+  .pill button{background:#12203a; color:#e5e7eb; border:1px solid var(--border); border-radius:10px; padding:8px 14px; cursor:pointer; box-shadow:inset 0 -1px 0 rgba(255,255,255,.05); transition:background .2s, border-color .2s, transform .02s}
+  .pill button:hover{background:#162745; border-color:#2a394f}
+  .pill button:active{transform:translateY(1px)}
+  .pill button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  .switch{position:relative; width:56px; height:28px; background:#1f2a40; border-radius:999px; border:1px solid var(--border); cursor:pointer}
+  .switch input{appearance:none; width:100%; height:100%; margin:0}
+  .switch input:checked + .knob{left:30px; background:var(--accent)}
+  .switch.sm{width:44px; height:22px}
+  .switch.sm .knob{width:18px; height:18px}
+  .switch.sm input:checked + .knob{left:24px}
+  .knob{content:""; position:absolute; top:2px; left:2px; width:24px; height:24px; border-radius:50%; background:#2b354d; transition:.2s}
+
+  /* Cameras */
+  .cam-wrap{background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:0}
+  .cam-bar{display:flex; align-items:center; gap:10px; padding:10px; border-bottom:1px solid var(--border); background:var(--panel-2); border-radius:12px 12px 0 0}
+  .cam-bar .toggle{display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); border-radius:999px; color:var(--ink-dim);}
+  .cam-bar input{accent-color:var(--accent)}
+  .cam-bar .spacer{flex:1}
+  .cam-bar .btn{padding:6px 10px; border:1px solid var(--border); border-radius:10px; background:#12203a; color:var(--ink); cursor:pointer}
+  .mode-box{display:flex; align-items:center; gap:8px; margin-right:10px}
+  .viewer{padding:12px; display:grid; grid-template-columns:1fr; gap:12px; min-height:300px; border-radius:0 0 12px 12px}
+  .viewer.stage{display:grid; grid-template-columns:3fr 1fr; align-items:start}
+  .tile{position:relative; background:#0d1321; border:1px solid #101826; border-radius:12px; overflow:hidden; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center}
+  .tile img{width:100%; height:100%; object-fit:contain; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges}
+  .badge{position:absolute; top:8px; left:8px; padding:2px 8px; font-size:12px; border-radius:999px; background:rgba(15,23,42,.7); color:#e2e8f0; border:1px solid rgba(255,255,255,.06)}
+  .placeholder{color:var(--ink-dim); display:flex; align-items:center; justify-content:center; height:240px; border:1px dashed var(--border); border-radius:12px; background:rgba(255,255,255,.02)}
+
+  @media (max-width: 1100px){
+    .cards{grid-template-columns: repeat(6, 1fr)}
+    .power{grid-column: span 3} .conn{grid-column: span 3}
+    .tilt{grid-column: span 3} .susp{grid-column: span 2} .gimbal{grid-column: span 1}
+    .lower{grid-template-columns: 1fr}
+  }
+
+  .conn .circles{display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap}
+  .slider{width:100%; height:8px; background:#1b2438; border:1px solid var(--border); border-radius:999px; -webkit-appearance:none; appearance:none; outline:none}
+  .slider::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%; background:var(--accent); border:1px solid #0a1222 }
+  .slider::-moz-range-thumb{ width:18px; height:18px; border:none; border-radius:50%; background:var(--accent) }
+
+  /* Tilt indicator lines */
+  .tilt-line{height:6px; width:100%; background:#fff; border-radius:999px; transform-origin:center center;}
+  .tilt-labels{display:flex; justify-content:space-between; font-size:12px; opacity:.7; margin-top:6px}
+
+  /* Gimbal icons */
+  .gimb-row{display:flex; gap:12px; justify-content:center}
+  .gIcon{position:relative; width:48px; height:48px; border-radius:12px; border:2px solid #e5e7eb; display:grid; place-items:center}
+  .gSquare{position:absolute; width:20px; height:20px; border:2px solid #e5e7eb; border-radius:6px;}
+  .gRef{position:absolute; width:28px; height:0; border-top:2px dashed #64748b; top:8px}
+  .gTri{position:absolute; width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-bottom:14px solid #e5e7eb; top:6px}
+  .gVal{font-size:14px; opacity:.8; text-align:center}
+</style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="mode" id="modeLabel">MODE: SIM</div>
+      <div class="status-badge" id="netBadge">WebBridge: Disconnected</div>
+    </div>
+
+    <!-- Top cards -->
+    <section class="cards">
+      <div class="card power">
+        <div style="font-weight:700; opacity:.8">Power</div>
+        <div class="metric"><span>Voltage</span><span class="big" id="v">12.35</span></div>
+        <div class="metric" style="margin-top:-8px"><span>Volts</span><span></span></div>
+        <div class="metric" style="margin-top:12px"><span>Current Draw</span><span class="big" id="i">4.24</span></div>
+        <div class="metric" style="margin-top:-8px"><span>Amps</span><span></span></div>
+      </div>
+
+      <div class="card conn">
+        <div style="font-weight:700; opacity:.8; margin-bottom:6px">Connection</div>
+        <div class="circles">
+          <div class="circle">
+            <div>
+              <div class="status-ok" id="connStatus" style="text-align:center; font-size:20px">Offline</div>
+              <div style="text-align:center; opacity:.7">Status</div>
+            </div>
+          </div>
+          <div class="circle">
+            <div>
+              <div class="big" id="ping">---</div>
+              <div style="text-align:center; opacity:.7">Ping (ms)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card tilt">
+        <div style="font-weight:700; opacity:.8; margin-bottom:6px">Tilt</div>
+        <div class="metric" style="flex-direction:column; align-items:center; gap:8px">
+          <div id="tiltPitch" class="tilt-line"></div>
+          <div class="tilt-labels"><span>F</span><span>B</span></div>
+        </div>
+        <div class="metric" style="flex-direction:column; align-items:center; gap:8px">
+          <div id="tiltRoll" class="tilt-line"></div>
+          <div class="tilt-labels"><span>L</span><span>R</span></div>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <div style="flex:1; text-align:center"><div style="opacity:.7">Pitch</div><div class="big" id="pitch">0</div><div style="opacity:.7">Degrees</div></div>
+          <div style="flex:1; text-align:center"><div style="opacity:.7">Roll</div><div class="big" id="roll">0</div><div style="opacity:.7">Degrees</div></div>
+        </div>
+      </div>
+
+      <div class="card susp">
+        <div style="font-weight:700; opacity:.8; margin-bottom:6px">Suspension</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px; margin:8px 0 8px 0">
+          <div id="bodyLine" style="width:80%; height:12px; background:#fff; border-radius:999px"></div>
+          <div style="position:relative; width:80%; height:60px">
+            <div id="frontArm" style="position:absolute; left:25%; top:29px; width:0; height:0; transform-origin:0 0">
+              <div style="width:54px; height:6px; background:#fff; border-radius:999px; position:absolute; left:0; top:-3px"></div>
+              <div style="width:10px; height:10px; border-radius:50%; background:#fff; position:absolute; left:54px; top:-5px"></div>
+            </div>
+            <div id="backArm" style="position:absolute; right:25%; top:29px; width:0; height:0; transform-origin:0 0">
+              <div style="width:54px; height:6px; background:#fff; border-radius:999px; position:absolute; left:0; top:-3px"></div>
+              <div style="width:10px; height:10px; border-radius:50%; background:#fff; position:absolute; left:54px; top:-5px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:4px">
+          <div style="flex:1; text-align:center"><div style="opacity:.7">Front</div><div class="big" id="sFront">0</div><div style="opacity:.7">Degrees</div></div>
+          <div style="flex:1; text-align:center"><div style="opacity:.7">Back</div><div class="big" id="sBack">0</div><div style="opacity:.7">Degrees</div></div>
+        </div>
+      </div>
+
+      <div class="card gimbal">
+        <div style="font-weight:700; opacity:.8; margin-bottom:6px">Gimbal</div>
+        <div class="gimb-row">
+          <div style="text-align:center">
+            <div class="gIcon">
+              <div class="gRef"></div>
+              <div id="gHBox" class="gSquare" data-base="0"></div>
+              <div id="gHTri" class="gTri"></div>
+            </div>
+            <div class="gVal" id="gHVal">0°</div>
+          </div>
+          <div style="text-align:center">
+            <div class="gIcon">
+              <div class="gRef" style="transform:rotate(90deg);"></div>
+              <div id="gVBox" class="gSquare" data-base="-90"></div>
+              <div id="gVTri" class="gTri" style="transform:rotate(-90deg);"></div>
+            </div>
+            <div class="gVal" id="gVVal">0°</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lower zone -->
+    <section class="lower">
+      <div class="stack">
+        <div class="ctl"><span>CAM ANTENNA</span><span id="camAntennaTxt" class="status-badge">UNFOLDED</span><label class="switch"><input type="checkbox" id="camAntenna" checked><span class="knob"></span></label></div>
+        <div class="ctl"><span>SUSPENSION LOCKED</span><label class="switch"><input type="checkbox" id="lock"><span class="knob"></span></label></div>
+        <div class="ctl"><span>SUSPENSION POSITION</span><div class="pill" id="suspBtns"><button type="button" data-pos="flat">Flat</button><button type="button" data-pos="low">Low</button><button type="button" data-pos="high">High</button><button type="button" data-pos="rock">Rock</button></div></div>
+        <div class="ctl"><span>FRONT CAMERA</span><label class="switch"><input type="checkbox" id="c0" checked><span class="knob"></span></label></div>
+        <div class="ctl"><span>BACK CAMERA</span><label class="switch"><input type="checkbox" id="c1"><span class="knob"></span></label></div>
+        <div class="ctl"><span>GIMBAL CAMERA</span><label class="switch"><input type="checkbox" id="c2"><span class="knob"></span></label></div>
+        <div class="ctl"><span>UNDERSIDE CAMERA</span><label class="switch"><input type="checkbox" id="c3"><span class="knob"></span></label></div>
+        <div class="ctl" style="flex-direction:column; align-items:stretch">
+          <div style="display:flex; justify-content:space-between; align-items:center"><span>DRIVING SPEED</span><span id="speedPct">80%</span></div>
+          <input type="range" id="speedRange" min="0" max="100" value="80" step="10" class="slider">
+        </div>
+      </div>
+
+      <div class="cam-wrap">
+        <div class="cam-bar">
+          <label class="toggle"><input type="checkbox" data-id="cam0" checked> Front</label>
+          <label class="toggle"><input type="checkbox" data-id="cam1"> Back</label>
+          <label class="toggle"><input type="checkbox" data-id="cam2"> Gimbal</label>
+          <label class="toggle"><input type="checkbox" data-id="cam3"> Under</label>
+          <div class="spacer"></div>
+          <div class="mode-box">
+            <span style="opacity:.7;font-size:12px">TG</span>
+            <label class="switch sm"><input type="checkbox" id="camModeSwitch"><span class="knob"></span></label>
+            <span style="opacity:.7;font-size:12px">ST</span>
+          </div>
+          <button type="button" class="btn" id="clearCams">Clear</button>
+        </div>
+        <div id="viewer" class="viewer">
+          <div id="placeholder" class="placeholder">No cameras selected</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+<script>
+  // =========================
+  // Global Mode + Telemetry
+  // =========================
+  window.__mode = 'SIM'; // SIM or CTL
+  window.__liveTelem = { voltage_v:null, current_a:null, pitch_deg:null, roll_deg:null, ping_ms:null };
+
+  window.__setMode = function(mode){
+    window.__mode = mode;
+    const el = document.getElementById('modeLabel');
+    if(el) el.textContent = `MODE: ${mode}`;
+  };
+
+  // =========================
+  // Camera viewer (unchanged)
+  // =========================
+  const PI_HOST = location.hostname;
+  const CAM_PORT = 8090; // change if you actually run a camera streamer
+  const CAMS = {
+    cam0: { label: 'Front',  url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/cam0/image_raw` },
+    cam1: { label: 'Back',   url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/cam1/image_raw` },
+    cam2: { label: 'Gimbal', url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/cam2/image_raw` },
+    cam3: { label: 'Under',  url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/cam3/image_raw` },
+  };
+
+  const viewer = document.getElementById('viewer');
+  const placeholder = document.getElementById('placeholder');
+  const clearBtn = document.getElementById('clearCams');
+  const modeSwitch = document.getElementById('camModeSwitch');
+  const toggles = Array.from(document.querySelectorAll('.cam-bar input[type="checkbox"][data-id]'));
+  let camMode = 'TG';
+
+  function activeIds(){ return toggles.filter(t=>t.checked).map(t=>t.dataset.id); }
+  function stopAll(){ viewer.querySelectorAll('img[data-live="1"]').forEach(img=>{ img.removeAttribute('src'); img.dataset.live='0'; }); }
+  function renderTG(){
+    const ids = activeIds();
+    viewer.innerHTML = '';
+    viewer.style.gridTemplateColumns = (ids.length<=1) ? '1fr' : '1fr 1fr';
+    if(ids.length===0){ viewer.appendChild(placeholder); return; }
+    ids.forEach(id=>{
+      const {label, url} = CAMS[id];
+      const tile = document.createElement('div'); tile.className='tile';
+      const img = document.createElement('img'); img.alt=label; img.dataset.live='1'; img.decoding='async'; img.loading='eager'; img.referrerPolicy='no-referrer'; img.src=url;
+      const badge = document.createElement('div'); badge.className='badge'; badge.textContent=label;
+      tile.appendChild(img); tile.appendChild(badge); viewer.appendChild(tile);
+    });
+  }
+  function renderST(){
+    viewer.classList.add('stage');
+    viewer.style.removeProperty('grid-template-columns');
+    const ids = ['cam0','cam1','cam2','cam3'];
+    viewer.innerHTML = '';
+    const colMain = document.createElement('div');
+    const colStack = document.createElement('div');
+    colStack.style.display='grid'; colStack.style.gap='12px';
+    ids.forEach((id, idx)=>{
+      const {label, url} = CAMS[id];
+      const tile = document.createElement('div'); tile.className='tile';
+      const img = document.createElement('img'); img.alt=label; img.dataset.live='1'; img.src=url;
+      const badge = document.createElement('div'); badge.className='badge'; badge.textContent=label;
+      tile.appendChild(img); tile.appendChild(badge);
+      if(idx===0) colMain.appendChild(tile); else colStack.appendChild(tile);
+    });
+    viewer.appendChild(colMain); viewer.appendChild(colStack);
+  }
+  function render(){
+    stopAll();
+    viewer.classList.remove('stage');
+    if(camMode==='ST') renderST(); else renderTG();
+  }
+  toggles.forEach(t=>t.addEventListener('change', ()=>{ if(camMode==='TG'){ render(); } }));
+  clearBtn.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); toggles.forEach(t=>t.checked=false); stopAll(); render(); });
+  if(modeSwitch){
+    modeSwitch.addEventListener('change', ()=>{
+      camMode = modeSwitch.checked ? 'ST' : 'TG';
+      stopAll(); render();
+    });
+  }
+  render();
+
+  // =========================
+  // UI refs + controls
+  // =========================
+  const vEl = document.getElementById('v');
+  const iEl = document.getElementById('i');
+  const pingEl = document.getElementById('ping');
+  const pitchEl = document.getElementById('pitch');
+  const rollEl = document.getElementById('roll');
+  const sFrontEl = document.getElementById('sFront');
+  const sBackEl  = document.getElementById('sBack');
+  const speedRange = document.getElementById('speedRange');
+  const speedPct = document.getElementById('speedPct');
+  const camAnt = document.getElementById('camAntenna');
+  const camAntTxt = document.getElementById('camAntennaTxt');
+  const suspLock = document.getElementById('lock');
+
+  if(camAnt){ camAnt.addEventListener('change', ()=> camAntTxt.textContent = camAnt.checked ? 'UNFOLDED' : 'FOLDED'); }
+
+  function clamp(n,min,max){ return Math.min(max, Math.max(min, n)); }
+  function dz(v, dead=0.12){ return Math.abs(v) < dead ? 0 : v; }
+
+  if(speedRange){
+    const snap10 = v => Math.round((parseInt(v||0,10))/10)*10;
+    speedRange.step = 10;
+    const updateSpeed = () => {
+      const val = snap10(speedRange.value);
+      if(String(speedRange.value) !== String(val)) speedRange.value = val;
+      speedPct.textContent = val + '%';
+    };
+    updateSpeed();
+    speedRange.addEventListener('input', updateSpeed);
+    speedRange.addEventListener('change', updateSpeed);
+  }
+
+  // Suspension presets (just UI targets)
+  const suspBtns = document.getElementById('suspBtns');
+  let sFrontTarget = 0, sBackTarget = 0;
+  function setSusp(mode){
+    switch(mode){
+      case 'flat': sFrontTarget=0;  sBackTarget=0;  break;
+      case 'low':  sFrontTarget=30; sBackTarget=30; break;
+      case 'high': sFrontTarget=60; sBackTarget=60; break;
+      case 'rock': sFrontTarget=60; sBackTarget=30; break;
+    }
+  }
+  if(suspBtns){
+    suspBtns.addEventListener('click', (e)=>{
+      const b = e.target.closest('button[data-pos]');
+      if(!b) return;
+      setSusp(b.dataset.pos);
+    });
+  }
+
+  // Keyboard
+  const keyState = { w:false, a:false, s:false, d:false, ArrowLeft:false, ArrowRight:false, ArrowUp:false, ArrowDown:false, u:false, i:false, o:false, p:false };
+  function setKey(k, val){
+    switch(k){
+      case 'w': case 'W': keyState.w = val; break;
+      case 'a': case 'A': keyState.a = val; break;
+      case 's': case 'S': keyState.s = val; break;
+      case 'd': case 'D': keyState.d = val; break;
+      case 'ArrowLeft':  keyState.ArrowLeft  = val; break;
+      case 'ArrowRight': keyState.ArrowRight = val; break;
+      case 'ArrowUp':    keyState.ArrowUp    = val; break;
+      case 'ArrowDown':  keyState.ArrowDown  = val; break;
+      case 'u': case 'U': keyState.u = val; break;
+      case 'i': case 'I': keyState.i = val; break;
+      case 'o': case 'O': keyState.o = val; break;
+      case 'p': case 'P': keyState.p = val; break;
+    }
+  }
+  window.addEventListener('keydown', (e)=>{
+    const k = e.key;
+    if(['w','W','a','A','s','S','d','D','u','U','i','I','o','O','p','P','ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(k)){
+      e.preventDefault();
+    }
+    setKey(k, true);
+  }, {passive:false});
+  window.addEventListener('keyup', (e)=> setKey(e.key, false));
+
+  // Gamepad
+  const gamepadState = { index:null, lastButtons:[] };
+  window.addEventListener('gamepadconnected', (e)=>{ if(gamepadState.index===null) gamepadState.index = e.gamepad.index; });
+  window.addEventListener('gamepaddisconnected', (e)=>{ if(gamepadState.index===e.gamepad.index) gamepadState.index = null; });
+  function getGamepad(){
+    const pads = navigator.getGamepads ? navigator.getGamepads() : [];
+    if(!pads) return null;
+    if(gamepadState.index!=null && pads[gamepadState.index]) return pads[gamepadState.index];
+    for(const p of pads){ if(p) return p; }
+    return null;
+  }
+
+  // Gimbal UI
+  const gHBox = document.getElementById('gHBox');
+  const gVBox = document.getElementById('gVBox');
+  const gHVal = document.getElementById('gHVal');
+  const gVVal = document.getElementById('gVVal');
+  const tiltPitch = document.getElementById('tiltPitch');
+  const tiltRoll  = document.getElementById('tiltRoll');
+
+  let gHAngle = 0; // -90..+90
+  let gVAngle = 0; // -90..+90
+
+  // Command state exposed for bridge
+  window.__drive = { left:0, right:0 };
+  window.gHAngle = gHAngle;
+  window.gVAngle = gVAngle;
+  window.sFrontTarget = sFrontTarget;
+  window.sBackTarget  = sBackTarget;
+
+  // =========================
+  // Main UI tick (SIM telemetry + control processing)
+  // =========================
+  let t = 0;
+  setInterval(()=>{
+    const dt = 0.25;
+    t += dt;
+
+    // ---- SIM telemetry generation (ONLY in SIM mode) ----
+    if(window.__mode === 'SIM'){
+      const v = 12.1 + 0.3*Math.sin(t/2);
+      const c = 4.0 + 0.5*Math.cos(t/3);
+      const p = 10*Math.sin(t/2);
+      const r = 20*Math.cos(t/2);
+      const ping = 140 + Math.floor(40*Math.abs(Math.sin(t/1.7)));
+
+      window.__liveTelem.voltage_v = v;
+      window.__liveTelem.current_a = c;
+      window.__liveTelem.pitch_deg = p;
+      window.__liveTelem.roll_deg  = r;
+      window.__liveTelem.ping_ms   = ping;
+    }
+
+    // ---- Apply telemetry to UI (ALWAYS) ----
+    const tv = window.__liveTelem.voltage_v;
+    const ti = window.__liveTelem.current_a;
+    const tp = window.__liveTelem.pitch_deg;
+    const tr = window.__liveTelem.roll_deg;
+    const tg = window.__liveTelem.ping_ms;
+
+    if(typeof tv === 'number' && vEl) vEl.textContent = tv.toFixed(2);
+    if(typeof ti === 'number' && iEl) iEl.textContent = ti.toFixed(2);
+    if(typeof tg === 'number' && pingEl) pingEl.textContent = Math.round(tg);
+    if(typeof tp === 'number' && pitchEl) pitchEl.textContent = Math.round(tp);
+    if(typeof tr === 'number' && rollEl)  rollEl.textContent  = Math.round(tr);
+
+    if(tiltPitch && typeof tp === 'number') tiltPitch.style.transform = `rotate(${tp.toFixed(1)}deg)`;
+    if(tiltRoll  && typeof tr === 'number') tiltRoll.style.transform  = `rotate(${tr.toFixed(1)}deg)`;
+
+    // ---- Drive (keyboard or gamepad) ALWAYS computed (works in SIM + CTL) ----
+    let forward = (keyState.w?1:0) + (keyState.s?-1:0);
+    let turn    = (keyState.d?1:0) + (keyState.a?-1:0);
+
+    const gp = getGamepad();
+    if(gp){
+      const LX = dz(gp.axes[0]||0);
+      const LY = dz(gp.axes[1]||0);
+      forward = clamp(-LY, -1, 1);
+      turn    = clamp(LX, -1, 1);
+    }
+
+    const sp = speedRange ? (parseInt(speedRange.value,10)||0)/100 : 0;
+    const leftCmd  = clamp(forward - turn, -1, 1) * sp;
+    const rightCmd = clamp(forward + turn, -1, 1) * sp;
+    window.__drive.left = leftCmd;
+    window.__drive.right = rightCmd;
+
+    // ---- Gimbal + suspension target updates (from inputs) ALWAYS ----
+    if(gp){
+      const RX = dz(gp.axes[2]||0);
+      const RY = dz(gp.axes[3]||0);
+      const gRate = 20; // deg/sec
+      gHAngle = clamp(gHAngle + RX * gRate * dt, -90, 90);
+      gVAngle = clamp(gVAngle + (-RY) * gRate * dt, -90, 90);
+
+      const b = gp.buttons;
+      const L1 = b[4]?.pressed; const R1 = b[5]?.pressed;
+      const L2v = (typeof b[6]?.value==='number'? b[6].value : (b[6]?.pressed?1:0));
+      const R2v = (typeof b[7]?.value==='number'? b[7].value : (b[7]?.pressed?1:0));
+      const trigDead = 0.15;
+      const sRate = 30; // deg/sec
+      const step = sRate * dt;
+
+      if(L1){ sFrontTarget = clamp(sFrontTarget - step, 0, 60); }
+      if(R1){ sBackTarget  = clamp(sBackTarget  - step, 0, 60); }
+      if(L2v>trigDead){ sFrontTarget = clamp(sFrontTarget + step*L2v, 0, 60); }
+      if(R2v>trigDead){ sBackTarget  = clamp(sBackTarget  + step*R2v, 0, 60); }
+
+      const touchPressed = !!b[17]?.pressed;
+      const lastTouch = gamepadState.lastButtons[17] || false;
+      if(touchPressed && !lastTouch && suspLock){ suspLock.checked = !suspLock.checked; }
+      gamepadState.lastButtons[17] = touchPressed;
+    }
+
+    // Keyboard gimbal
+    const gStep = 5;
+    if(keyState.ArrowLeft)  gHAngle = clamp(gHAngle - gStep, -90, 90);
+    if(keyState.ArrowRight) gHAngle = clamp(gHAngle + gStep, -90, 90);
+    if(keyState.ArrowUp)    gVAngle = clamp(gVAngle + gStep, -90, 90);
+    if(keyState.ArrowDown)  gVAngle = clamp(gVAngle - gStep, -90, 90);
+
+    // Keyboard suspension
+    const sStep = 0.625;
+    if(keyState.u) sFrontTarget = clamp(sFrontTarget - sStep, 0, 60);
+    if(keyState.i) sFrontTarget = clamp(sFrontTarget + sStep, 0, 60);
+    if(keyState.o) sBackTarget  = clamp(sBackTarget  + sStep, 0, 60);
+    if(keyState.p) sBackTarget  = clamp(sBackTarget  - sStep, 0, 60);
+
+    // Apply gimbal visuals
+    if(gHBox){ const base = parseFloat(gHBox.dataset.base||0);   gHBox.style.transform = `rotate(${(base + gHAngle).toFixed(1)}deg)`; }
+    if(gVBox){ const base = parseFloat(gVBox.dataset.base||-90); gVBox.style.transform = `rotate(${(base + gVAngle).toFixed(1)}deg)`; }
+    if(gHVal) gHVal.textContent = Math.round(gHAngle) + '°';
+    if(gVVal) gVVal.textContent = Math.round(gVAngle) + '°';
+
+    // Suspension numbers (these are UI targets; for real feedback you’d add telemetry fields later)
+    if(sFrontEl) sFrontEl.textContent = Math.round(Math.abs(sFrontTarget));
+    if(sBackEl)  sBackEl.textContent  = Math.round(sBackTarget);
+
+    // Export for bridge
+    window.gHAngle = gHAngle;
+    window.gVAngle = gVAngle;
+    window.sFrontTarget = sFrontTarget;
+    window.sBackTarget  = sBackTarget;
+
+  }, 250);
+</script>
+
+<!-- ========================= -->
+<!-- Roo WebBridge (WS :8765)  -->
+<!-- ========================= -->
+<script>
+(() => {
+  const PI_HOST = location.hostname;
+  const WS_URL  = `ws://${PI_HOST}:8765`;
+
+  // Motor command scaling
+  const MAX_CMD = 10.0;     // your downstream expects -10..+10
+  const SEND_HZ = 10;       // commands rate
+
+  const q = (id)=>document.getElementById(id);
+  const clamp = (n,a,b)=> Math.min(b, Math.max(a,n));
+
+  const netBadge = q('netBadge');
+  const connStatus = q('connStatus');
+
+  let ws = null;
+  let connected = false;
+  let lastTelemRx = 0;
+
+  function setConn(ok){
+    connected = ok;
+    if(netBadge) netBadge.textContent = ok ? 'WebBridge: Connected' : 'WebBridge: Disconnected';
+
+    if(connStatus){
+      connStatus.textContent = ok ? 'Online' : 'Offline';
+      if(ok){
+        connStatus.classList.add('status-ok');
+        connStatus.style.color = '';
+      }else{
+        connStatus.classList.remove('status-ok');
+        connStatus.style.color = '#ef4444';
+        connStatus.style.fontWeight = '700';
+      }
+    }
+
+    // MODE switching
+    if(window.__setMode){
+      window.__setMode(ok ? 'CTL' : 'SIM');
+    }
+  }
+
+  function send(obj){
+    try { if(ws && ws.readyState === 1) ws.send(JSON.stringify(obj)); } catch(_){}
+  }
+
+  function readCommands(){
+    const left_norm  = (window.__drive && typeof window.__drive.left  === 'number') ? window.__drive.left  : 0;
+    const right_norm = (window.__drive && typeof window.__drive.right === 'number') ? window.__drive.right : 0;
+
+    const motor_left  = clamp(left_norm,  -1, 1) * MAX_CMD;
+    const motor_right = clamp(right_norm, -1, 1) * MAX_CMD;
+
+    const gH = (typeof window.gHAngle === 'number') ? window.gHAngle : 0;
+    const gV = (typeof window.gVAngle === 'number') ? window.gVAngle : 0;
+
+    // gimbal2 = rot about Y (horizontal), gimbal3 = rot about X (vertical)
+    const g2 = clamp(gH + 90, 0, 180);
+    const g3 = clamp(gV + 90, 0, 180);
+
+    // suspension: currently UI only. keep 0 unless you add real control semantics
+    const locked = !!q('lock')?.checked;
+    const susp_front = locked ? 0.0 : 0.0;
+    const susp_back  = locked ? 0.0 : 0.0;
+
+    return { motor_left, motor_right, g2, g3, susp_front, susp_back };
+  }
+
+  function connect(){
+    setConn(false);
+    if(netBadge) netBadge.textContent = 'WebBridge: Connecting…';
+
+    try{
+      ws = new WebSocket(WS_URL);
+    }catch(e){
+      setTimeout(connect, 1500);
+      return;
+    }
+
+    ws.onopen = () => {
+      setConn(true);
+      // tell backend we’re web source (mux can use this)
+      send({ type: 'control_source', value: 'web' });
+      // optional safety
+      send({ type: 'stop' });
+    };
+
+    ws.onclose = () => {
+      setConn(false);
+      setTimeout(connect, 1500);
+    };
+
+    ws.onerror = () => {
+      try { ws.close(); } catch(_){}
+    };
+
+    ws.onmessage = (ev) => {
+      let msg;
+      try { msg = JSON.parse(ev.data); } catch(_) { return; }
+      if(!msg || msg.type !== 'telemetry') return;
+
+      // Update shared telemetry store (CTL display comes from here)
+      if(!window.__liveTelem) window.__liveTelem = {};
+      if(typeof msg.voltage_v === 'number') window.__liveTelem.voltage_v = msg.voltage_v;
+      if(typeof msg.current_a === 'number') window.__liveTelem.current_a = msg.current_a;
+      if(typeof msg.pitch_deg === 'number') window.__liveTelem.pitch_deg = msg.pitch_deg;
+      if(typeof msg.roll_deg  === 'number') window.__liveTelem.roll_deg  = msg.roll_deg;
+
+      // ping = time since last telemetry packet (ms)
+      const now = Date.now();
+      if (lastTelemRx > 0) {
+        window.__liveTelem.ping_ms = now - lastTelemRx;
+      }
+      // else: leave ping as-is (or set null)
+      lastTelemRx = now;
+      };
+  }
+
+  // Command publish loop (ALWAYS when connected; does not depend on SIM/CTL)
+  setInterval(() => {
+    if(!connected) return;
+    const c = readCommands();
+    send({ type: 'motor', left: c.motor_left, right: c.motor_right });
+    send({ type: 'gimbal', g2: c.g2, g3: c.g3 });
+    send({ type: 'susp', front: c.susp_front, back: c.susp_back });
+    send({ type: 'heartbeat' });
+  }, Math.max(50, Math.round(1000 / SEND_HZ)));
+
+  // Emergency stop (Space)
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      send({ type: 'stop' });
+    }
+  }, {passive:false});
+
+  connect();
+})();
+</script>
+
+</body>
+</html>
