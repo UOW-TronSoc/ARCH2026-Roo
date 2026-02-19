@@ -85,6 +85,53 @@
   .gRef{position:absolute; width:28px; height:0; border-top:2px dashed #64748b; top:8px}
   .gTri{position:absolute; width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-bottom:14px solid #e5e7eb; top:6px}
   .gVal{font-size:14px; opacity:.8; text-align:center}
+
+  /* ========================= */
+  /* NIR Triad section (ADDED) */
+  /* ========================= */
+  .nir{margin-top:var(--gap)}
+  .nir-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px}
+  .nir-title{font-weight:800; letter-spacing:.4px}
+  .nir-sub{color:var(--ink-dim); font-size:12px}
+  .nir-grid{display:grid; grid-template-columns: 1.2fr 1fr; gap:var(--gap)}
+  .nir-panel{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px}
+  .nir-metrics{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:10px}
+  .nir-metric{background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:12px; padding:12px}
+  .nir-metric .k{color:var(--ink-dim); font-size:12px}
+  .nir-metric .v{font-size:22px; font-weight:800; margin-top:6px}
+  .nir-meter{height:10px; border-radius:999px; background:#1b2438; border:1px solid var(--border); overflow:hidden}
+  .nir-meter > div{height:100%; width:0%; background:var(--accent)}
+  .nir-table{width:100%; border-collapse:collapse; margin-top:10px; font-variant-numeric:tabular-nums}
+  .nir-table th, .nir-table td{padding:8px 10px; border-bottom:1px solid rgba(255,255,255,.06); text-align:right}
+  .nir-table th:first-child, .nir-table td:first-child{text-align:left}
+  .nir-table th{color:var(--ink-dim); font-size:12px; font-weight:700}
+  .nir-spark{display:flex; gap:6px; align-items:flex-end; height:56px; margin-top:10px; padding:10px; background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:12px}
+  .nir-spark .b{flex:1; background:#1f2a40; border:1px solid rgba(255,255,255,.06); border-radius:8px; height:10%}
+  .nir-canvas{
+    width:100%;
+    height:220px;
+    display:block;
+    background:rgba(255,255,255,.02);
+    border:1px solid var(--border);
+    border-radius:12px;
+  }
+  .nir-btn{
+    padding:8px 12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:#12203a;
+    color:var(--ink);
+    cursor:pointer;
+    font-weight:700;
+    box-shadow:inset 0 -1px 0 rgba(255,255,255,.05);
+  }
+  .nir-btn:hover{background:#162745; border-color:#2a394f}
+  .nir-btn:active{transform:translateY(1px)}
+  .nir-btn:disabled{opacity:.55; cursor:not-allowed}
+  @media (max-width: 1100px){
+    .nir-grid{grid-template-columns: 1fr}
+    .nir-metrics{grid-template-columns: 1fr}
+  }
 </style>
 </head>
 
@@ -218,6 +265,93 @@
         </div>
       </div>
     </section>
+
+    <!-- ========================= -->
+    <!-- NIR TRIAD (ADDED SECTION) -->
+    <!-- ========================= -->
+    <section class="nir">
+      <div class="nir-head">
+        <div>
+          <div class="nir-title">NIR Spectroscopy (SparkFun Triad)</div>
+          <div class="nir-sub">Simulated AS7265x 18-channel spectrum + ilmenite-focused features</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+          <button type="button" class="nir-btn" id="nirTakeBtn">Take Reading</button>
+          <span class="status-badge" id="nirStatus">IDLE</span>
+        </div>
+      </div>
+
+      <div class="nir-grid">
+        <div class="nir-panel">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap">
+            <div style="font-weight:800; letter-spacing:.3px">Spectrum (18 bands)</div>
+            <div class="status-badge" id="nirModeBadge">NIR Sensor</div>
+          </div>
+
+          <div class="nir-spark" id="nirSpark" aria-label="Spectrum bars"></div>
+
+          <div class="nir-metric" style="margin-top:12px">
+            <div class="k">Ilmenite Likelihood History</div>
+            <canvas id="ilmCanvas" class="nir-canvas" width="900" height="220" style="margin-top:10px"></canvas>
+          </div>
+
+          <table class="nir-table" aria-label="Ilmenite history table" style="margin-top:12px">
+            <thead>
+              <tr>
+                <th style="text-align:left">Time</th>
+                <th>Ilm %</th>
+                <th>860/680</th>
+                <th>Slope</th>
+                <th>Broad</th>
+              </tr>
+            </thead>
+            <tbody id="nirHistBody"></tbody>
+          </table>
+
+          <table class="nir-table" aria-label="AS7265x band values">
+            <thead>
+              <tr>
+                <th>Band (nm)</th>
+                <th>Value</th>
+                <th>Norm</th>
+              </tr>
+            </thead>
+            <tbody id="nirTbody"></tbody>
+          </table>
+        </div>
+
+        <div class="nir-panel">
+          <div style="font-weight:800; letter-spacing:.3px">Ilmenite Indicators</div>
+
+          <div style="margin-top:10px">
+            <div style="display:flex; justify-content:space-between; align-items:center">
+              <div style="color:var(--ink-dim); font-size:12px; font-weight:700">Ilmenite Likelihood (heuristic)</div>
+              <div style="font-weight:800" id="ilmPct">0%</div>
+            </div>
+            <div class="nir-meter" style="margin-top:8px"><div id="ilmBar"></div></div>
+          </div>
+
+          <div class="nir-metrics">
+            <div class="nir-metric">
+              <div class="k">Red/NIR slope</div>
+              <div class="v" id="mSlope">0.00</div>
+              <div class="nir-sub">~(860–680) / Δnm</div>
+            </div>
+            <div class="nir-metric">
+              <div class="k">Band ratio</div>
+              <div class="v" id="mRatio">0.00</div>
+              <div class="nir-sub">860 / 680</div>
+            </div>
+            <div class="nir-metric">
+              <div class="k">Broadness</div>
+              <div class="v" id="mBroad">0.00</div>
+              <div class="nir-sub">NIR spread (860–940)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 
 <script>
@@ -409,6 +543,313 @@
   window.gVAngle = gVAngle;
   window.sFrontTarget = sFrontTarget;
   window.sBackTarget  = sBackTarget;
+
+  // =========================
+  // NIR TRIAD (ADDED LOGIC)
+  // =========================
+  (function(){
+    const BANDS_NM = [410, 435, 460, 485, 510, 535, 560, 585, 610, 645, 680, 705, 730, 760, 810, 860, 900, 940];
+
+    const tbody = document.getElementById('nirTbody');
+    const spark = document.getElementById('nirSpark');
+
+    const ilmPct = document.getElementById('ilmPct');
+    const ilmBar = document.getElementById('ilmBar');
+    const mSlope = document.getElementById('mSlope');
+    const mRatio = document.getElementById('mRatio');
+    const mBroad = document.getElementById('mBroad');
+
+    const histBody = document.getElementById('nirHistBody');
+    const canvas   = document.getElementById('ilmCanvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+
+    const takeBtn = document.getElementById('nirTakeBtn');
+    const status  = document.getElementById('nirStatus');
+
+    if(!tbody || !spark) return;
+
+    tbody.innerHTML = '';
+    const rowRefs = BANDS_NM.map(nm=>{
+      const tr = document.createElement('tr');
+      const td0 = document.createElement('td'); td0.textContent = `${nm}`;
+      const td1 = document.createElement('td'); td1.textContent = '0.000';
+      const td2 = document.createElement('td'); td2.textContent = '0.000';
+      tr.appendChild(td0); tr.appendChild(td1); tr.appendChild(td2);
+      tbody.appendChild(tr);
+      return { td1, td2 };
+    });
+
+    spark.innerHTML = '';
+    const barEls = BANDS_NM.map(()=>{ const d=document.createElement('div'); d.className='b'; spark.appendChild(d); return d; });
+
+    function gauss(x, mu, sigma){
+      const z = (x-mu)/sigma;
+      return Math.exp(-0.5*z*z);
+    }
+    function randn(){
+      let s=0;
+      for(let i=0;i<6;i++) s += (Math.random()*2-1);
+      return s/6;
+    }
+
+    let tt = 0;
+
+    function simSpectrum(){
+      tt += 0.12;
+
+      const drift = 0.5 + 0.35*Math.sin(tt/9) + 0.15*Math.sin(tt/3.8);
+      const ilmLevel = clamp(drift, 0.10, 0.95);
+
+      const base = BANDS_NM.map(nm=>{
+        const visBright = 0.55 + 0.10*Math.sin(tt/3);
+        const nirRise   = 0.12 * (nm-600)/400;
+        const undulate  = 0.03*Math.sin(tt + nm/90);
+        let y = visBright + nirRise + undulate;
+        y *= (0.92 + 0.06*Math.sin(tt/2.2));
+        return y;
+      });
+
+      const spec = BANDS_NM.map((nm, idx)=>{
+        const dark = 0.22 * ilmLevel;
+        const visWeight = clamp((700 - nm)/400, 0, 1);
+        const visDark = dark * (0.9*visWeight + 0.35*(1-visWeight));
+        const nirHump = 0.10 * ilmLevel * gauss(nm, 900, 85);
+        const dip760  = 0.05 * ilmLevel * gauss(nm, 760, 35);
+
+        let y = base[idx] - visDark + nirHump - dip760;
+
+        const n = 0.015 * randn();
+        y = clamp(y + n, 0.02, 1.20);
+        return y;
+      });
+
+      return spec;
+    }
+
+    function idxOf(nm){
+      let best=0, bd=1e9;
+      for(let i=0;i<BANDS_NM.length;i++){
+        const d = Math.abs(BANDS_NM[i]-nm);
+        if(d<bd){ bd=d; best=i; }
+      }
+      return best;
+    }
+
+    const i680 = idxOf(680);
+    const i860 = idxOf(860);
+    const i900 = idxOf(900);
+    const i940 = idxOf(940);
+
+    function computeFeatures(spec){
+      const v680 = spec[i680];
+      const v860 = spec[i860];
+      const v900 = spec[i900];
+      const v940 = spec[i940];
+
+      const slope = (v860 - v680) / (860 - 680);
+      const ratio = v680 > 1e-6 ? (v860 / v680) : 0;
+      const broad = (Math.abs(v940 - v900) + Math.abs(v900 - v860)) / 2;
+
+      const darkVis = clamp((0.75 - v680) / 0.75, 0, 1);
+      const nirCurv = clamp((broad) / 0.18, 0, 1);
+      const slopeN  = clamp((slope + 0.0001) / 0.0012, 0, 1);
+
+      const score = clamp(0.55*darkVis + 0.30*nirCurv + 0.15*(1 - slopeN), 0, 1);
+      return { slope, ratio, broad, score };
+    }
+
+    function updateUI(spec){
+      const maxV = Math.max(...spec, 1e-6);
+      for(let i=0;i<spec.length;i++){
+        const v = spec[i];
+        const n = v/maxV;
+        rowRefs[i].td1.textContent = v.toFixed(3);
+        rowRefs[i].td2.textContent = n.toFixed(3);
+        barEls[i].style.height = `${clamp(n,0.05,1)*100}%`;
+      }
+
+      const f = computeFeatures(spec);
+      if(mSlope) mSlope.textContent = f.slope.toFixed(5);
+      if(mRatio) mRatio.textContent = f.ratio.toFixed(3);
+      if(mBroad) mBroad.textContent = f.broad.toFixed(3);
+
+      const pct = Math.round(f.score*100);
+      if(ilmPct) ilmPct.textContent = pct + '%';
+      if(ilmBar) ilmBar.style.width = pct + '%';
+
+      return { pct, f };
+    }
+
+    // History
+    const HIST_MAX = 180;
+    const hist = []; // {t:Date, pct:int, ratio:number, slope:number, broad:number}
+
+    function fmtTime(d){
+      const hh = String(d.getHours()).padStart(2,'0');
+      const mm = String(d.getMinutes()).padStart(2,'0');
+      const ss = String(d.getSeconds()).padStart(2,'0');
+      return `${hh}:${mm}:${ss}`;
+    }
+
+    function redrawHistTable(){
+      if(!histBody) return;
+      const rows = hist.slice().reverse().slice(0, 12);
+      histBody.innerHTML = '';
+      rows.forEach(s=>{
+        const tr = document.createElement('tr');
+        const td0 = document.createElement('td'); td0.style.textAlign='left'; td0.textContent = fmtTime(s.t);
+        const td1 = document.createElement('td'); td1.textContent = s.pct + '%';
+        const td2 = document.createElement('td'); td2.textContent = s.ratio.toFixed(3);
+        const td3 = document.createElement('td'); td3.textContent = s.slope.toFixed(5);
+        const td4 = document.createElement('td'); td4.textContent = s.broad.toFixed(3);
+        tr.appendChild(td0); tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4);
+        histBody.appendChild(tr);
+      });
+    }
+
+    function redrawCanvas(){
+      if(!ctx || !canvas) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const w = Math.max(300, Math.floor(rect.width * dpr));
+      const h = Math.max(180, Math.floor(rect.height * dpr));
+      if(canvas.width !== w) canvas.width = w;
+      if(canvas.height !== h) canvas.height = h;
+
+      ctx.clearRect(0,0,w,h);
+
+      const padL=48, padR=16, padT=14, padB=28;
+      const pw = w - padL - padR;
+      const ph = h - padT - padB;
+
+      const ticks = [0,25,50,75,100];
+      ticks.forEach(v=>{
+        const y = padT + (1 - v/100) * ph;
+        ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+        ctx.lineWidth = 1 * dpr;
+        ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(padL+pw, y); ctx.stroke();
+
+        ctx.fillStyle = 'rgba(229,231,235,0.55)';
+        ctx.font = `${Math.round(11*dpr)}px system-ui`;
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(String(v), padL-8*dpr, y);
+      });
+
+      ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+      ctx.lineWidth = 1 * dpr;
+      ctx.beginPath();
+      ctx.moveTo(padL, padT);
+      ctx.lineTo(padL, padT+ph);
+      ctx.lineTo(padL+pw, padT+ph);
+      ctx.stroke();
+
+      if(hist.length < 2){
+        ctx.fillStyle = 'rgba(229,231,235,0.55)';
+        ctx.font = `${Math.round(12*dpr)}px system-ui`;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.fillText('Waiting for history…', padL+8*dpr, padT+8*dpr);
+        return;
+      }
+
+      const n = hist.length;
+      const xFor = (i)=> padL + (i/(n-1)) * pw;
+      const yForPct = (pct)=> padT + (1 - pct/100) * ph;
+
+      ctx.strokeStyle = 'rgba(43,102,246,0.95)';
+      ctx.lineWidth = 2 * dpr;
+      ctx.beginPath();
+      for(let i=0;i<n;i++){
+        const x = xFor(i);
+        const y = yForPct(hist[i].pct);
+        if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+
+      const last = hist[n-1];
+      ctx.fillStyle = 'rgba(43,102,246,1)';
+      ctx.beginPath();
+      ctx.arc(xFor(n-1), yForPct(last.pct), 3.5*dpr, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    // --- Reading workflow (button-driven) ---
+    // Requirements:
+    // - Button triggers simulated reading
+    // - Takes 8 seconds to receive data
+    // - No visible countdown: status should just say "MEASURING"
+    // - 0.1 Hz max: enforce 10s cooldown between button presses
+    const COOLDOWN_MS = 10000; // 0.1 Hz
+    const ACQ_MS = 8000;       // fixed 8s acquisition
+    let lastReadAt = 0;
+    let pendingTimer = null;
+
+    function setStatus(txt){
+      if(status) status.textContent = txt;
+    }
+
+    function doReading(){
+      const spec = simSpectrum();
+      const out = updateUI(spec);
+
+      const f = out.f;
+      const pct = out.pct;
+
+      hist.push({
+        t: new Date(),
+        pct,
+        ratio: f.ratio,
+        slope: f.slope,
+        broad: f.broad
+      });
+      if(hist.length > HIST_MAX) hist.shift();
+
+      redrawHistTable();
+      redrawCanvas();
+    }
+
+    function startAcquisition(){
+      const now = Date.now();
+      const since = now - lastReadAt;
+
+      if(since < COOLDOWN_MS){
+        // keep minimal UX; no timers shown
+        setStatus('COOLDOWN');
+        return;
+      }
+
+      lastReadAt = now;
+
+      if(takeBtn){
+        takeBtn.disabled = true;
+        takeBtn.textContent = 'Measuring…';
+      }
+      setStatus('MEASURING');
+
+      pendingTimer = setTimeout(()=>{
+        pendingTimer = null;
+
+        doReading();
+        setStatus('RECEIVED');
+
+        if(takeBtn){
+          takeBtn.disabled = false;
+          takeBtn.textContent = 'Take Reading';
+        }
+      }, ACQ_MS);
+    }
+
+    if(takeBtn){
+      takeBtn.addEventListener('click', startAcquisition);
+    }
+
+    // Initial blank render
+    redrawHistTable();
+    redrawCanvas();
+    setStatus('IDLE');
+  })();
 
   // =========================
   // Main UI tick (SIM telemetry + control processing)
@@ -642,7 +1083,6 @@
       if (lastTelemRx > 0) {
         window.__liveTelem.ping_ms = now - lastTelemRx;
       }
-      // else: leave ping as-is (or set null)
       lastTelemRx = now;
       };
   }

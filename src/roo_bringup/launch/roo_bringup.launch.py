@@ -122,4 +122,26 @@ def generate_launch_description():
             ],
             output='screen'
         ),
+
+        Node(
+            package='joy',
+            executable='joy_node',
+            name='joy_node',
+            output='screen',
+            parameters=[{
+                'dev': '/dev/input/js0',
+                'deadzone': 0.12,
+                'autorepeat_rate': 50.0,
+            }],
+        ),
+
+        Node(
+            package='roo_teleop_ps5',
+            executable='teleop',   # <-- IMPORTANT: confirm with `ros2 pkg executables roo_teleop_ps5`
+            name='roo_teleop_ps5',
+            output='screen',
+            parameters=[{
+                'publish_hz': 50.0
+            }],
+        ),
     ])
