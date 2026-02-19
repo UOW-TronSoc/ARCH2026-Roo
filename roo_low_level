@@ -1,0 +1,368 @@
+/*
+  Roo ESP32 Low-Level Controller (ESP32 DevKit 38-pin, Arduino IDE)
+
+  Serial protocol: $ID~message`
+
+  Motors: FULL SPEED ONLY using IN1/IN2 logic:
+    val > 0  => forward (IN1=HIGH, IN2=LOW)
+    val < 0  => reverse (IN1=LOW,  IN2=HIGH)
+    val = 0  => stop    (IN1=LOW,  IN2=LOW)
+
+  Incoming command frames:
+    ID 1: Gimbal Servo 1 angle deg (0..180)
+    ID 2: Gimbal Servo 2 angle deg (0..180)
+    ID 3: Gimbal Servo 3 angle deg (0..180)
+    ID 4: Suspension Front CR servo speed (-10..+10)
+    ID 5: Suspension Back  CR servo speed (-10..+10)
+    ID 6: Left  motor command (-10..+10)  (FULL SPEED ONLY)
+    ID 7: Right motor command (-10..+10)  (FULL SPEED ONLY)
+
+  Telemetry:
+    ID 12: Tilt from GY-85 (ADXL345 accel) => "$12~P<ANGLE>R<ANGLE>`" @ 4 Hz
+*/
+
+#include <Arduino.h>
+#include <ESP32Servo.h>
+#include <Wire.h>
+#include <math.h>
+
+/* ===================== CONFIG ===================== */
+
+// Serial
+static const uint32_t SERIAL_BAUD = 115200;
+
+// I2C pins (ESP32 default often works, but explicit is good)
+static const int I2C_SDA = 21;
+static const int I2C_SCL = 22;
+
+// Gimbal servos (standard positional)
+static const int PIN_GIMBAL1 = 13;
+static const int PIN_GIMBAL2 = 12;  // your proven test pin
+static const int PIN_GIMBAL3 = 14;
+
+// Suspension servos (continuous rotation)
+static const int PIN_SUSP_F  = 33;
+static const int PIN_SUSP_B  = 32;
+
+// Servo pulse bounds (match your working test)
+static const int SERVO_MIN_US = 500;
+static const int SERVO_MAX_US = 2400;
+
+// Continuous rotation mapping
+static const int CR_STOP_US = 1500;
+static const int CR_US_PER_SPEED = 35;  // tune for your CR servos
+
+// Motors (IN1 / IN2 only, NO PWM)
+static const int PIN_MOT_L_IN1 = 17;
+static const int PIN_MOT_L_IN2 = 16;
+static const int PIN_MOT_R_IN1 = 19;
+static const int PIN_MOT_R_IN2 = 18;
+
+// Telemetry rate
+static const uint32_t TILT_PERIOD_MS = 250;  // 4 Hz
+
+// ---- GY-85 addresses ----
+// ADXL345 is typically 0x53 (sometimes 0x1D depending on ALT address wiring)
+static const uint8_t ADXL345_ADDR = 0x53;
+
+/* ===================== UTILS ===================== */
+
+static inline int clampi(int x, int lo, int hi) {
+  return (x < lo) ? lo : (x > hi) ? hi : x;
+}
+
+static bool isSignedInt(const String& s) {
+  if (s.length() == 0) return false;
+  int i = 0;
+  if (s[0] == '+' || s[0] == '-') {
+    if (s.length() == 1) return false;
+    i = 1;
+  }
+  for (; i < s.length(); i++) {
+    char c = s[i];
+    if (c < '0' || c > '9') return false;
+  }
+  return true;
+}
+
+static void sendFrame(uint8_t id, const String& payload) {
+  Serial.print('$');
+  Serial.print(id);
+  Serial.print('~');
+  Serial.print(payload);
+  Serial.print('`');
+}
+
+/* ===================== MOTORS (FULL SPEED ONLY) ===================== */
+
+static void motorsInit() {
+  pinMode(PIN_MOT_L_IN1, OUTPUT);
+  pinMode(PIN_MOT_L_IN2, OUTPUT);
+  pinMode(PIN_MOT_R_IN1, OUTPUT);
+  pinMode(PIN_MOT_R_IN2, OUTPUT);
+
+  // Stop on boot
+  digitalWrite(PIN_MOT_L_IN1, LOW);
+  digitalWrite(PIN_MOT_L_IN2, LOW);
+  digitalWrite(PIN_MOT_R_IN1, LOW);
+  digitalWrite(PIN_MOT_R_IN2, LOW);
+
+  Serial.println("[MOTOR] Digital full-speed control ready");
+}
+
+static void motorLeftWrite(int val) {
+  if (val > 0) {
+    digitalWrite(PIN_MOT_L_IN1, HIGH);
+    digitalWrite(PIN_MOT_L_IN2, LOW);
+  } else if (val < 0) {
+    digitalWrite(PIN_MOT_L_IN1, LOW);
+    digitalWrite(PIN_MOT_L_IN2, HIGH);
+  } else {
+    digitalWrite(PIN_MOT_L_IN1, LOW);
+    digitalWrite(PIN_MOT_L_IN2, LOW);
+  }
+}
+
+static void motorRightWrite(int val) {
+  if (val > 0) {
+    digitalWrite(PIN_MOT_R_IN1, HIGH);
+    digitalWrite(PIN_MOT_R_IN2, LOW);
+  } else if (val < 0) {
+    digitalWrite(PIN_MOT_R_IN1, LOW);
+    digitalWrite(PIN_MOT_R_IN2, HIGH);
+  } else {
+    digitalWrite(PIN_MOT_R_IN1, LOW);
+    digitalWrite(PIN_MOT_R_IN2, LOW);
+  }
+}
+
+/* ===================== SERVOS ===================== */
+
+static Servo g1, g2, g3;
+static Servo suspF, suspB;
+
+static volatile int g1_target = 90;
+static volatile int g2_target = 90;
+static volatile int g3_target = 90;
+
+static int g1_applied = -1;
+static int g2_applied = -1;
+static int g3_applied = -1;
+
+static uint32_t lastGimbalApplyMs = 0;
+static const uint32_t GIMBAL_APPLY_PERIOD_MS = 20; // 50Hz updates
+
+static void applyGimbalsIfDue() {
+  uint32_t now = millis();
+  if (now - lastGimbalApplyMs < GIMBAL_APPLY_PERIOD_MS) return;
+  lastGimbalApplyMs = now;
+
+  int a1 = clampi((int)g1_target, 0, 180);
+  int a2 = clampi((int)g2_target, 0, 180);
+  int a3 = clampi((int)g3_target, 0, 180);
+
+  if (a1 != g1_applied) { g1.write(a1); g1_applied = a1; }
+  if (a2 != g2_applied) { g2.write(a2); g2_applied = a2; }
+  if (a3 != g3_applied) { g3.write(a3); g3_applied = a3; }
+}
+
+static void crServoWriteSpeed(Servo &s, int speed10) {
+  speed10 = clampi(speed10, -10, 10);
+  int us = 1500 + speed10 * CR_US_PER_SPEED;
+  us = clampi(us, SERVO_MIN_US, SERVO_MAX_US);
+  s.writeMicroseconds(us);
+}
+
+/* ===================== SERIAL PARSER ===================== */
+
+static String rxBuf;
+
+static void handleFrame(uint8_t id, const String &payload) {
+  String p = payload;
+  p.trim();
+
+  if (id >= 1 && id <= 7) {
+    if (!isSignedInt(p)) return;
+  }
+
+  int val = p.toInt();
+
+  switch (id) {
+    case 1: g1_target = clampi(val, 0, 180); break;
+    case 2: g2_target = clampi(val, 0, 180); break;
+    case 3: g3_target = clampi(val, 0, 180); break;
+
+    case 4: crServoWriteSpeed(suspF, val); break;
+    case 5: crServoWriteSpeed(suspB, val); break;
+
+    case 6: motorLeftWrite(val);  break;
+    case 7: motorRightWrite(val); break;
+
+    default: break;
+  }
+}
+
+static void parseSerial() {
+  while (Serial.available()) {
+    char c = (char)Serial.read();
+
+    if (c == '$') { rxBuf = "$"; continue; }
+    if (rxBuf.length() == 0) continue;
+
+    rxBuf += c;
+
+    if (c == '`') {
+      int tilde = rxBuf.indexOf('~');
+      if (tilde > 1) {
+        uint8_t id = (uint8_t)rxBuf.substring(1, tilde).toInt();
+        String payload = rxBuf.substring(tilde + 1, rxBuf.length() - 1);
+        handleFrame(id, payload);
+      }
+      rxBuf = "";
+    }
+
+    if (rxBuf.length() > 256) rxBuf = "";
+  }
+}
+
+/* ===================== GY-85 (ADXL345) PITCH/ROLL ===================== */
+
+static int pitchDeg = 0;
+static int rollDeg  = 0;
+
+static bool i2cWrite8(uint8_t addr, uint8_t reg, uint8_t val) {
+  Wire.beginTransmission(addr);
+  Wire.write(reg);
+  Wire.write(val);
+  return Wire.endTransmission() == 0;
+}
+
+static bool i2cRead(uint8_t addr, uint8_t startReg, uint8_t* buf, size_t n) {
+  Wire.beginTransmission(addr);
+  Wire.write(startReg);
+  if (Wire.endTransmission(false) != 0) return false;
+  if (Wire.requestFrom((int)addr, (int)n) != (int)n) return false;
+  for (size_t i = 0; i < n; i++) buf[i] = Wire.read();
+  return true;
+}
+
+static bool adxl345Init() {
+  // Check DEVID register (0x00 should be 0xE5)
+  uint8_t id = 0;
+  if (!i2cRead(ADXL345_ADDR, 0x00, &id, 1)) return false;
+  if (id != 0xE5) return false;
+
+  // Power on / measurement mode: POWER_CTL (0x2D) -> measure bit (0x08)
+  if (!i2cWrite8(ADXL345_ADDR, 0x2D, 0x08)) return false;
+
+  // Data format: FULL_RES (bit 3) + range +/-2g (0x00)
+  // DATA_FORMAT (0x31)
+  if (!i2cWrite8(ADXL345_ADDR, 0x31, 0x08)) return false;
+
+  // Optional: output data rate, BW_RATE (0x2C)
+  // 0x0A = 100 Hz
+  i2cWrite8(ADXL345_ADDR, 0x2C, 0x0A);
+
+  return true;
+}
+
+static bool adxl345ReadRaw(int16_t &x, int16_t &y, int16_t &z) {
+  // DATAX0 starts at 0x32, 6 bytes little-endian
+  uint8_t b[6];
+  if (!i2cRead(ADXL345_ADDR, 0x32, b, 6)) return false;
+  x = (int16_t)((b[1] << 8) | b[0]);
+  y = (int16_t)((b[3] << 8) | b[2]);
+  z = (int16_t)((b[5] << 8) | b[4]);
+  return true;
+}
+
+static void updateTiltFromAccel() {
+  int16_t ax, ay, az;
+  if (!adxl345ReadRaw(ax, ay, az)) return;
+
+  // Use float math (scale cancels in atan anyway)
+  float fax = (float)ax;
+  float fay = (float)ay;
+  float faz = (float)az;
+
+  // roll = atan2(ay, az)
+  float roll  = atan2f(fay, faz);
+
+  // pitch = atan2(-ax, sqrt(ay^2 + az^2))
+  float pitch = atan2f(-fax, sqrtf(fay*fay + faz*faz));
+
+  int pr = (int)lroundf(pitch * 180.0f / (float)M_PI);
+  int rr = (int)lroundf(roll  * 180.0f / (float)M_PI);
+
+  // optional clamp to sane rover range
+  pitchDeg = clampi(pr, -90, 90);
+  rollDeg  = clampi(rr, -90, 90);
+}
+
+static void sendTiltTelemetry() {
+  // $12~P<ANGLE>R<ANGLE>`
+  String p = "P" + String(pitchDeg) + "R" + String(rollDeg);
+  sendFrame(12, p);
+}
+
+/* ===================== SETUP / LOOP ===================== */
+
+static uint32_t tTilt = 0;
+
+void setup() {
+  Serial.begin(SERIAL_BAUD);
+  delay(50);
+
+  Wire.begin(I2C_SDA, I2C_SCL);
+
+  // Servo timers (your known-good method)
+  ESP32PWM::allocateTimer(0);
+  ESP32PWM::allocateTimer(1);
+  ESP32PWM::allocateTimer(2);
+  ESP32PWM::allocateTimer(3);
+
+  // Gimbals
+  g1.setPeriodHertz(50);
+  g2.setPeriodHertz(50);
+  g3.setPeriodHertz(50);
+  g1.attach(PIN_GIMBAL1, SERVO_MIN_US, SERVO_MAX_US);
+  g2.attach(PIN_GIMBAL2, SERVO_MIN_US, SERVO_MAX_US);
+  g3.attach(PIN_GIMBAL3, SERVO_MIN_US, SERVO_MAX_US);
+
+  // Suspension (CR)
+  suspF.setPeriodHertz(50);
+  suspB.setPeriodHertz(50);
+  suspF.attach(PIN_SUSP_F, SERVO_MIN_US, SERVO_MAX_US);
+  suspB.attach(PIN_SUSP_B, SERVO_MIN_US, SERVO_MAX_US);
+
+  // Safe initial state
+  g1_target = 90; g2_target = 90; g3_target = 90;
+  g1.write(90); g2.write(90); g3.write(90);
+  suspF.writeMicroseconds(CR_STOP_US);
+  suspB.writeMicroseconds(CR_STOP_US);
+
+  motorsInit();
+
+  bool ok = adxl345Init();
+  Serial.printf("[IMU] ADXL345 init: %s (addr 0x%02X)\n", ok ? "OK" : "FAIL", ADXL345_ADDR);
+
+  uint32_t now = millis();
+  tTilt = now;
+  lastGimbalApplyMs = now;
+
+  Serial.println("RooLowLevelESP32 ready (tilt ID12 @4Hz)");
+}
+
+void loop() {
+  parseSerial();
+  applyGimbalsIfDue();
+
+  uint32_t now = millis();
+
+  // Tilt telemetry @ 4 Hz
+  if (now - tTilt >= TILT_PERIOD_MS) {
+    tTilt = now;
+    updateTiltFromAccel();
+    sendTiltTelemetry();
+  }
+}
