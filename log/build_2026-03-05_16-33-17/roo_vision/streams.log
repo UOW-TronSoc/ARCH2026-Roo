@@ -1,0 +1,17 @@
+[3.029s] Invoking command in '/home/roo/roo_ws/build/roo_vision': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_vision/build --no-deps symlink_data --force
+[4.007s] running develop
+[4.591s] running egg_info
+[4.643s] writing roo_vision.egg-info/PKG-INFO
+[4.644s] writing dependency_links to roo_vision.egg-info/dependency_links.txt
+[4.651s] writing requirements to roo_vision.egg-info/requires.txt
+[4.651s] writing top-level names to roo_vision.egg-info/top_level.txt
+[4.754s] reading manifest file 'roo_vision.egg-info/SOURCES.txt'
+[4.755s] writing manifest file 'roo_vision.egg-info/SOURCES.txt'
+[4.790s] running build_ext
+[4.791s] Creating /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo-vision.egg-link (link to .)
+[4.791s] 
+[4.791s] Installed /home/roo/roo_ws/build/roo_vision
+[4.791s] running symlink_data
+[4.791s] symbolically linking /home/roo/roo_ws/build/roo_vision/resource/roo_vision -> /home/roo/roo_ws/install/roo_vision/share/ament_index/resource_index/packages
+[4.796s] symbolically linking /home/roo/roo_ws/build/roo_vision/package.xml -> /home/roo/roo_ws/install/roo_vision/share/roo_vision
+[4.916s] Invoked command in '/home/roo/roo_ws/build/roo_vision' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_vision/build --no-deps symlink_data --force

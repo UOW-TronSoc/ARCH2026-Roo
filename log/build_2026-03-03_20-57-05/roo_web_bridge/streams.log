@@ -1,0 +1,36 @@
+[1.404s] Invoking command in '/home/roo/roo_ws/build/roo_web_bridge': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/roo/roo_ws/build/roo_web_bridge/build
+[1.919s] running develop
+[2.193s] Removing /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo-web-bridge.egg-link (link to .)
+[2.292s] Invoked command in '/home/roo/roo_ws/build/roo_web_bridge' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/roo/roo_ws/build/roo_web_bridge/build
+[2.294s] Invoking command in '/home/roo/roo_ws/src/roo_web_bridge': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_web_bridge build --build-base /home/roo/roo_ws/build/roo_web_bridge/build install --record /home/roo/roo_ws/build/roo_web_bridge/install.log --single-version-externally-managed install_data --force
+[2.669s] running egg_info
+[2.704s] writing ../../build/roo_web_bridge/roo_web_bridge.egg-info/PKG-INFO
+[2.705s] writing dependency_links to ../../build/roo_web_bridge/roo_web_bridge.egg-info/dependency_links.txt
+[2.706s] writing entry points to ../../build/roo_web_bridge/roo_web_bridge.egg-info/entry_points.txt
+[2.706s] writing requirements to ../../build/roo_web_bridge/roo_web_bridge.egg-info/requires.txt
+[2.707s] writing top-level names to ../../build/roo_web_bridge/roo_web_bridge.egg-info/top_level.txt
+[2.764s] reading manifest file '../../build/roo_web_bridge/roo_web_bridge.egg-info/SOURCES.txt'
+[2.765s] writing manifest file '../../build/roo_web_bridge/roo_web_bridge.egg-info/SOURCES.txt'
+[2.765s] running build
+[2.765s] running build_py
+[2.765s] creating /home/roo/roo_ws/build/roo_web_bridge/build
+[2.766s] creating /home/roo/roo_ws/build/roo_web_bridge/build/lib
+[2.766s] creating /home/roo/roo_ws/build/roo_web_bridge/build/lib/roo_web_bridge
+[2.766s] copying roo_web_bridge/__init__.py -> /home/roo/roo_ws/build/roo_web_bridge/build/lib/roo_web_bridge
+[2.766s] copying roo_web_bridge/web_bridge_node.py -> /home/roo/roo_ws/build/roo_web_bridge/build/lib/roo_web_bridge
+[2.766s] running install
+[2.777s] running install_lib
+[2.806s] creating /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo_web_bridge
+[2.806s] copying /home/roo/roo_ws/build/roo_web_bridge/build/lib/roo_web_bridge/__init__.py -> /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo_web_bridge
+[2.806s] copying /home/roo/roo_ws/build/roo_web_bridge/build/lib/roo_web_bridge/web_bridge_node.py -> /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo_web_bridge
+[2.807s] byte-compiling /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo_web_bridge/__init__.py to __init__.cpython-312.pyc
+[2.807s] byte-compiling /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo_web_bridge/web_bridge_node.py to web_bridge_node.cpython-312.pyc
+[2.810s] running install_data
+[2.810s] copying resource/roo_web_bridge -> /home/roo/roo_ws/install/roo_web_bridge/share/ament_index/resource_index/packages
+[2.810s] copying package.xml -> /home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge
+[2.810s] running install_egg_info
+[2.835s] Copying ../../build/roo_web_bridge/roo_web_bridge.egg-info to /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo_web_bridge-0.0.0-py3.12.egg-info
+[2.836s] running install_scripts
+[3.019s] Installing web_bridge script to /home/roo/roo_ws/install/roo_web_bridge/lib/roo_web_bridge
+[3.020s] writing list of installed files to '/home/roo/roo_ws/build/roo_web_bridge/install.log'
+[3.105s] Invoked command in '/home/roo/roo_ws/src/roo_web_bridge' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_web_bridge build --build-base /home/roo/roo_ws/build/roo_web_bridge/build install --record /home/roo/roo_ws/build/roo_web_bridge/install.log --single-version-externally-managed install_data --force

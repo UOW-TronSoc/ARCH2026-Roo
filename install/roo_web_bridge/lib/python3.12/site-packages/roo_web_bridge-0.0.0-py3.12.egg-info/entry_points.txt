@@ -1,0 +1,2 @@
+[console_scripts]
+web_bridge = roo_web_bridge.web_bridge_node:main

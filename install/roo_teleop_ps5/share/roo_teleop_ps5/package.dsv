@@ -1,0 +1,4 @@
+source;share/roo_teleop_ps5/hook/pythonpath.dsv
+source;share/roo_teleop_ps5/hook/pythonpath.sh
+source;share/roo_teleop_ps5/hook/ament_prefix_path.dsv
+source;share/roo_teleop_ps5/hook/ament_prefix_path.sh

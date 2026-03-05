@@ -1,0 +1,40 @@
+[2.448s] Invoking command in '/home/roo/roo_ws/build/roo_serial': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_serial/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/roo/roo_ws/build/roo_serial/build
+[3.021s] running develop
+[3.314s] Removing /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo-serial.egg-link (link to .)
+[3.456s] Invoked command in '/home/roo/roo_ws/build/roo_serial' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_serial/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/roo/roo_ws/build/roo_serial/build
+[3.457s] Invoking command in '/home/roo/roo_ws/src/roo_serial': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_serial/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_serial build --build-base /home/roo/roo_ws/build/roo_serial/build install --record /home/roo/roo_ws/build/roo_serial/install.log --single-version-externally-managed install_data --force
+[3.977s] running egg_info
+[4.010s] writing ../../build/roo_serial/roo_serial.egg-info/PKG-INFO
+[4.010s] writing dependency_links to ../../build/roo_serial/roo_serial.egg-info/dependency_links.txt
+[4.011s] writing entry points to ../../build/roo_serial/roo_serial.egg-info/entry_points.txt
+[4.012s] writing requirements to ../../build/roo_serial/roo_serial.egg-info/requires.txt
+[4.013s] writing top-level names to ../../build/roo_serial/roo_serial.egg-info/top_level.txt
+[4.063s] reading manifest file '../../build/roo_serial/roo_serial.egg-info/SOURCES.txt'
+[4.064s] writing manifest file '../../build/roo_serial/roo_serial.egg-info/SOURCES.txt'
+[4.064s] running build
+[4.066s] running build_py
+[4.066s] creating /home/roo/roo_ws/build/roo_serial/build
+[4.066s] creating /home/roo/roo_ws/build/roo_serial/build/lib
+[4.066s] creating /home/roo/roo_ws/build/roo_serial/build/lib/roo_serial
+[4.066s] copying roo_serial/__init__.py -> /home/roo/roo_ws/build/roo_serial/build/lib/roo_serial
+[4.066s] copying roo_serial/serial_rx_node.py -> /home/roo/roo_ws/build/roo_serial/build/lib/roo_serial
+[4.066s] copying roo_serial/serial_tx_node.py -> /home/roo/roo_ws/build/roo_serial/build/lib/roo_serial
+[4.067s] running install
+[4.076s] running install_lib
+[4.110s] creating /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial
+[4.110s] copying /home/roo/roo_ws/build/roo_serial/build/lib/roo_serial/__init__.py -> /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial
+[4.110s] copying /home/roo/roo_ws/build/roo_serial/build/lib/roo_serial/serial_rx_node.py -> /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial
+[4.110s] copying /home/roo/roo_ws/build/roo_serial/build/lib/roo_serial/serial_tx_node.py -> /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial
+[4.110s] byte-compiling /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial/__init__.py to __init__.cpython-312.pyc
+[4.110s] byte-compiling /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial/serial_rx_node.py to serial_rx_node.cpython-312.pyc
+[4.111s] byte-compiling /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial/serial_tx_node.py to serial_tx_node.cpython-312.pyc
+[4.112s] running install_data
+[4.112s] copying resource/roo_serial -> /home/roo/roo_ws/install/roo_serial/share/ament_index/resource_index/packages
+[4.112s] copying package.xml -> /home/roo/roo_ws/install/roo_serial/share/roo_serial
+[4.112s] running install_egg_info
+[4.139s] Copying ../../build/roo_serial/roo_serial.egg-info to /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial-0.0.0-py3.12.egg-info
+[4.141s] running install_scripts
+[4.357s] Installing serial_rx script to /home/roo/roo_ws/install/roo_serial/lib/roo_serial
+[4.358s] Installing serial_tx script to /home/roo/roo_ws/install/roo_serial/lib/roo_serial
+[4.358s] writing list of installed files to '/home/roo/roo_ws/build/roo_serial/install.log'
+[4.489s] Invoked command in '/home/roo/roo_ws/src/roo_serial' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_serial/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_serial build --build-base /home/roo/roo_ws/build/roo_serial/build install --record /home/roo/roo_ws/build/roo_serial/install.log --single-version-externally-managed install_data --force

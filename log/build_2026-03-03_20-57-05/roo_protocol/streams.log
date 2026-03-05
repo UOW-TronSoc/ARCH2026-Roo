@@ -1,0 +1,40 @@
+[2.498s] Invoking command in '/home/roo/roo_ws/build/roo_protocol': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/roo/roo_ws/build/roo_protocol/build
+[3.082s] running develop
+[3.455s] Removing /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo-protocol.egg-link (link to .)
+[3.584s] Invoked command in '/home/roo/roo_ws/build/roo_protocol' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/roo/roo_ws/build/roo_protocol/build
+[3.585s] Invoking command in '/home/roo/roo_ws/src/roo_protocol': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_protocol build --build-base /home/roo/roo_ws/build/roo_protocol/build install --record /home/roo/roo_ws/build/roo_protocol/install.log --single-version-externally-managed install_data --force
+[4.056s] running egg_info
+[4.086s] writing ../../build/roo_protocol/roo_protocol.egg-info/PKG-INFO
+[4.087s] writing dependency_links to ../../build/roo_protocol/roo_protocol.egg-info/dependency_links.txt
+[4.090s] writing entry points to ../../build/roo_protocol/roo_protocol.egg-info/entry_points.txt
+[4.090s] writing requirements to ../../build/roo_protocol/roo_protocol.egg-info/requires.txt
+[4.091s] writing top-level names to ../../build/roo_protocol/roo_protocol.egg-info/top_level.txt
+[4.155s] reading manifest file '../../build/roo_protocol/roo_protocol.egg-info/SOURCES.txt'
+[4.156s] writing manifest file '../../build/roo_protocol/roo_protocol.egg-info/SOURCES.txt'
+[4.159s] running build
+[4.159s] running build_py
+[4.159s] creating /home/roo/roo_ws/build/roo_protocol/build
+[4.159s] creating /home/roo/roo_ws/build/roo_protocol/build/lib
+[4.159s] creating /home/roo/roo_ws/build/roo_protocol/build/lib/roo_protocol
+[4.159s] copying roo_protocol/__init__.py -> /home/roo/roo_ws/build/roo_protocol/build/lib/roo_protocol
+[4.159s] copying roo_protocol/tx_encode_node.py -> /home/roo/roo_ws/build/roo_protocol/build/lib/roo_protocol
+[4.159s] copying roo_protocol/rx_decode_node.py -> /home/roo/roo_ws/build/roo_protocol/build/lib/roo_protocol
+[4.159s] running install
+[4.169s] running install_lib
+[4.200s] creating /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo_protocol
+[4.200s] copying /home/roo/roo_ws/build/roo_protocol/build/lib/roo_protocol/__init__.py -> /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo_protocol
+[4.201s] copying /home/roo/roo_ws/build/roo_protocol/build/lib/roo_protocol/tx_encode_node.py -> /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo_protocol
+[4.201s] copying /home/roo/roo_ws/build/roo_protocol/build/lib/roo_protocol/rx_decode_node.py -> /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo_protocol
+[4.202s] byte-compiling /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo_protocol/__init__.py to __init__.cpython-312.pyc
+[4.203s] byte-compiling /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo_protocol/tx_encode_node.py to tx_encode_node.cpython-312.pyc
+[4.208s] byte-compiling /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo_protocol/rx_decode_node.py to rx_decode_node.cpython-312.pyc
+[4.209s] running install_data
+[4.209s] copying resource/roo_protocol -> /home/roo/roo_ws/install/roo_protocol/share/ament_index/resource_index/packages
+[4.209s] copying package.xml -> /home/roo/roo_ws/install/roo_protocol/share/roo_protocol
+[4.210s] running install_egg_info
+[4.240s] Copying ../../build/roo_protocol/roo_protocol.egg-info to /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo_protocol-0.0.0-py3.12.egg-info
+[4.242s] running install_scripts
+[4.526s] Installing rx_decode script to /home/roo/roo_ws/install/roo_protocol/lib/roo_protocol
+[4.527s] Installing tx_encode script to /home/roo/roo_ws/install/roo_protocol/lib/roo_protocol
+[4.527s] writing list of installed files to '/home/roo/roo_ws/build/roo_protocol/install.log'
+[4.967s] Invoked command in '/home/roo/roo_ws/src/roo_protocol' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_protocol build --build-base /home/roo/roo_ws/build/roo_protocol/build install --record /home/roo/roo_ws/build/roo_protocol/install.log --single-version-externally-managed install_data --force

@@ -1,0 +1,3 @@
+[console_scripts]
+serial_rx = roo_serial.serial_rx_node:main
+serial_tx = roo_serial.serial_tx_node:main

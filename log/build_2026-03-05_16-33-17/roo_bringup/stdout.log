@@ -1,0 +1,16 @@
+running develop
+running egg_info
+writing roo_bringup.egg-info/PKG-INFO
+writing dependency_links to roo_bringup.egg-info/dependency_links.txt
+writing requirements to roo_bringup.egg-info/requires.txt
+writing top-level names to roo_bringup.egg-info/top_level.txt
+reading manifest file 'roo_bringup.egg-info/SOURCES.txt'
+writing manifest file 'roo_bringup.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages/roo-bringup.egg-link (link to .)
+
+Installed /home/roo/roo_ws/build/roo_bringup
+running symlink_data
+symbolically linking /home/roo/roo_ws/build/roo_bringup/resource/roo_bringup -> /home/roo/roo_ws/install/roo_bringup/share/ament_index/resource_index/packages
+symbolically linking /home/roo/roo_ws/build/roo_bringup/package.xml -> /home/roo/roo_ws/install/roo_bringup/share/roo_bringup
+symbolically linking /home/roo/roo_ws/build/roo_bringup/launch/roo_bringup.launch.py -> /home/roo/roo_ws/install/roo_bringup/share/roo_bringup/launch

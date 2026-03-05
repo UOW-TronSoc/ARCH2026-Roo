@@ -1,0 +1,19 @@
+[2.306s] Invoking command in '/home/roo/roo_ws/build/roo_teleop_ps5': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_teleop_ps5/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_teleop_ps5/build --no-deps symlink_data --force
+[3.618s] running develop
+[4.346s] running egg_info
+[4.430s] writing roo_teleop_ps5.egg-info/PKG-INFO
+[4.435s] writing dependency_links to roo_teleop_ps5.egg-info/dependency_links.txt
+[4.435s] writing entry points to roo_teleop_ps5.egg-info/entry_points.txt
+[4.435s] writing requirements to roo_teleop_ps5.egg-info/requires.txt
+[4.435s] writing top-level names to roo_teleop_ps5.egg-info/top_level.txt
+[4.571s] reading manifest file 'roo_teleop_ps5.egg-info/SOURCES.txt'
+[4.573s] writing manifest file 'roo_teleop_ps5.egg-info/SOURCES.txt'
+[4.687s] running build_ext
+[4.687s] Creating /home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages/roo-teleop-ps5.egg-link (link to .)
+[4.692s] Installing teleop script to /home/roo/roo_ws/install/roo_teleop_ps5/lib/roo_teleop_ps5
+[4.695s] 
+[4.695s] Installed /home/roo/roo_ws/build/roo_teleop_ps5
+[4.695s] running symlink_data
+[4.695s] symbolically linking /home/roo/roo_ws/build/roo_teleop_ps5/resource/roo_teleop_ps5 -> /home/roo/roo_ws/install/roo_teleop_ps5/share/ament_index/resource_index/packages
+[4.700s] symbolically linking /home/roo/roo_ws/build/roo_teleop_ps5/package.xml -> /home/roo/roo_ws/install/roo_teleop_ps5/share/roo_teleop_ps5
+[5.005s] Invoked command in '/home/roo/roo_ws/build/roo_teleop_ps5' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_teleop_ps5/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_teleop_ps5/build --no-deps symlink_data --force

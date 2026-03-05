@@ -1,0 +1,27 @@
+[2.292s] Invoking command in '/home/roo/roo_ws/build/roo_vision': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/roo/roo_ws/build/roo_vision/build
+[3.094s] running develop
+[3.420s] Removing /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo-vision.egg-link (link to .)
+[3.592s] Invoked command in '/home/roo/roo_ws/build/roo_vision' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/roo/roo_ws/build/roo_vision/build
+[3.592s] Invoking command in '/home/roo/roo_ws/src/roo_vision': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_vision build --build-base /home/roo/roo_ws/build/roo_vision/build install --record /home/roo/roo_ws/build/roo_vision/install.log --single-version-externally-managed install_data --force
+[3.980s] running egg_info
+[4.003s] writing ../../build/roo_vision/roo_vision.egg-info/PKG-INFO
+[4.004s] writing dependency_links to ../../build/roo_vision/roo_vision.egg-info/dependency_links.txt
+[4.004s] writing requirements to ../../build/roo_vision/roo_vision.egg-info/requires.txt
+[4.004s] writing top-level names to ../../build/roo_vision/roo_vision.egg-info/top_level.txt
+[4.054s] reading manifest file '../../build/roo_vision/roo_vision.egg-info/SOURCES.txt'
+[4.055s] writing manifest file '../../build/roo_vision/roo_vision.egg-info/SOURCES.txt'
+[4.055s] running build
+[4.055s] running build_py
+[4.057s] running install
+[4.068s] running install_lib
+[4.093s] creating /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision
+[4.093s] copying /home/roo/roo_ws/build/roo_vision/build/lib/roo_vision/__init__.py -> /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision
+[4.094s] byte-compiling /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision/__init__.py to __init__.cpython-312.pyc
+[4.094s] running install_data
+[4.094s] copying resource/roo_vision -> /home/roo/roo_ws/install/roo_vision/share/ament_index/resource_index/packages
+[4.094s] copying package.xml -> /home/roo/roo_ws/install/roo_vision/share/roo_vision
+[4.095s] running install_egg_info
+[4.123s] Copying ../../build/roo_vision/roo_vision.egg-info to /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision-0.0.0-py3.12.egg-info
+[4.128s] running install_scripts
+[4.327s] writing list of installed files to '/home/roo/roo_ws/build/roo_vision/install.log'
+[4.448s] Invoked command in '/home/roo/roo_ws/src/roo_vision' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_vision build --build-base /home/roo/roo_ws/build/roo_vision/build install --record /home/roo/roo_ws/build/roo_vision/install.log --single-version-externally-managed install_data --force

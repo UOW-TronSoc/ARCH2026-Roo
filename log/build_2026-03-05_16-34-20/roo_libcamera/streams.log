@@ -1,0 +1,18 @@
+[2.358s] Invoking command in '/home/roo/roo_ws/build/roo_libcamera': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_libcamera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_libcamera/build --no-deps symlink_data
+[2.891s] running develop
+[3.148s] running egg_info
+[3.174s] writing roo_libcamera.egg-info/PKG-INFO
+[3.176s] writing dependency_links to roo_libcamera.egg-info/dependency_links.txt
+[3.176s] writing entry points to roo_libcamera.egg-info/entry_points.txt
+[3.176s] writing requirements to roo_libcamera.egg-info/requires.txt
+[3.177s] writing top-level names to roo_libcamera.egg-info/top_level.txt
+[3.229s] reading manifest file 'roo_libcamera.egg-info/SOURCES.txt'
+[3.229s] writing manifest file 'roo_libcamera.egg-info/SOURCES.txt'
+[3.262s] running build_ext
+[3.265s] Creating /home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages/roo-libcamera.egg-link (link to .)
+[3.266s] Installing compressed_republisher script to /home/roo/roo_ws/install/roo_libcamera/lib/roo_libcamera
+[3.267s] Installing libcamera_node script to /home/roo/roo_ws/install/roo_libcamera/lib/roo_libcamera
+[3.267s] 
+[3.267s] Installed /home/roo/roo_ws/build/roo_libcamera
+[3.267s] running symlink_data
+[3.459s] Invoked command in '/home/roo/roo_ws/build/roo_libcamera' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_libcamera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_libcamera/build --no-deps symlink_data

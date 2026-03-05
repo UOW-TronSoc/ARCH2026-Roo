@@ -1,0 +1,15 @@
+[2.437s] Invoking command in '/home/roo/roo_ws/build/roo_vision': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_vision/build --no-deps symlink_data
+[2.943s] running develop
+[3.257s] running egg_info
+[3.281s] writing roo_vision.egg-info/PKG-INFO
+[3.282s] writing dependency_links to roo_vision.egg-info/dependency_links.txt
+[3.283s] writing requirements to roo_vision.egg-info/requires.txt
+[3.283s] writing top-level names to roo_vision.egg-info/top_level.txt
+[3.332s] reading manifest file 'roo_vision.egg-info/SOURCES.txt'
+[3.333s] writing manifest file 'roo_vision.egg-info/SOURCES.txt'
+[3.359s] running build_ext
+[3.360s] Creating /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo-vision.egg-link (link to .)
+[3.361s] 
+[3.361s] Installed /home/roo/roo_ws/build/roo_vision
+[3.361s] running symlink_data
+[3.492s] Invoked command in '/home/roo/roo_ws/build/roo_vision' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_vision/build --no-deps symlink_data

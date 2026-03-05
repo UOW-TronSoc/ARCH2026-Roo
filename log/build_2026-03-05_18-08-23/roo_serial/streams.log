@@ -1,0 +1,22 @@
+[2.386s] Invoking command in '/home/roo/roo_ws/src/roo_serial': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_serial/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_serial build --build-base /home/roo/roo_ws/build/roo_serial/build install --record /home/roo/roo_ws/build/roo_serial/install.log --single-version-externally-managed install_data
+[2.853s] running egg_info
+[2.875s] writing ../../build/roo_serial/roo_serial.egg-info/PKG-INFO
+[2.877s] writing dependency_links to ../../build/roo_serial/roo_serial.egg-info/dependency_links.txt
+[2.879s] writing entry points to ../../build/roo_serial/roo_serial.egg-info/entry_points.txt
+[2.879s] writing requirements to ../../build/roo_serial/roo_serial.egg-info/requires.txt
+[2.880s] writing top-level names to ../../build/roo_serial/roo_serial.egg-info/top_level.txt
+[2.934s] reading manifest file '../../build/roo_serial/roo_serial.egg-info/SOURCES.txt'
+[2.936s] writing manifest file '../../build/roo_serial/roo_serial.egg-info/SOURCES.txt'
+[2.936s] running build
+[2.936s] running build_py
+[2.938s] running install
+[2.949s] running install_lib
+[2.978s] running install_data
+[2.979s] running install_egg_info
+[3.007s] removing '/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial-0.0.0-py3.12.egg-info' (and everything under it)
+[3.011s] Copying ../../build/roo_serial/roo_serial.egg-info to /home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages/roo_serial-0.0.0-py3.12.egg-info
+[3.011s] running install_scripts
+[3.212s] Installing serial_rx script to /home/roo/roo_ws/install/roo_serial/lib/roo_serial
+[3.212s] Installing serial_tx script to /home/roo/roo_ws/install/roo_serial/lib/roo_serial
+[3.215s] writing list of installed files to '/home/roo/roo_ws/build/roo_serial/install.log'
+[3.356s] Invoked command in '/home/roo/roo_ws/src/roo_serial' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_serial/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_serial build --build-base /home/roo/roo_ws/build/roo_serial/build install --record /home/roo/roo_ws/build/roo_serial/install.log --single-version-externally-managed install_data

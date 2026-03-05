@@ -1,0 +1,16 @@
+running develop
+running egg_info
+writing roo_protocol.egg-info/PKG-INFO
+writing dependency_links to roo_protocol.egg-info/dependency_links.txt
+writing entry points to roo_protocol.egg-info/entry_points.txt
+writing requirements to roo_protocol.egg-info/requires.txt
+writing top-level names to roo_protocol.egg-info/top_level.txt
+reading manifest file 'roo_protocol.egg-info/SOURCES.txt'
+writing manifest file 'roo_protocol.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo-protocol.egg-link (link to .)
+Installing rx_decode script to /home/roo/roo_ws/install/roo_protocol/lib/roo_protocol
+Installing tx_encode script to /home/roo/roo_ws/install/roo_protocol/lib/roo_protocol
+
+Installed /home/roo/roo_ws/build/roo_protocol
+running symlink_data

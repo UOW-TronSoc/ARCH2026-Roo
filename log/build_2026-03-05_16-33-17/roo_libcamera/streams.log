@@ -1,0 +1,20 @@
+[4.128s] Invoking command in '/home/roo/roo_ws/build/roo_libcamera': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_libcamera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_libcamera/build --no-deps symlink_data --force
+[5.716s] running develop
+[6.487s] running egg_info
+[6.556s] writing roo_libcamera.egg-info/PKG-INFO
+[6.558s] writing dependency_links to roo_libcamera.egg-info/dependency_links.txt
+[6.559s] writing entry points to roo_libcamera.egg-info/entry_points.txt
+[6.561s] writing requirements to roo_libcamera.egg-info/requires.txt
+[6.562s] writing top-level names to roo_libcamera.egg-info/top_level.txt
+[6.700s] reading manifest file 'roo_libcamera.egg-info/SOURCES.txt'
+[6.706s] writing manifest file 'roo_libcamera.egg-info/SOURCES.txt'
+[6.760s] running build_ext
+[6.762s] Creating /home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages/roo-libcamera.egg-link (link to .)
+[6.764s] Installing compressed_republisher script to /home/roo/roo_ws/install/roo_libcamera/lib/roo_libcamera
+[6.765s] Installing libcamera_node script to /home/roo/roo_ws/install/roo_libcamera/lib/roo_libcamera
+[6.765s] 
+[6.765s] Installed /home/roo/roo_ws/build/roo_libcamera
+[6.765s] running symlink_data
+[6.765s] symbolically linking /home/roo/roo_ws/build/roo_libcamera/resource/roo_libcamera -> /home/roo/roo_ws/install/roo_libcamera/share/ament_index/resource_index/packages
+[6.765s] symbolically linking /home/roo/roo_ws/build/roo_libcamera/package.xml -> /home/roo/roo_ws/install/roo_libcamera/share/roo_libcamera
+[7.410s] Invoked command in '/home/roo/roo_ws/build/roo_libcamera' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_libcamera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_libcamera/build --no-deps symlink_data --force

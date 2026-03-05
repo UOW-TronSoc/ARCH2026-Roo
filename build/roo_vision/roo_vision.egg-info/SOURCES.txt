@@ -1,0 +1,14 @@
+package.xml
+setup.cfg
+setup.py
+../../build/roo_vision/roo_vision.egg-info/PKG-INFO
+../../build/roo_vision/roo_vision.egg-info/SOURCES.txt
+../../build/roo_vision/roo_vision.egg-info/dependency_links.txt
+../../build/roo_vision/roo_vision.egg-info/requires.txt
+../../build/roo_vision/roo_vision.egg-info/top_level.txt
+../../build/roo_vision/roo_vision.egg-info/zip-safe
+resource/roo_vision
+roo_vision/__init__.py
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

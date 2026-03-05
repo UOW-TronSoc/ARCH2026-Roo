@@ -1,0 +1,5 @@
+  File "/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo_web_bridge/web_bridge_node.py", line 164
+    finally:
+    ^^^^^^^
+SyntaxError: invalid syntax
+

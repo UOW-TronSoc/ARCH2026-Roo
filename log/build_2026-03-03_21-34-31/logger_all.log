@@ -1,0 +1,398 @@
+[0.154s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.154s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffffb0f3cad0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffffb1124bc0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffffb1124bc0>>)
+[0.212s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.212s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.212s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.212s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.212s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.212s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.212s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/roo/roo_ws'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extensions ['ignore', 'ignore_ament_install']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'ignore'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'ignore_ament_install'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extensions ['colcon_pkg']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'colcon_pkg'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extensions ['colcon_meta']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'colcon_meta'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extensions ['ros']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'ros'
+[0.255s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_bringup' with type 'ros.ament_python' and name 'roo_bringup'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extensions ['ignore', 'ignore_ament_install']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'ignore'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'ignore_ament_install'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extensions ['colcon_pkg']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'colcon_pkg'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extensions ['colcon_meta']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'colcon_meta'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extensions ['ros']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'ros'
+[0.256s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_cmd_mux' with type 'ros.ament_python' and name 'roo_cmd_mux'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extensions ['ignore', 'ignore_ament_install']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'ignore'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'ignore_ament_install'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extensions ['colcon_pkg']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'colcon_pkg'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extensions ['colcon_meta']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'colcon_meta'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extensions ['ros']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'ros'
+[0.258s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_protocol' with type 'ros.ament_python' and name 'roo_protocol'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extensions ['ignore', 'ignore_ament_install']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'ignore'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'ignore_ament_install'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extensions ['colcon_pkg']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'colcon_pkg'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extensions ['colcon_meta']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'colcon_meta'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extensions ['ros']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'ros'
+[0.261s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_serial' with type 'ros.ament_python' and name 'roo_serial'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extensions ['ignore', 'ignore_ament_install']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'ignore'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'ignore_ament_install'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extensions ['colcon_pkg']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'colcon_pkg'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extensions ['colcon_meta']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'colcon_meta'
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extensions ['ros']
+[0.261s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'ros'
+[0.262s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_teleop_ps5' with type 'ros.ament_python' and name 'roo_teleop_ps5'
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extensions ['ignore', 'ignore_ament_install']
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'ignore'
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'ignore_ament_install'
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extensions ['colcon_pkg']
+[0.262s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'colcon_pkg'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extensions ['colcon_meta']
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'colcon_meta'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extensions ['ros']
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'ros'
+[0.263s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_vision' with type 'ros.ament_python' and name 'roo_vision'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extensions ['ignore', 'ignore_ament_install']
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'ignore'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'ignore_ament_install'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extensions ['colcon_pkg']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'colcon_pkg'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extensions ['colcon_meta']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'colcon_meta'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extensions ['ros']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'ros'
+[0.264s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_web_bridge' with type 'ros.ament_python' and name 'roo_web_bridge'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['ignore', 'ignore_ament_install']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'ignore'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'ignore_ament_install'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['colcon_pkg']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'colcon_pkg'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['colcon_meta']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'colcon_meta'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['ros']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'ros'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['cmake', 'python']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'cmake'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'python'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['python_setup_py']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'python_setup_py'
+[0.265s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.265s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.265s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.265s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.265s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'roo_bringup' build argument 'cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_bringup' build argument 'cmake_target' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_bringup' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_bringup' build argument 'cmake_clean_cache' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_bringup' build argument 'cmake_clean_first' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_bringup' build argument 'cmake_force_configure' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_bringup' build argument 'ament_cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_bringup' build argument 'catkin_cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_bringup' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.292s] DEBUG:colcon.colcon_core.verb:Building package 'roo_bringup' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/roo/roo_ws/build/roo_bringup', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/roo/roo_ws/install/roo_bringup', 'merge_install': False, 'path': '/home/roo/roo_ws/src/roo_bringup', 'symlink_install': False, 'test_result_base': None}
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_cmd_mux' build argument 'cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_cmd_mux' build argument 'cmake_target' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_cmd_mux' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_cmd_mux' build argument 'cmake_clean_cache' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_cmd_mux' build argument 'cmake_clean_first' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_cmd_mux' build argument 'cmake_force_configure' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_cmd_mux' build argument 'ament_cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_cmd_mux' build argument 'catkin_cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'roo_cmd_mux' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.292s] DEBUG:colcon.colcon_core.verb:Building package 'roo_cmd_mux' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/roo/roo_ws/build/roo_cmd_mux', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/roo/roo_ws/install/roo_cmd_mux', 'merge_install': False, 'path': '/home/roo/roo_ws/src/roo_cmd_mux', 'symlink_install': False, 'test_result_base': None}
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_protocol' build argument 'cmake_args' from command line to 'None'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_protocol' build argument 'cmake_target' from command line to 'None'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_protocol' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_protocol' build argument 'cmake_clean_cache' from command line to 'False'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_protocol' build argument 'cmake_clean_first' from command line to 'False'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_protocol' build argument 'cmake_force_configure' from command line to 'False'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_protocol' build argument 'ament_cmake_args' from command line to 'None'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_protocol' build argument 'catkin_cmake_args' from command line to 'None'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_protocol' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.293s] DEBUG:colcon.colcon_core.verb:Building package 'roo_protocol' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/roo/roo_ws/build/roo_protocol', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/roo/roo_ws/install/roo_protocol', 'merge_install': False, 'path': '/home/roo/roo_ws/src/roo_protocol', 'symlink_install': False, 'test_result_base': None}
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_serial' build argument 'cmake_args' from command line to 'None'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_serial' build argument 'cmake_target' from command line to 'None'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_serial' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_serial' build argument 'cmake_clean_cache' from command line to 'False'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_serial' build argument 'cmake_clean_first' from command line to 'False'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_serial' build argument 'cmake_force_configure' from command line to 'False'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_serial' build argument 'ament_cmake_args' from command line to 'None'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_serial' build argument 'catkin_cmake_args' from command line to 'None'
+[0.293s] Level 5:colcon.colcon_core.verb:set package 'roo_serial' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.293s] DEBUG:colcon.colcon_core.verb:Building package 'roo_serial' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/roo/roo_ws/build/roo_serial', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/roo/roo_ws/install/roo_serial', 'merge_install': False, 'path': '/home/roo/roo_ws/src/roo_serial', 'symlink_install': False, 'test_result_base': None}
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_teleop_ps5' build argument 'cmake_args' from command line to 'None'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_teleop_ps5' build argument 'cmake_target' from command line to 'None'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_teleop_ps5' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_teleop_ps5' build argument 'cmake_clean_cache' from command line to 'False'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_teleop_ps5' build argument 'cmake_clean_first' from command line to 'False'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_teleop_ps5' build argument 'cmake_force_configure' from command line to 'False'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_teleop_ps5' build argument 'ament_cmake_args' from command line to 'None'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_teleop_ps5' build argument 'catkin_cmake_args' from command line to 'None'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_teleop_ps5' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.294s] DEBUG:colcon.colcon_core.verb:Building package 'roo_teleop_ps5' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/roo/roo_ws/build/roo_teleop_ps5', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/roo/roo_ws/install/roo_teleop_ps5', 'merge_install': False, 'path': '/home/roo/roo_ws/src/roo_teleop_ps5', 'symlink_install': False, 'test_result_base': None}
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_vision' build argument 'cmake_args' from command line to 'None'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_vision' build argument 'cmake_target' from command line to 'None'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_vision' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_vision' build argument 'cmake_clean_cache' from command line to 'False'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_vision' build argument 'cmake_clean_first' from command line to 'False'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_vision' build argument 'cmake_force_configure' from command line to 'False'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_vision' build argument 'ament_cmake_args' from command line to 'None'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_vision' build argument 'catkin_cmake_args' from command line to 'None'
+[0.294s] Level 5:colcon.colcon_core.verb:set package 'roo_vision' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.294s] DEBUG:colcon.colcon_core.verb:Building package 'roo_vision' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/roo/roo_ws/build/roo_vision', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/roo/roo_ws/install/roo_vision', 'merge_install': False, 'path': '/home/roo/roo_ws/src/roo_vision', 'symlink_install': False, 'test_result_base': None}
+[0.295s] Level 5:colcon.colcon_core.verb:set package 'roo_web_bridge' build argument 'cmake_args' from command line to 'None'
+[0.295s] Level 5:colcon.colcon_core.verb:set package 'roo_web_bridge' build argument 'cmake_target' from command line to 'None'
+[0.295s] Level 5:colcon.colcon_core.verb:set package 'roo_web_bridge' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.295s] Level 5:colcon.colcon_core.verb:set package 'roo_web_bridge' build argument 'cmake_clean_cache' from command line to 'False'
+[0.295s] Level 5:colcon.colcon_core.verb:set package 'roo_web_bridge' build argument 'cmake_clean_first' from command line to 'False'
+[0.295s] Level 5:colcon.colcon_core.verb:set package 'roo_web_bridge' build argument 'cmake_force_configure' from command line to 'False'
+[0.295s] Level 5:colcon.colcon_core.verb:set package 'roo_web_bridge' build argument 'ament_cmake_args' from command line to 'None'
+[0.295s] Level 5:colcon.colcon_core.verb:set package 'roo_web_bridge' build argument 'catkin_cmake_args' from command line to 'None'
+[0.295s] Level 5:colcon.colcon_core.verb:set package 'roo_web_bridge' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.295s] DEBUG:colcon.colcon_core.verb:Building package 'roo_web_bridge' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/roo/roo_ws/build/roo_web_bridge', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/roo/roo_ws/install/roo_web_bridge', 'merge_install': False, 'path': '/home/roo/roo_ws/src/roo_web_bridge', 'symlink_install': False, 'test_result_base': None}
+[0.295s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.297s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.298s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/roo/roo_ws/src/roo_bringup' with build type 'ament_python'
+[0.298s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_bringup', 'ament_prefix_path')
+[0.306s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.306s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_bringup/share/roo_bringup/hook/ament_prefix_path.dsv'
+[0.307s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_bringup/share/roo_bringup/hook/ament_prefix_path.sh'
+[0.309s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.323s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/roo/roo_ws/src/roo_cmd_mux' with build type 'ament_python'
+[0.324s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_cmd_mux', 'ament_prefix_path')
+[0.324s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux/hook/ament_prefix_path.dsv'
+[0.326s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux/hook/ament_prefix_path.sh'
+[0.327s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.336s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/roo/roo_ws/src/roo_protocol' with build type 'ament_python'
+[0.337s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_protocol', 'ament_prefix_path')
+[0.338s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_protocol/share/roo_protocol/hook/ament_prefix_path.dsv'
+[0.339s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_protocol/share/roo_protocol/hook/ament_prefix_path.sh'
+[0.342s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.350s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/roo/roo_ws/src/roo_serial' with build type 'ament_python'
+[0.351s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_serial', 'ament_prefix_path')
+[0.353s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_serial/share/roo_serial/hook/ament_prefix_path.dsv'
+[0.355s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_serial/share/roo_serial/hook/ament_prefix_path.sh'
+[0.356s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.739s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/roo/roo_ws/src/roo_bringup'
+[0.739s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.249s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/roo/roo_ws/src/roo_cmd_mux'
+[1.249s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.777s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/roo/roo_ws/src/roo_protocol'
+[1.778s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.263s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/roo/roo_ws/src/roo_serial'
+[2.263s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[4.266s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/roo/roo_ws/src/roo_bringup': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_bringup build --build-base /home/roo/roo_ws/build/roo_bringup/build install --record /home/roo/roo_ws/build/roo_bringup/install.log --single-version-externally-managed install_data
+[4.642s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/roo/roo_ws/src/roo_serial': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_serial/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_serial build --build-base /home/roo/roo_ws/build/roo_serial/build install --record /home/roo/roo_ws/build/roo_serial/install.log --single-version-externally-managed install_data
+[4.884s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/roo/roo_ws/src/roo_cmd_mux': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_cmd_mux/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_cmd_mux/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_cmd_mux build --build-base /home/roo/roo_ws/build/roo_cmd_mux/build install --record /home/roo/roo_ws/build/roo_cmd_mux/install.log --single-version-externally-managed install_data
+[5.490s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/roo/roo_ws/src/roo_protocol': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_protocol build --build-base /home/roo/roo_ws/build/roo_protocol/build install --record /home/roo/roo_ws/build/roo_protocol/install.log --single-version-externally-managed install_data
+[5.948s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/roo/roo_ws/src/roo_bringup' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_bringup build --build-base /home/roo/roo_ws/build/roo_bringup/build install --record /home/roo/roo_ws/build/roo_bringup/install.log --single-version-externally-managed install_data
+[5.950s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_bringup' for CMake module files
+[5.951s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_bringup' for CMake config files
+[5.952s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_bringup/lib'
+[5.952s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_bringup/bin'
+[5.952s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_bringup/lib/pkgconfig/roo_bringup.pc'
+[5.952s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages'
+[5.952s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_bringup', 'pythonpath')
+[5.953s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_bringup/share/roo_bringup/hook/pythonpath.dsv'
+[5.953s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_bringup/share/roo_bringup/hook/pythonpath.sh'
+[5.957s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_bringup/bin'
+[5.957s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(roo_bringup)
+[5.957s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/roo/roo_ws/install/roo_bringup/share/roo_bringup/package.dsv'
+[5.958s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_bringup/share/roo_bringup/package.sh'
+[5.966s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_bringup/share/roo_bringup/package.bash'
+[5.969s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_bringup/share/roo_bringup/package.zsh'
+[5.978s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/roo/roo_ws/install/roo_bringup/share/colcon-core/packages/roo_bringup)
+[5.980s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/roo/roo_ws/src/roo_teleop_ps5' with build type 'ament_python'
+[5.982s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_teleop_ps5', 'ament_prefix_path')
+[5.985s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_teleop_ps5/share/roo_teleop_ps5/hook/ament_prefix_path.dsv'
+[5.997s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_teleop_ps5/share/roo_teleop_ps5/hook/ament_prefix_path.sh'
+[6.000s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[6.514s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/roo/roo_ws/src/roo_teleop_ps5'
+[6.515s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[6.520s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_serial' for CMake module files
+[6.521s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/roo/roo_ws/src/roo_serial' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_serial/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_serial build --build-base /home/roo/roo_ws/build/roo_serial/build install --record /home/roo/roo_ws/build/roo_serial/install.log --single-version-externally-managed install_data
+[6.522s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_serial' for CMake config files
+[6.522s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_serial/lib'
+[6.523s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_serial/bin'
+[6.523s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_serial/lib/pkgconfig/roo_serial.pc'
+[6.523s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_serial/lib/python3.12/site-packages'
+[6.523s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_serial', 'pythonpath')
+[6.523s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_serial/share/roo_serial/hook/pythonpath.dsv'
+[6.524s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_serial/share/roo_serial/hook/pythonpath.sh'
+[6.525s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_serial/bin'
+[6.525s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(roo_serial)
+[6.525s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/roo/roo_ws/install/roo_serial/share/roo_serial/package.dsv'
+[6.526s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_serial/share/roo_serial/package.sh'
+[6.527s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_serial/share/roo_serial/package.bash'
+[6.527s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_serial/share/roo_serial/package.zsh'
+[6.527s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/roo/roo_ws/install/roo_serial/share/colcon-core/packages/roo_serial)
+[6.528s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_cmd_mux' for CMake module files
+[6.529s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_cmd_mux' for CMake config files
+[6.530s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_cmd_mux/lib'
+[6.531s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_cmd_mux/bin'
+[6.531s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_cmd_mux/lib/pkgconfig/roo_cmd_mux.pc'
+[6.533s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_cmd_mux/lib/python3.12/site-packages'
+[6.534s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/roo/roo_ws/src/roo_cmd_mux' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_cmd_mux/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_cmd_mux/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_cmd_mux build --build-base /home/roo/roo_ws/build/roo_cmd_mux/build install --record /home/roo/roo_ws/build/roo_cmd_mux/install.log --single-version-externally-managed install_data
+[6.535s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_cmd_mux', 'pythonpath')
+[6.535s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux/hook/pythonpath.dsv'
+[6.536s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux/hook/pythonpath.sh'
+[6.542s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_cmd_mux/bin'
+[6.543s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(roo_cmd_mux)
+[6.547s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux/package.dsv'
+[6.548s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux/package.sh'
+[6.551s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux/package.bash'
+[6.552s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux/package.zsh'
+[6.553s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/roo/roo_ws/install/roo_cmd_mux/share/colcon-core/packages/roo_cmd_mux)
+[6.558s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/roo/roo_ws/src/roo_vision' with build type 'ament_python'
+[6.559s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_vision', 'ament_prefix_path')
+[6.559s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_vision/share/roo_vision/hook/ament_prefix_path.dsv'
+[6.560s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_vision/share/roo_vision/hook/ament_prefix_path.sh'
+[6.560s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[6.568s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/roo/roo_ws/src/roo_web_bridge' with build type 'ament_python'
+[6.568s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_web_bridge', 'ament_prefix_path')
+[6.569s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge/hook/ament_prefix_path.dsv'
+[6.569s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge/hook/ament_prefix_path.sh'
+[6.570s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.131s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/roo/roo_ws/src/roo_vision'
+[7.131s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.525s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/roo/roo_ws/src/roo_web_bridge'
+[7.525s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.531s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_protocol' for CMake module files
+[7.532s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/roo/roo_ws/src/roo_protocol' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_protocol build --build-base /home/roo/roo_ws/build/roo_protocol/build install --record /home/roo/roo_ws/build/roo_protocol/install.log --single-version-externally-managed install_data
+[7.532s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_protocol' for CMake config files
+[7.533s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_protocol/lib'
+[7.533s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_protocol/bin'
+[7.533s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_protocol/lib/pkgconfig/roo_protocol.pc'
+[7.534s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages'
+[7.534s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_protocol', 'pythonpath')
+[7.534s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_protocol/share/roo_protocol/hook/pythonpath.dsv'
+[7.535s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_protocol/share/roo_protocol/hook/pythonpath.sh'
+[7.536s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_protocol/bin'
+[7.536s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(roo_protocol)
+[7.536s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/roo/roo_ws/install/roo_protocol/share/roo_protocol/package.dsv'
+[7.537s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_protocol/share/roo_protocol/package.sh'
+[7.538s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_protocol/share/roo_protocol/package.bash'
+[7.539s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_protocol/share/roo_protocol/package.zsh'
+[7.539s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/roo/roo_ws/install/roo_protocol/share/colcon-core/packages/roo_protocol)
+[7.806s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/roo/roo_ws/src/roo_teleop_ps5': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_teleop_ps5/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_teleop_ps5 build --build-base /home/roo/roo_ws/build/roo_teleop_ps5/build install --record /home/roo/roo_ws/build/roo_teleop_ps5/install.log --single-version-externally-managed install_data
+[8.571s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/roo/roo_ws/src/roo_web_bridge': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_web_bridge build --build-base /home/roo/roo_ws/build/roo_web_bridge/build install --record /home/roo/roo_ws/build/roo_web_bridge/install.log --single-version-externally-managed install_data
+[8.577s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/roo/roo_ws/src/roo_vision': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_vision build --build-base /home/roo/roo_ws/build/roo_vision/build install --record /home/roo/roo_ws/build/roo_vision/install.log --single-version-externally-managed install_data
+[8.784s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_teleop_ps5' for CMake module files
+[8.786s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_teleop_ps5' for CMake config files
+[8.786s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/roo/roo_ws/src/roo_teleop_ps5' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_teleop_ps5/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_teleop_ps5 build --build-base /home/roo/roo_ws/build/roo_teleop_ps5/build install --record /home/roo/roo_ws/build/roo_teleop_ps5/install.log --single-version-externally-managed install_data
+[8.787s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_teleop_ps5/lib'
+[8.788s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_teleop_ps5/bin'
+[8.788s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_teleop_ps5/lib/pkgconfig/roo_teleop_ps5.pc'
+[8.789s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages'
+[8.790s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_teleop_ps5', 'pythonpath')
+[8.791s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_teleop_ps5/share/roo_teleop_ps5/hook/pythonpath.dsv'
+[8.792s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_teleop_ps5/share/roo_teleop_ps5/hook/pythonpath.sh'
+[8.794s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_teleop_ps5/bin'
+[8.795s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(roo_teleop_ps5)
+[8.795s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/roo/roo_ws/install/roo_teleop_ps5/share/roo_teleop_ps5/package.dsv'
+[8.796s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_teleop_ps5/share/roo_teleop_ps5/package.sh'
+[8.797s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_teleop_ps5/share/roo_teleop_ps5/package.bash'
+[8.798s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_teleop_ps5/share/roo_teleop_ps5/package.zsh'
+[8.798s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/roo/roo_ws/install/roo_teleop_ps5/share/colcon-core/packages/roo_teleop_ps5)
+[9.467s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_web_bridge' for CMake module files
+[9.468s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/roo/roo_ws/src/roo_web_bridge' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_web_bridge build --build-base /home/roo/roo_ws/build/roo_web_bridge/build install --record /home/roo/roo_ws/build/roo_web_bridge/install.log --single-version-externally-managed install_data
+[9.468s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_web_bridge' for CMake config files
+[9.469s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_web_bridge/lib'
+[9.469s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_web_bridge/bin'
+[9.469s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_web_bridge/lib/pkgconfig/roo_web_bridge.pc'
+[9.470s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages'
+[9.470s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_web_bridge', 'pythonpath')
+[9.470s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge/hook/pythonpath.dsv'
+[9.471s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge/hook/pythonpath.sh'
+[9.472s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_web_bridge/bin'
+[9.473s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(roo_web_bridge)
+[9.473s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge/package.dsv'
+[9.474s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge/package.sh'
+[9.474s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge/package.bash'
+[9.475s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge/package.zsh'
+[9.476s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/roo/roo_ws/install/roo_web_bridge/share/colcon-core/packages/roo_web_bridge)
+[9.478s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_vision' for CMake module files
+[9.481s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/roo/roo_ws/src/roo_vision' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_vision build --build-base /home/roo/roo_ws/build/roo_vision/build install --record /home/roo/roo_ws/build/roo_vision/install.log --single-version-externally-managed install_data
+[9.483s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_vision' for CMake config files
+[9.484s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_vision/lib'
+[9.484s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_vision/bin'
+[9.484s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_vision/lib/pkgconfig/roo_vision.pc'
+[9.484s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages'
+[9.485s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_vision', 'pythonpath')
+[9.485s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_vision/share/roo_vision/hook/pythonpath.dsv'
+[9.487s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_vision/share/roo_vision/hook/pythonpath.sh'
+[9.489s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_vision/bin'
+[9.489s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(roo_vision)
+[9.490s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/roo/roo_ws/install/roo_vision/share/roo_vision/package.dsv'
+[9.491s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_vision/share/roo_vision/package.sh'
+[9.494s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_vision/share/roo_vision/package.bash'
+[9.497s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_vision/share/roo_vision/package.zsh'
+[9.497s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/roo/roo_ws/install/roo_vision/share/colcon-core/packages/roo_vision)
+[9.499s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[9.500s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[9.501s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[9.501s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[9.519s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[9.519s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[9.519s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[9.542s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[9.543s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/roo/roo_ws/install/local_setup.sh'
+[9.544s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/roo/roo_ws/install/_local_setup_util_sh.py'
+[9.545s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/roo/roo_ws/install/setup.sh'
+[9.548s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/roo/roo_ws/install/local_setup.bash'
+[9.549s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/roo/roo_ws/install/setup.bash'
+[9.550s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/roo/roo_ws/install/local_setup.zsh'
+[9.551s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/roo/roo_ws/install/setup.zsh'

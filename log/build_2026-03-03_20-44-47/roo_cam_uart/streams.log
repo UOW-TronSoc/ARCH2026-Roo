@@ -1,0 +1,24 @@
+[2.815s] Invoking command in '/home/roo/roo_ws/build/roo_cam_uart': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_cam_uart/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_cam_uart/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_cam_uart/build --no-deps symlink_data
+[3.493s] running develop
+[3.811s] running egg_info
+[3.811s] creating roo_cam_uart.egg-info
+[3.842s] writing roo_cam_uart.egg-info/PKG-INFO
+[3.842s] writing dependency_links to roo_cam_uart.egg-info/dependency_links.txt
+[3.843s] writing entry points to roo_cam_uart.egg-info/entry_points.txt
+[3.843s] writing requirements to roo_cam_uart.egg-info/requires.txt
+[3.843s] writing top-level names to roo_cam_uart.egg-info/top_level.txt
+[3.843s] writing manifest file 'roo_cam_uart.egg-info/SOURCES.txt'
+[3.903s] reading manifest file 'roo_cam_uart.egg-info/SOURCES.txt'
+[3.904s] writing manifest file 'roo_cam_uart.egg-info/SOURCES.txt'
+[3.963s] running build_ext
+[3.963s] Creating /home/roo/roo_ws/install/roo_cam_uart/lib/python3.12/site-packages/roo-cam-uart.egg-link (link to .)
+[3.963s] Installing uart_cam script to /home/roo/roo_ws/install/roo_cam_uart/lib/roo_cam_uart
+[3.964s] 
+[3.964s] Installed /home/roo/roo_ws/build/roo_cam_uart
+[3.964s] running symlink_data
+[3.964s] creating /home/roo/roo_ws/install/roo_cam_uart/share/ament_index
+[3.964s] creating /home/roo/roo_ws/install/roo_cam_uart/share/ament_index/resource_index
+[3.964s] creating /home/roo/roo_ws/install/roo_cam_uart/share/ament_index/resource_index/packages
+[3.965s] symbolically linking /home/roo/roo_ws/build/roo_cam_uart/resource/roo_cam_uart -> /home/roo/roo_ws/install/roo_cam_uart/share/ament_index/resource_index/packages
+[3.965s] symbolically linking /home/roo/roo_ws/build/roo_cam_uart/package.xml -> /home/roo/roo_ws/install/roo_cam_uart/share/roo_cam_uart
+[4.582s] Invoked command in '/home/roo/roo_ws/build/roo_cam_uart' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_cam_uart/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_cam_uart/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_cam_uart/build --no-deps symlink_data

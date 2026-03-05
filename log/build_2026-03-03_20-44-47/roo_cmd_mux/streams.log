@@ -1,0 +1,24 @@
+[2.872s] Invoking command in '/home/roo/roo_ws/build/roo_cmd_mux': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_cmd_mux/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_cmd_mux/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_cmd_mux/build --no-deps symlink_data
+[3.559s] running develop
+[3.895s] running egg_info
+[3.895s] creating roo_cmd_mux.egg-info
+[3.959s] writing roo_cmd_mux.egg-info/PKG-INFO
+[3.959s] writing dependency_links to roo_cmd_mux.egg-info/dependency_links.txt
+[3.960s] writing entry points to roo_cmd_mux.egg-info/entry_points.txt
+[3.960s] writing requirements to roo_cmd_mux.egg-info/requires.txt
+[3.961s] writing top-level names to roo_cmd_mux.egg-info/top_level.txt
+[3.963s] writing manifest file 'roo_cmd_mux.egg-info/SOURCES.txt'
+[4.104s] reading manifest file 'roo_cmd_mux.egg-info/SOURCES.txt'
+[4.107s] writing manifest file 'roo_cmd_mux.egg-info/SOURCES.txt'
+[4.145s] running build_ext
+[4.145s] Creating /home/roo/roo_ws/install/roo_cmd_mux/lib/python3.12/site-packages/roo-cmd-mux.egg-link (link to .)
+[4.146s] Installing cmd_mux script to /home/roo/roo_ws/install/roo_cmd_mux/lib/roo_cmd_mux
+[4.147s] 
+[4.147s] Installed /home/roo/roo_ws/build/roo_cmd_mux
+[4.147s] running symlink_data
+[4.147s] creating /home/roo/roo_ws/install/roo_cmd_mux/share/ament_index
+[4.147s] creating /home/roo/roo_ws/install/roo_cmd_mux/share/ament_index/resource_index
+[4.147s] creating /home/roo/roo_ws/install/roo_cmd_mux/share/ament_index/resource_index/packages
+[4.147s] symbolically linking /home/roo/roo_ws/build/roo_cmd_mux/resource/roo_cmd_mux -> /home/roo/roo_ws/install/roo_cmd_mux/share/ament_index/resource_index/packages
+[4.147s] symbolically linking /home/roo/roo_ws/build/roo_cmd_mux/package.xml -> /home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux
+[4.946s] Invoked command in '/home/roo/roo_ws/build/roo_cmd_mux' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_cmd_mux/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_cmd_mux/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_cmd_mux/build --no-deps symlink_data

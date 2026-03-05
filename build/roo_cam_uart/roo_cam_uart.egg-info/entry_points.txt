@@ -1,0 +1,2 @@
+[console_scripts]
+uart_cam = roo_cam_uart.uart_cam_node:main

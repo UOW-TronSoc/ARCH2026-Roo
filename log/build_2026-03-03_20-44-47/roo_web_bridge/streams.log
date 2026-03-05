@@ -1,0 +1,24 @@
+[1.781s] Invoking command in '/home/roo/roo_ws/build/roo_web_bridge': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_web_bridge/build --no-deps symlink_data
+[2.304s] running develop
+[2.595s] running egg_info
+[2.595s] creating roo_web_bridge.egg-info
+[2.618s] writing roo_web_bridge.egg-info/PKG-INFO
+[2.618s] writing dependency_links to roo_web_bridge.egg-info/dependency_links.txt
+[2.618s] writing entry points to roo_web_bridge.egg-info/entry_points.txt
+[2.619s] writing requirements to roo_web_bridge.egg-info/requires.txt
+[2.619s] writing top-level names to roo_web_bridge.egg-info/top_level.txt
+[2.619s] writing manifest file 'roo_web_bridge.egg-info/SOURCES.txt'
+[2.671s] reading manifest file 'roo_web_bridge.egg-info/SOURCES.txt'
+[2.672s] writing manifest file 'roo_web_bridge.egg-info/SOURCES.txt'
+[2.699s] running build_ext
+[2.699s] Creating /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo-web-bridge.egg-link (link to .)
+[2.700s] Installing web_bridge script to /home/roo/roo_ws/install/roo_web_bridge/lib/roo_web_bridge
+[2.700s] 
+[2.700s] Installed /home/roo/roo_ws/build/roo_web_bridge
+[2.700s] running symlink_data
+[2.700s] creating /home/roo/roo_ws/install/roo_web_bridge/share/ament_index
+[2.700s] creating /home/roo/roo_ws/install/roo_web_bridge/share/ament_index/resource_index
+[2.700s] creating /home/roo/roo_ws/install/roo_web_bridge/share/ament_index/resource_index/packages
+[2.701s] symbolically linking /home/roo/roo_ws/build/roo_web_bridge/resource/roo_web_bridge -> /home/roo/roo_ws/install/roo_web_bridge/share/ament_index/resource_index/packages
+[2.701s] symbolically linking /home/roo/roo_ws/build/roo_web_bridge/package.xml -> /home/roo/roo_ws/install/roo_web_bridge/share/roo_web_bridge
+[2.837s] Invoked command in '/home/roo/roo_ws/build/roo_web_bridge' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_web_bridge/build --no-deps symlink_data

@@ -1,0 +1,206 @@
+[0.220s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'roo_libcamera']
+[0.221s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['roo_libcamera'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff9fa399d0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff9fc15df0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff9fc15df0>>)
+[0.320s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.321s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.321s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.321s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.321s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.321s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.321s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/roo/roo_ws'
+[0.321s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.322s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.322s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.322s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.322s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.322s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.322s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.322s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.322s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extensions ['ignore', 'ignore_ament_install']
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'ignore'
+[0.378s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'ignore_ament_install'
+[0.379s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extensions ['colcon_pkg']
+[0.379s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'colcon_pkg'
+[0.379s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extensions ['colcon_meta']
+[0.379s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'colcon_meta'
+[0.379s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extensions ['ros']
+[0.379s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_bringup) by extension 'ros'
+[0.383s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_bringup' with type 'ros.ament_python' and name 'roo_bringup'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extensions ['ignore', 'ignore_ament_install']
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'ignore'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'ignore_ament_install'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extensions ['colcon_pkg']
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'colcon_pkg'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extensions ['colcon_meta']
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'colcon_meta'
+[0.384s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extensions ['ros']
+[0.384s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_cmd_mux) by extension 'ros'
+[0.384s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_cmd_mux' with type 'ros.ament_python' and name 'roo_cmd_mux'
+[0.385s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_libcamera) by extensions ['ignore', 'ignore_ament_install']
+[0.385s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_libcamera) by extension 'ignore'
+[0.385s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_libcamera) by extension 'ignore_ament_install'
+[0.385s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_libcamera) by extensions ['colcon_pkg']
+[0.385s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_libcamera) by extension 'colcon_pkg'
+[0.385s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_libcamera) by extensions ['colcon_meta']
+[0.385s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_libcamera) by extension 'colcon_meta'
+[0.385s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_libcamera) by extensions ['ros']
+[0.385s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_libcamera) by extension 'ros'
+[0.386s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_libcamera' with type 'ros.ament_python' and name 'roo_libcamera'
+[0.386s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extensions ['ignore', 'ignore_ament_install']
+[0.386s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'ignore'
+[0.386s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'ignore_ament_install'
+[0.386s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extensions ['colcon_pkg']
+[0.386s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'colcon_pkg'
+[0.386s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extensions ['colcon_meta']
+[0.386s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'colcon_meta'
+[0.386s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extensions ['ros']
+[0.386s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_protocol) by extension 'ros'
+[0.389s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_protocol' with type 'ros.ament_python' and name 'roo_protocol'
+[0.389s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extensions ['ignore', 'ignore_ament_install']
+[0.389s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'ignore'
+[0.389s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'ignore_ament_install'
+[0.389s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extensions ['colcon_pkg']
+[0.389s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'colcon_pkg'
+[0.389s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extensions ['colcon_meta']
+[0.389s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'colcon_meta'
+[0.389s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extensions ['ros']
+[0.389s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_serial) by extension 'ros'
+[0.390s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_serial' with type 'ros.ament_python' and name 'roo_serial'
+[0.390s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extensions ['ignore', 'ignore_ament_install']
+[0.390s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'ignore'
+[0.390s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'ignore_ament_install'
+[0.390s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extensions ['colcon_pkg']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'colcon_pkg'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extensions ['colcon_meta']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'colcon_meta'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extensions ['ros']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_teleop_ps5) by extension 'ros'
+[0.391s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_teleop_ps5' with type 'ros.ament_python' and name 'roo_teleop_ps5'
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extensions ['ignore', 'ignore_ament_install']
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'ignore'
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'ignore_ament_install'
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extensions ['colcon_pkg']
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'colcon_pkg'
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extensions ['colcon_meta']
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'colcon_meta'
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extensions ['ros']
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_vision) by extension 'ros'
+[0.393s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_vision' with type 'ros.ament_python' and name 'roo_vision'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extensions ['ignore', 'ignore_ament_install']
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'ignore'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'ignore_ament_install'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extensions ['colcon_pkg']
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'colcon_pkg'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extensions ['colcon_meta']
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'colcon_meta'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extensions ['ros']
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(src/roo_web_bridge) by extension 'ros'
+[0.394s] DEBUG:colcon.colcon_core.package_identification:Package 'src/roo_web_bridge' with type 'ros.ament_python' and name 'roo_web_bridge'
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['ignore', 'ignore_ament_install']
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'ignore'
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'ignore_ament_install'
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['colcon_pkg']
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'colcon_pkg'
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['colcon_meta']
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'colcon_meta'
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['ros']
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'ros'
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['cmake', 'python']
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'cmake'
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'python'
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extensions ['python_setup_py']
+[0.394s] Level 1:colcon.colcon_core.package_identification:_identify(web_dashboard) by extension 'python_setup_py'
+[0.394s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.394s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.394s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.394s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.395s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.422s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'roo_bringup' in 'src/roo_bringup'
+[0.422s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'roo_cmd_mux' in 'src/roo_cmd_mux'
+[0.422s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'roo_protocol' in 'src/roo_protocol'
+[0.422s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'roo_serial' in 'src/roo_serial'
+[0.422s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'roo_teleop_ps5' in 'src/roo_teleop_ps5'
+[0.422s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'roo_vision' in 'src/roo_vision'
+[0.422s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'roo_web_bridge' in 'src/roo_web_bridge'
+[0.423s] Level 5:colcon.colcon_core.verb:set package 'roo_libcamera' build argument 'cmake_args' from command line to 'None'
+[0.423s] Level 5:colcon.colcon_core.verb:set package 'roo_libcamera' build argument 'cmake_target' from command line to 'None'
+[0.423s] Level 5:colcon.colcon_core.verb:set package 'roo_libcamera' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.423s] Level 5:colcon.colcon_core.verb:set package 'roo_libcamera' build argument 'cmake_clean_cache' from command line to 'False'
+[0.423s] Level 5:colcon.colcon_core.verb:set package 'roo_libcamera' build argument 'cmake_clean_first' from command line to 'False'
+[0.423s] Level 5:colcon.colcon_core.verb:set package 'roo_libcamera' build argument 'cmake_force_configure' from command line to 'False'
+[0.423s] Level 5:colcon.colcon_core.verb:set package 'roo_libcamera' build argument 'ament_cmake_args' from command line to 'None'
+[0.423s] Level 5:colcon.colcon_core.verb:set package 'roo_libcamera' build argument 'catkin_cmake_args' from command line to 'None'
+[0.423s] Level 5:colcon.colcon_core.verb:set package 'roo_libcamera' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.423s] DEBUG:colcon.colcon_core.verb:Building package 'roo_libcamera' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/roo/roo_ws/build/roo_libcamera', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/roo/roo_ws/install/roo_libcamera', 'merge_install': False, 'path': '/home/roo/roo_ws/src/roo_libcamera', 'symlink_install': False, 'test_result_base': None}
+[0.423s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.425s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.425s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/roo/roo_ws/src/roo_libcamera' with build type 'ament_python'
+[0.425s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_libcamera', 'ament_prefix_path')
+[0.428s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.428s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_libcamera/share/roo_libcamera/hook/ament_prefix_path.dsv'
+[0.429s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_libcamera/share/roo_libcamera/hook/ament_prefix_path.sh'
+[0.430s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.801s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/roo/roo_ws/src/roo_libcamera'
+[0.801s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.879s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/roo/roo_ws/src/roo_libcamera': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_libcamera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_libcamera build --build-base /home/roo/roo_ws/build/roo_libcamera/build install --record /home/roo/roo_ws/build/roo_libcamera/install.log --single-version-externally-managed install_data
+[3.368s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/roo/roo_ws/src/roo_libcamera' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_libcamera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_libcamera build --build-base /home/roo/roo_ws/build/roo_libcamera/build install --record /home/roo/roo_ws/build/roo_libcamera/install.log --single-version-externally-managed install_data
+[3.378s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_libcamera' for CMake module files
+[3.379s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_libcamera' for CMake config files
+[3.381s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_libcamera/lib'
+[3.382s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_libcamera/bin'
+[3.382s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_libcamera/lib/pkgconfig/roo_libcamera.pc'
+[3.383s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages'
+[3.383s] Level 1:colcon.colcon_core.shell:create_environment_hook('roo_libcamera', 'pythonpath')
+[3.384s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/roo/roo_ws/install/roo_libcamera/share/roo_libcamera/hook/pythonpath.dsv'
+[3.385s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/roo/roo_ws/install/roo_libcamera/share/roo_libcamera/hook/pythonpath.sh'
+[3.388s] Level 1:colcon.colcon_core.environment:checking '/home/roo/roo_ws/install/roo_libcamera/bin'
+[3.388s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(roo_libcamera)
+[3.389s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/roo/roo_ws/install/roo_libcamera/share/roo_libcamera/package.dsv'
+[3.391s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_libcamera/share/roo_libcamera/package.sh'
+[3.394s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_libcamera/share/roo_libcamera/package.bash'
+[3.396s] INFO:colcon.colcon_core.shell:Creating package script '/home/roo/roo_ws/install/roo_libcamera/share/roo_libcamera/package.zsh'
+[3.398s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/roo/roo_ws/install/roo_libcamera/share/colcon-core/packages/roo_libcamera)
+[3.399s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[3.400s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[3.400s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[3.400s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[3.415s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[3.415s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[3.416s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[3.421s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+[3.421s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[3.422s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/roo/roo_ws/install/local_setup.sh'
+[3.423s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/roo/roo_ws/install/_local_setup_util_sh.py'
+[3.429s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/roo/roo_ws/install/setup.sh'
+[3.432s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/roo/roo_ws/install/local_setup.bash'
+[3.433s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/roo/roo_ws/install/setup.bash'
+[3.438s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/roo/roo_ws/install/local_setup.zsh'
+[3.440s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/roo/roo_ws/install/setup.zsh'

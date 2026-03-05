@@ -1,0 +1,18 @@
+[2.277s] Invoking command in '/home/roo/roo_ws/build/roo_protocol': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_protocol/build --no-deps symlink_data
+[2.864s] running develop
+[3.137s] running egg_info
+[3.161s] writing roo_protocol.egg-info/PKG-INFO
+[3.162s] writing dependency_links to roo_protocol.egg-info/dependency_links.txt
+[3.163s] writing entry points to roo_protocol.egg-info/entry_points.txt
+[3.164s] writing requirements to roo_protocol.egg-info/requires.txt
+[3.164s] writing top-level names to roo_protocol.egg-info/top_level.txt
+[3.217s] reading manifest file 'roo_protocol.egg-info/SOURCES.txt'
+[3.221s] writing manifest file 'roo_protocol.egg-info/SOURCES.txt'
+[3.253s] running build_ext
+[3.254s] Creating /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo-protocol.egg-link (link to .)
+[3.258s] Installing rx_decode script to /home/roo/roo_ws/install/roo_protocol/lib/roo_protocol
+[3.258s] Installing tx_encode script to /home/roo/roo_ws/install/roo_protocol/lib/roo_protocol
+[3.258s] 
+[3.258s] Installed /home/roo/roo_ws/build/roo_protocol
+[3.258s] running symlink_data
+[3.470s] Invoked command in '/home/roo/roo_ws/build/roo_protocol' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_protocol/build --no-deps symlink_data

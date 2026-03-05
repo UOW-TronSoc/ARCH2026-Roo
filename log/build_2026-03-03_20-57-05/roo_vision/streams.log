@@ -1,0 +1,32 @@
+[1.778s] Invoking command in '/home/roo/roo_ws/src/roo_vision': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_vision build --build-base /home/roo/roo_ws/build/roo_vision/build install --record /home/roo/roo_ws/build/roo_vision/install.log --single-version-externally-managed install_data
+[2.197s] running egg_info
+[2.197s] creating ../../build/roo_vision/roo_vision.egg-info
+[2.223s] writing ../../build/roo_vision/roo_vision.egg-info/PKG-INFO
+[2.224s] writing dependency_links to ../../build/roo_vision/roo_vision.egg-info/dependency_links.txt
+[2.224s] writing requirements to ../../build/roo_vision/roo_vision.egg-info/requires.txt
+[2.224s] writing top-level names to ../../build/roo_vision/roo_vision.egg-info/top_level.txt
+[2.224s] writing manifest file '../../build/roo_vision/roo_vision.egg-info/SOURCES.txt'
+[2.292s] reading manifest file '../../build/roo_vision/roo_vision.egg-info/SOURCES.txt'
+[2.293s] writing manifest file '../../build/roo_vision/roo_vision.egg-info/SOURCES.txt'
+[2.293s] running build
+[2.293s] running build_py
+[2.294s] creating /home/roo/roo_ws/build/roo_vision/build
+[2.294s] creating /home/roo/roo_ws/build/roo_vision/build/lib
+[2.294s] creating /home/roo/roo_ws/build/roo_vision/build/lib/roo_vision
+[2.294s] copying roo_vision/__init__.py -> /home/roo/roo_ws/build/roo_vision/build/lib/roo_vision
+[2.294s] running install
+[2.304s] running install_lib
+[2.330s] creating /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision
+[2.330s] copying /home/roo/roo_ws/build/roo_vision/build/lib/roo_vision/__init__.py -> /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision
+[2.331s] byte-compiling /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision/__init__.py to __init__.cpython-312.pyc
+[2.331s] running install_data
+[2.333s] creating /home/roo/roo_ws/install/roo_vision/share/ament_index
+[2.334s] creating /home/roo/roo_ws/install/roo_vision/share/ament_index/resource_index
+[2.334s] creating /home/roo/roo_ws/install/roo_vision/share/ament_index/resource_index/packages
+[2.334s] copying resource/roo_vision -> /home/roo/roo_ws/install/roo_vision/share/ament_index/resource_index/packages
+[2.334s] copying package.xml -> /home/roo/roo_ws/install/roo_vision/share/roo_vision
+[2.334s] running install_egg_info
+[2.367s] Copying ../../build/roo_vision/roo_vision.egg-info to /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision-0.0.0-py3.12.egg-info
+[2.368s] running install_scripts
+[2.565s] writing list of installed files to '/home/roo/roo_ws/build/roo_vision/install.log'
+[2.685s] Invoked command in '/home/roo/roo_ws/src/roo_vision' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_vision build --build-base /home/roo/roo_ws/build/roo_vision/build install --record /home/roo/roo_ws/build/roo_vision/install.log --single-version-externally-managed install_data

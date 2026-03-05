@@ -1,0 +1,2 @@
+[console_scripts]
+cmd_mux = roo_cmd_mux.cmd_mux_node:main

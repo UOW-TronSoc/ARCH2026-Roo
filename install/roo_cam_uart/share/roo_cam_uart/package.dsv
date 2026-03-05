@@ -1,0 +1,6 @@
+source;share/roo_cam_uart/hook/pythonpath.dsv
+source;share/roo_cam_uart/hook/pythonpath.sh
+source;share/roo_cam_uart/hook/ament_prefix_path.dsv
+source;share/roo_cam_uart/hook/ament_prefix_path.sh
+source;../../build/roo_cam_uart/share/roo_cam_uart/hook/pythonpath_develop.dsv
+source;../../build/roo_cam_uart/share/roo_cam_uart/hook/pythonpath_develop.sh

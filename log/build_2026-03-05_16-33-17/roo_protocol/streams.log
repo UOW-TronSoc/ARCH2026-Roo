@@ -1,0 +1,20 @@
+[4.500s] Invoking command in '/home/roo/roo_ws/build/roo_protocol': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_protocol/build --no-deps symlink_data --force
+[5.547s] running develop
+[6.359s] running egg_info
+[6.408s] writing roo_protocol.egg-info/PKG-INFO
+[6.412s] writing dependency_links to roo_protocol.egg-info/dependency_links.txt
+[6.412s] writing entry points to roo_protocol.egg-info/entry_points.txt
+[6.413s] writing requirements to roo_protocol.egg-info/requires.txt
+[6.418s] writing top-level names to roo_protocol.egg-info/top_level.txt
+[6.561s] reading manifest file 'roo_protocol.egg-info/SOURCES.txt'
+[6.564s] writing manifest file 'roo_protocol.egg-info/SOURCES.txt'
+[6.623s] running build_ext
+[6.623s] Creating /home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages/roo-protocol.egg-link (link to .)
+[6.626s] Installing rx_decode script to /home/roo/roo_ws/install/roo_protocol/lib/roo_protocol
+[6.626s] Installing tx_encode script to /home/roo/roo_ws/install/roo_protocol/lib/roo_protocol
+[6.629s] 
+[6.629s] Installed /home/roo/roo_ws/build/roo_protocol
+[6.629s] running symlink_data
+[6.632s] symbolically linking /home/roo/roo_ws/build/roo_protocol/resource/roo_protocol -> /home/roo/roo_ws/install/roo_protocol/share/ament_index/resource_index/packages
+[6.632s] symbolically linking /home/roo/roo_ws/build/roo_protocol/package.xml -> /home/roo/roo_ws/install/roo_protocol/share/roo_protocol
+[7.386s] Invoked command in '/home/roo/roo_ws/build/roo_protocol' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_protocol/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_protocol/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_protocol/build --no-deps symlink_data --force

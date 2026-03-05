@@ -1,0 +1,3 @@
+[console_scripts]
+compressed_republisher = roo_libcamera.compressed_republisher:main
+libcamera_node = roo_libcamera.libcamera_node:main

@@ -1,0 +1,17 @@
+[1.759s] Invoking command in '/home/roo/roo_ws/build/roo_web_bridge': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_web_bridge/build --no-deps symlink_data
+[2.283s] running develop
+[2.602s] running egg_info
+[2.625s] writing roo_web_bridge.egg-info/PKG-INFO
+[2.625s] writing dependency_links to roo_web_bridge.egg-info/dependency_links.txt
+[2.627s] writing entry points to roo_web_bridge.egg-info/entry_points.txt
+[2.627s] writing requirements to roo_web_bridge.egg-info/requires.txt
+[2.628s] writing top-level names to roo_web_bridge.egg-info/top_level.txt
+[2.676s] reading manifest file 'roo_web_bridge.egg-info/SOURCES.txt'
+[2.677s] writing manifest file 'roo_web_bridge.egg-info/SOURCES.txt'
+[2.702s] running build_ext
+[2.702s] Creating /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo-web-bridge.egg-link (link to .)
+[2.703s] Installing web_bridge script to /home/roo/roo_ws/install/roo_web_bridge/lib/roo_web_bridge
+[2.704s] 
+[2.704s] Installed /home/roo/roo_ws/build/roo_web_bridge
+[2.704s] running symlink_data
+[2.829s] Invoked command in '/home/roo/roo_ws/build/roo_web_bridge' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_web_bridge/build --no-deps symlink_data

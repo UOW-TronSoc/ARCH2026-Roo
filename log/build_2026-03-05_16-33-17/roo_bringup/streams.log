@@ -1,0 +1,18 @@
+[4.133s] Invoking command in '/home/roo/roo_ws/build/roo_bringup': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_bringup/build --no-deps symlink_data --force
+[5.343s] running develop
+[5.953s] running egg_info
+[6.006s] writing roo_bringup.egg-info/PKG-INFO
+[6.008s] writing dependency_links to roo_bringup.egg-info/dependency_links.txt
+[6.011s] writing requirements to roo_bringup.egg-info/requires.txt
+[6.012s] writing top-level names to roo_bringup.egg-info/top_level.txt
+[6.119s] reading manifest file 'roo_bringup.egg-info/SOURCES.txt'
+[6.124s] writing manifest file 'roo_bringup.egg-info/SOURCES.txt'
+[6.176s] running build_ext
+[6.178s] Creating /home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages/roo-bringup.egg-link (link to .)
+[6.178s] 
+[6.179s] Installed /home/roo/roo_ws/build/roo_bringup
+[6.179s] running symlink_data
+[6.181s] symbolically linking /home/roo/roo_ws/build/roo_bringup/resource/roo_bringup -> /home/roo/roo_ws/install/roo_bringup/share/ament_index/resource_index/packages
+[6.181s] symbolically linking /home/roo/roo_ws/build/roo_bringup/package.xml -> /home/roo/roo_ws/install/roo_bringup/share/roo_bringup
+[6.181s] symbolically linking /home/roo/roo_ws/build/roo_bringup/launch/roo_bringup.launch.py -> /home/roo/roo_ws/install/roo_bringup/share/roo_bringup/launch
+[6.723s] Invoked command in '/home/roo/roo_ws/build/roo_bringup' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_bringup/build --no-deps symlink_data --force

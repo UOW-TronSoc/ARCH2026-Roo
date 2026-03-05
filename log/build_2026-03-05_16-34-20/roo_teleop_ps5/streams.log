@@ -1,0 +1,17 @@
+[2.001s] Invoking command in '/home/roo/roo_ws/build/roo_teleop_ps5': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_teleop_ps5/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_teleop_ps5/build --no-deps symlink_data
+[2.587s] running develop
+[2.873s] running egg_info
+[2.899s] writing roo_teleop_ps5.egg-info/PKG-INFO
+[2.900s] writing dependency_links to roo_teleop_ps5.egg-info/dependency_links.txt
+[2.902s] writing entry points to roo_teleop_ps5.egg-info/entry_points.txt
+[2.903s] writing requirements to roo_teleop_ps5.egg-info/requires.txt
+[2.904s] writing top-level names to roo_teleop_ps5.egg-info/top_level.txt
+[2.963s] reading manifest file 'roo_teleop_ps5.egg-info/SOURCES.txt'
+[2.964s] writing manifest file 'roo_teleop_ps5.egg-info/SOURCES.txt'
+[2.996s] running build_ext
+[2.996s] Creating /home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages/roo-teleop-ps5.egg-link (link to .)
+[2.997s] Installing teleop script to /home/roo/roo_ws/install/roo_teleop_ps5/lib/roo_teleop_ps5
+[3.000s] 
+[3.001s] Installed /home/roo/roo_ws/build/roo_teleop_ps5
+[3.001s] running symlink_data
+[3.135s] Invoked command in '/home/roo/roo_ws/build/roo_teleop_ps5' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_teleop_ps5/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_teleop_ps5/build --no-deps symlink_data

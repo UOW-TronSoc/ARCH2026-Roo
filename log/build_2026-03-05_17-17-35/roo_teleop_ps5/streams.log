@@ -1,0 +1,21 @@
+[2.181s] Invoking command in '/home/roo/roo_ws/src/roo_teleop_ps5': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_teleop_ps5/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_teleop_ps5 build --build-base /home/roo/roo_ws/build/roo_teleop_ps5/build install --record /home/roo/roo_ws/build/roo_teleop_ps5/install.log --single-version-externally-managed install_data
+[2.571s] running egg_info
+[2.595s] writing ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/PKG-INFO
+[2.596s] writing dependency_links to ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/dependency_links.txt
+[2.597s] writing entry points to ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/entry_points.txt
+[2.597s] writing requirements to ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/requires.txt
+[2.598s] writing top-level names to ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/top_level.txt
+[2.650s] reading manifest file '../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/SOURCES.txt'
+[2.651s] writing manifest file '../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/SOURCES.txt'
+[2.651s] running build
+[2.651s] running build_py
+[2.651s] running install
+[2.661s] running install_lib
+[2.687s] running install_data
+[2.688s] running install_egg_info
+[2.716s] removing '/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages/roo_teleop_ps5-0.0.0-py3.12.egg-info' (and everything under it)
+[2.716s] Copying ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info to /home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages/roo_teleop_ps5-0.0.0-py3.12.egg-info
+[2.717s] running install_scripts
+[2.920s] Installing teleop script to /home/roo/roo_ws/install/roo_teleop_ps5/lib/roo_teleop_ps5
+[2.922s] writing list of installed files to '/home/roo/roo_ws/build/roo_teleop_ps5/install.log'
+[3.046s] Invoked command in '/home/roo/roo_ws/src/roo_teleop_ps5' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_teleop_ps5/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_teleop_ps5 build --build-base /home/roo/roo_ws/build/roo_teleop_ps5/build install --record /home/roo/roo_ws/build/roo_teleop_ps5/install.log --single-version-externally-managed install_data

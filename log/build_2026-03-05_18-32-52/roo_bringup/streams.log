@@ -1,0 +1,20 @@
+[3.904s] Invoking command in '/home/roo/roo_ws/src/roo_bringup': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_bringup build --build-base /home/roo/roo_ws/build/roo_bringup/build install --record /home/roo/roo_ws/build/roo_bringup/install.log --single-version-externally-managed install_data
+[4.476s] running egg_info
+[4.501s] writing ../../build/roo_bringup/roo_bringup.egg-info/PKG-INFO
+[4.501s] writing dependency_links to ../../build/roo_bringup/roo_bringup.egg-info/dependency_links.txt
+[4.502s] writing requirements to ../../build/roo_bringup/roo_bringup.egg-info/requires.txt
+[4.503s] writing top-level names to ../../build/roo_bringup/roo_bringup.egg-info/top_level.txt
+[4.552s] reading manifest file '../../build/roo_bringup/roo_bringup.egg-info/SOURCES.txt'
+[4.552s] writing manifest file '../../build/roo_bringup/roo_bringup.egg-info/SOURCES.txt'
+[4.553s] running build
+[4.553s] running build_py
+[4.553s] running install
+[4.563s] running install_lib
+[4.588s] running install_data
+[4.588s] copying launch/roo_bringup.launch.py -> /home/roo/roo_ws/install/roo_bringup/share/roo_bringup/launch
+[4.588s] running install_egg_info
+[4.616s] removing '/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages/roo_bringup-0.0.0-py3.12.egg-info' (and everything under it)
+[4.617s] Copying ../../build/roo_bringup/roo_bringup.egg-info to /home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages/roo_bringup-0.0.0-py3.12.egg-info
+[4.618s] running install_scripts
+[4.853s] writing list of installed files to '/home/roo/roo_ws/build/roo_bringup/install.log'
+[4.961s] Invoked command in '/home/roo/roo_ws/src/roo_bringup' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_bringup build --build-base /home/roo/roo_ws/build/roo_bringup/build install --record /home/roo/roo_ws/build/roo_bringup/install.log --single-version-externally-managed install_data

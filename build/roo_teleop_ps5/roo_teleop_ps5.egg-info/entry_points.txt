@@ -1,0 +1,2 @@
+[console_scripts]
+teleop = roo_teleop_ps5.teleop_ps5_node:main

@@ -1,0 +1,3 @@
+[console_scripts]
+rx_decode = roo_protocol.rx_decode_node:main
+tx_encode = roo_protocol.tx_encode_node:main

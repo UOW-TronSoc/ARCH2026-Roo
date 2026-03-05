@@ -1,0 +1,25 @@
+[3.713s] Invoking command in '/home/roo/roo_ws/src/roo_libcamera': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_libcamera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_libcamera build --build-base /home/roo/roo_ws/build/roo_libcamera/build install --record /home/roo/roo_ws/build/roo_libcamera/install.log --single-version-externally-managed install_data
+[4.161s] running egg_info
+[4.184s] writing ../../build/roo_libcamera/roo_libcamera.egg-info/PKG-INFO
+[4.184s] writing dependency_links to ../../build/roo_libcamera/roo_libcamera.egg-info/dependency_links.txt
+[4.186s] writing entry points to ../../build/roo_libcamera/roo_libcamera.egg-info/entry_points.txt
+[4.189s] writing requirements to ../../build/roo_libcamera/roo_libcamera.egg-info/requires.txt
+[4.189s] writing top-level names to ../../build/roo_libcamera/roo_libcamera.egg-info/top_level.txt
+[4.242s] reading manifest file '../../build/roo_libcamera/roo_libcamera.egg-info/SOURCES.txt'
+[4.244s] writing manifest file '../../build/roo_libcamera/roo_libcamera.egg-info/SOURCES.txt'
+[4.244s] running build
+[4.244s] running build_py
+[4.245s] copying roo_libcamera/libcamera_node.py -> /home/roo/roo_ws/build/roo_libcamera/build/lib/roo_libcamera
+[4.245s] running install
+[4.259s] running install_lib
+[4.291s] copying /home/roo/roo_ws/build/roo_libcamera/build/lib/roo_libcamera/libcamera_node.py -> /home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages/roo_libcamera
+[4.292s] byte-compiling /home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages/roo_libcamera/libcamera_node.py to libcamera_node.cpython-312.pyc
+[4.296s] running install_data
+[4.296s] running install_egg_info
+[4.344s] removing '/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages/roo_libcamera-0.0.0-py3.12.egg-info' (and everything under it)
+[4.345s] Copying ../../build/roo_libcamera/roo_libcamera.egg-info to /home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages/roo_libcamera-0.0.0-py3.12.egg-info
+[4.347s] running install_scripts
+[4.628s] Installing compressed_republisher script to /home/roo/roo_ws/install/roo_libcamera/lib/roo_libcamera
+[4.629s] Installing libcamera_node script to /home/roo/roo_ws/install/roo_libcamera/lib/roo_libcamera
+[4.630s] writing list of installed files to '/home/roo/roo_ws/build/roo_libcamera/install.log'
+[4.873s] Invoked command in '/home/roo/roo_ws/src/roo_libcamera' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_libcamera/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_libcamera/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_libcamera build --build-base /home/roo/roo_ws/build/roo_libcamera/build install --record /home/roo/roo_ws/build/roo_libcamera/install.log --single-version-externally-managed install_data

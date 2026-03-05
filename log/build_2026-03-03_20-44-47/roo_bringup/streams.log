@@ -1,0 +1,24 @@
+[2.880s] Invoking command in '/home/roo/roo_ws/build/roo_bringup': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_bringup/build --no-deps symlink_data
+[3.480s] running develop
+[3.785s] running egg_info
+[3.785s] creating roo_bringup.egg-info
+[3.819s] writing roo_bringup.egg-info/PKG-INFO
+[3.820s] writing dependency_links to roo_bringup.egg-info/dependency_links.txt
+[3.820s] writing requirements to roo_bringup.egg-info/requires.txt
+[3.820s] writing top-level names to roo_bringup.egg-info/top_level.txt
+[3.821s] writing manifest file 'roo_bringup.egg-info/SOURCES.txt'
+[3.886s] reading manifest file 'roo_bringup.egg-info/SOURCES.txt'
+[3.888s] writing manifest file 'roo_bringup.egg-info/SOURCES.txt'
+[3.923s] running build_ext
+[3.924s] Creating /home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages/roo-bringup.egg-link (link to .)
+[3.925s] 
+[3.927s] Installed /home/roo/roo_ws/build/roo_bringup
+[3.927s] running symlink_data
+[3.928s] creating /home/roo/roo_ws/install/roo_bringup/share/ament_index
+[3.930s] creating /home/roo/roo_ws/install/roo_bringup/share/ament_index/resource_index
+[3.930s] creating /home/roo/roo_ws/install/roo_bringup/share/ament_index/resource_index/packages
+[3.930s] symbolically linking /home/roo/roo_ws/build/roo_bringup/resource/roo_bringup -> /home/roo/roo_ws/install/roo_bringup/share/ament_index/resource_index/packages
+[3.930s] symbolically linking /home/roo/roo_ws/build/roo_bringup/package.xml -> /home/roo/roo_ws/install/roo_bringup/share/roo_bringup
+[3.930s] creating /home/roo/roo_ws/install/roo_bringup/share/roo_bringup/launch
+[3.931s] symbolically linking /home/roo/roo_ws/build/roo_bringup/launch/roo_bringup.launch.py -> /home/roo/roo_ws/install/roo_bringup/share/roo_bringup/launch
+[4.140s] Invoked command in '/home/roo/roo_ws/build/roo_bringup' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_bringup/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_bringup/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_bringup/build --no-deps symlink_data

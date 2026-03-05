@@ -1,0 +1,14 @@
+package.xml
+setup.cfg
+setup.py
+../../build/roo_libcamera/roo_libcamera.egg-info/PKG-INFO
+../../build/roo_libcamera/roo_libcamera.egg-info/SOURCES.txt
+../../build/roo_libcamera/roo_libcamera.egg-info/dependency_links.txt
+../../build/roo_libcamera/roo_libcamera.egg-info/entry_points.txt
+../../build/roo_libcamera/roo_libcamera.egg-info/requires.txt
+../../build/roo_libcamera/roo_libcamera.egg-info/top_level.txt
+../../build/roo_libcamera/roo_libcamera.egg-info/zip-safe
+resource/roo_libcamera
+roo_libcamera/__init__.py
+roo_libcamera/compressed_republisher.py
+roo_libcamera/libcamera_node.py

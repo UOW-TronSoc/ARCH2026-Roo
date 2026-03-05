@@ -1,0 +1,19 @@
+[2.822s] Invoking command in '/home/roo/roo_ws/src/roo_vision': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_vision build --build-base /home/roo/roo_ws/build/roo_vision/build install --record /home/roo/roo_ws/build/roo_vision/install.log --single-version-externally-managed install_data
+[3.352s] running egg_info
+[3.384s] writing ../../build/roo_vision/roo_vision.egg-info/PKG-INFO
+[3.384s] writing dependency_links to ../../build/roo_vision/roo_vision.egg-info/dependency_links.txt
+[3.385s] writing requirements to ../../build/roo_vision/roo_vision.egg-info/requires.txt
+[3.386s] writing top-level names to ../../build/roo_vision/roo_vision.egg-info/top_level.txt
+[3.439s] reading manifest file '../../build/roo_vision/roo_vision.egg-info/SOURCES.txt'
+[3.440s] writing manifest file '../../build/roo_vision/roo_vision.egg-info/SOURCES.txt'
+[3.440s] running build
+[3.440s] running build_py
+[3.440s] running install
+[3.451s] running install_lib
+[3.478s] running install_data
+[3.478s] running install_egg_info
+[3.507s] removing '/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision-0.0.0-py3.12.egg-info' (and everything under it)
+[3.509s] Copying ../../build/roo_vision/roo_vision.egg-info to /home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages/roo_vision-0.0.0-py3.12.egg-info
+[3.511s] running install_scripts
+[3.747s] writing list of installed files to '/home/roo/roo_ws/build/roo_vision/install.log'
+[3.875s] Invoked command in '/home/roo/roo_ws/src/roo_vision' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_vision/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_vision build --build-base /home/roo/roo_ws/build/roo_vision/build install --record /home/roo/roo_ws/build/roo_vision/install.log --single-version-externally-managed install_data

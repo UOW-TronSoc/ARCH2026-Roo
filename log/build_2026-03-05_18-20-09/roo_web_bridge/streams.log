@@ -1,0 +1,21 @@
+[2.632s] Invoking command in '/home/roo/roo_ws/src/roo_web_bridge': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_web_bridge build --build-base /home/roo/roo_ws/build/roo_web_bridge/build install --record /home/roo/roo_ws/build/roo_web_bridge/install.log --single-version-externally-managed install_data
+[3.269s] running egg_info
+[3.294s] writing ../../build/roo_web_bridge/roo_web_bridge.egg-info/PKG-INFO
+[3.295s] writing dependency_links to ../../build/roo_web_bridge/roo_web_bridge.egg-info/dependency_links.txt
+[3.296s] writing entry points to ../../build/roo_web_bridge/roo_web_bridge.egg-info/entry_points.txt
+[3.296s] writing requirements to ../../build/roo_web_bridge/roo_web_bridge.egg-info/requires.txt
+[3.297s] writing top-level names to ../../build/roo_web_bridge/roo_web_bridge.egg-info/top_level.txt
+[3.359s] reading manifest file '../../build/roo_web_bridge/roo_web_bridge.egg-info/SOURCES.txt'
+[3.360s] writing manifest file '../../build/roo_web_bridge/roo_web_bridge.egg-info/SOURCES.txt'
+[3.360s] running build
+[3.360s] running build_py
+[3.362s] running install
+[3.372s] running install_lib
+[3.399s] running install_data
+[3.399s] running install_egg_info
+[3.428s] removing '/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo_web_bridge-0.0.0-py3.12.egg-info' (and everything under it)
+[3.429s] Copying ../../build/roo_web_bridge/roo_web_bridge.egg-info to /home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages/roo_web_bridge-0.0.0-py3.12.egg-info
+[3.430s] running install_scripts
+[3.658s] Installing web_bridge script to /home/roo/roo_ws/install/roo_web_bridge/lib/roo_web_bridge
+[3.661s] writing list of installed files to '/home/roo/roo_ws/build/roo_web_bridge/install.log'
+[3.770s] Invoked command in '/home/roo/roo_ws/src/roo_web_bridge' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_web_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_web_bridge/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/roo_web_bridge build --build-base /home/roo/roo_ws/build/roo_web_bridge/build install --record /home/roo/roo_ws/build/roo_web_bridge/install.log --single-version-externally-managed install_data

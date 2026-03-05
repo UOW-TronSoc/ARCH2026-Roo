@@ -1,0 +1,19 @@
+[3.525s] Invoking command in '/home/roo/roo_ws/build/roo_cmd_mux': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_cmd_mux/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_cmd_mux/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_cmd_mux/build --no-deps symlink_data --force
+[4.799s] running develop
+[5.317s] running egg_info
+[5.379s] writing roo_cmd_mux.egg-info/PKG-INFO
+[5.387s] writing dependency_links to roo_cmd_mux.egg-info/dependency_links.txt
+[5.388s] writing entry points to roo_cmd_mux.egg-info/entry_points.txt
+[5.389s] writing requirements to roo_cmd_mux.egg-info/requires.txt
+[5.394s] writing top-level names to roo_cmd_mux.egg-info/top_level.txt
+[5.504s] reading manifest file 'roo_cmd_mux.egg-info/SOURCES.txt'
+[5.505s] writing manifest file 'roo_cmd_mux.egg-info/SOURCES.txt'
+[5.548s] running build_ext
+[5.549s] Creating /home/roo/roo_ws/install/roo_cmd_mux/lib/python3.12/site-packages/roo-cmd-mux.egg-link (link to .)
+[5.553s] Installing cmd_mux script to /home/roo/roo_ws/install/roo_cmd_mux/lib/roo_cmd_mux
+[5.558s] 
+[5.559s] Installed /home/roo/roo_ws/build/roo_cmd_mux
+[5.559s] running symlink_data
+[5.560s] symbolically linking /home/roo/roo_ws/build/roo_cmd_mux/resource/roo_cmd_mux -> /home/roo/roo_ws/install/roo_cmd_mux/share/ament_index/resource_index/packages
+[5.560s] symbolically linking /home/roo/roo_ws/build/roo_cmd_mux/package.xml -> /home/roo/roo_ws/install/roo_cmd_mux/share/roo_cmd_mux
+[5.741s] Invoked command in '/home/roo/roo_ws/build/roo_cmd_mux' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/roo/roo_ws/build/roo_cmd_mux/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/roo/roo_ws/install/roo_cmd_mux/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/roo/roo_ws/build/roo_cmd_mux/build --no-deps symlink_data --force

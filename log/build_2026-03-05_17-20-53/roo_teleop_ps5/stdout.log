@@ -1,0 +1,19 @@
+running egg_info
+writing ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/PKG-INFO
+writing dependency_links to ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/dependency_links.txt
+writing entry points to ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/entry_points.txt
+writing requirements to ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/requires.txt
+writing top-level names to ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/top_level.txt
+reading manifest file '../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/SOURCES.txt'
+writing manifest file '../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+running install_egg_info
+removing '/home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages/roo_teleop_ps5-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../../build/roo_teleop_ps5/roo_teleop_ps5.egg-info to /home/roo/roo_ws/install/roo_teleop_ps5/lib/python3.12/site-packages/roo_teleop_ps5-0.0.0-py3.12.egg-info
+running install_scripts
+Installing teleop script to /home/roo/roo_ws/install/roo_teleop_ps5/lib/roo_teleop_ps5
+writing list of installed files to '/home/roo/roo_ws/build/roo_teleop_ps5/install.log'
