@@ -21,7 +21,6 @@ class SerialRxNode(Node):
         self.topic = self.get_parameter('topic').get_parameter_value().string_value
         self.frame_end = self.get_parameter('frame_end').get_parameter_value().string_value
         self.read_chunk = self.get_parameter('read_chunk').get_parameter_value().integer_value
-        self.energy_pub = self.create_publisher(Float32, '/roo/battery/energy', 10)
 
         self.pub = self.create_publisher(String, self.topic, 50)
 
