@@ -3,6 +3,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, ExecuteProcess
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from launch_ros.actions import Node
 
 def generate_launch_description():
     port = LaunchConfiguration('port')
@@ -145,16 +146,16 @@ def generate_launch_description():
             }],
         ),
 
-# --- CAMERA INTEGRATION (libcamera-native, compressed JPEG) ---
-        # --- CAMERA 0 (FRONT) ---
+# --- CAMERA 0 (FRONT) ---
         Node(
             package='roo_libcamera',
             executable='libcamera_node',
             name='camera_front',
+            namespace='roo', # Added for consistency
             parameters=[{
                 'camera_id': 0,
-                'image_topic': '/roo/image_raw',
-                'width': 480, 'height': 360, 'framerate': 10
+                'image_topic': '/roo/front/image', # Standardized path
+                'width': 480, 'height': 360, 'framerate': 12
             }],
         ),
 
@@ -163,13 +164,31 @@ def generate_launch_description():
             package='roo_libcamera',
             executable='libcamera_node',
             name='camera_back',
+            namespace='roo',
             parameters=[{
                 'camera_id': 1,
-                'image_topic': '/cam1/image_raw', 
-                'width': 480, 'height': 360, 'framerate': 10
+                'image_topic': '/roo/back/image', # Standardized path
+                'width': 480, 'height': 360, 'framerate': 12
             }],
         ),
 
+        # --- CAMERA 2 (GIMBAL - USB) ---
+        Node(
+            package='v4l2_camera',
+            executable='v4l2_camera_node',
+            name='camera_gimbal',
+            namespace='roo',
+            parameters=[{
+                'video_device': '/dev/v4l/by-id/usb-Generic_USB_camera_200901010001-video-index0',
+                'image_size': [480, 360],
+                'pixel_format': 'YUYV',       # Switched from MJPG to avoid the cv_bridge crash
+                'output_encoding': 'rgb8',    # Explicitly set the output
+                'time_per_frame' : [1, 10],   # Keep it at 10fps to save USB bandwidth
+            }],
+            remappings=[
+                ('/roo/image_raw', '/roo/gimbal/image'),
+            ]
+        ),
         # --- HTTP Video Streamer ---
         Node(
             package='web_video_server',
@@ -178,8 +197,8 @@ def generate_launch_description():
             parameters=[{
                 'port': 8081,
                 'address': '0.0.0.0',
-		'type':'ros_compressed',
-		'ros_threads': 4
+                'type':'ros_compressed',
+                'ros_threads': 4
             }],
         ),
     ])

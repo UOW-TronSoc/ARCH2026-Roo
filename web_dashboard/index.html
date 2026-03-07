@@ -374,9 +374,9 @@
   const CAM_PORT = 8081; // change if you actually run a camera streamer
 
   const CAMS = {
-      cam0: { label: 'Front',  url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/roo/image_raw&type=ros_compressed` },
-      cam1: { label: 'Back',   url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/cam1/image_raw&type=ros_compressed` },
-      cam2: { label: 'Gimbal', url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/roo/image_raw&type=ros_compressed` }
+      cam0: { label: 'Front',  url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/roo/front/image&type=ros_compressed` },
+      cam1: { label: 'Back',   url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/roo/back/image&type=ros_compressed` },
+      cam2: { label: 'Gimbal', url: `http://${PI_HOST}:${CAM_PORT}/stream?topic=/roo/gimbal/image&type=ros_compressed` }
   };
   const viewer = document.getElementById('viewer');
   const placeholder = document.getElementById('placeholder');

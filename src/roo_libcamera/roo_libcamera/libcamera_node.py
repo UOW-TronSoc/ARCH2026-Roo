@@ -54,9 +54,9 @@ class LibcameraNode(Node):
             '--codec', 'mjpeg',
             '--width', '480',
             '--height', '360',
-            '--framerate', '10',
+            '--framerate', '15',
             '--quality', '40',
-            '--shutter', '8000',
+            '--shutter', '10000',
             '--flush', '1' # Forces the OS to send data immediately
         ]
         try:

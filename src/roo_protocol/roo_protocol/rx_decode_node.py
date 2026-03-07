@@ -18,86 +18,64 @@ class RxDecodeNode(Node):
 
         # Parameters
         self.declare_parameter('rx_buffer_topic', '/roo/rx_buffer')
-
         rx_topic = self.get_parameter('rx_buffer_topic').get_parameter_value().string_value
 
         # Publishers (telemetry)
-        self.pub_v = self.create_publisher(Float32, '/roo/telemetry/voltage_v', 20)
-        self.pub_i = self.create_publisher(Float32, '/roo/telemetry/current_a', 20)
-        self.pub_enc_f = self.create_publisher(Float32, '/roo/telemetry/encoder_front_deg', 20)
-        self.pub_enc_b = self.create_publisher(Float32, '/roo/telemetry/encoder_back_deg', 20)
         self.pub_pitch = self.create_publisher(Float32, '/roo/telemetry/pitch_deg', 20)
         self.pub_roll = self.create_publisher(Float32, '/roo/telemetry/roll_deg', 20)
+        
+        # Power Publishers (ID 14)
+        self.pub_volt = self.create_publisher(Float32, '/roo/battery/voltage', 10)
+        self.pub_curr = self.create_publisher(Float32, '/roo/battery/current', 10)
+        self.pub_energy = self.create_publisher(Float32, '/roo/battery/energy', 10)
+
+        # Encoder Publishers (ID 15)
+        self.pub_enc1 = self.create_publisher(Float32, '/roo/gimbal/enc1_angle', 10)
+        self.pub_enc2 = self.create_publisher(Float32, '/roo/gimbal/enc2_angle', 10)
 
         # Subscription
         self.sub = self.create_subscription(String, rx_topic, self.on_frame, 50)
-
         self.get_logger().info(f"RxDecodeNode listening on {rx_topic}")
 
     def on_frame(self, msg: String):
         s = msg.data.strip()
         m = FRAME_RE.match(s)
         if not m:
-            # Ignore non-framed noise
             return
 
         dev_id = int(m.group(1))
         payload = m.group(2)
 
-        # ID 10: INA226, payload "V12.34-I0.56"
-        if dev_id == 10:
-            # Very tolerant parse
-            # Accept "V..-I.." or "V.. I.." or "V..,I.."
-            v = None
-            i = None
-            # Look for V<number>
-            mv = re.search(r'V\s*([-+]?\d+(\.\d+)?)', payload)
-            mi = re.search(r'I\s*([-+]?\d+(\.\d+)?)', payload)
-            if mv:
-                v = safe_float(mv.group(1))
-            if mi:
-                i = safe_float(mi.group(1))
-
-            if v is not None:
-                out = Float32(); out.data = float(v)
-                self.pub_v.publish(out)
-            if i is not None:
-                out = Float32(); out.data = float(i)
-                self.pub_i.publish(out)
-            return
-
-        # ID 11: Encoders, payload "F180B92"
-        if dev_id == 11:
-            mf = re.search(r'F\s*([-+]?\d+(\.\d+)?)', payload)
-            mb = re.search(r'B\s*([-+]?\d+(\.\d+)?)', payload)
-            if mf:
-                val = safe_float(mf.group(1))
-                if val is not None:
-                    out = Float32(); out.data = float(val)
-                    self.pub_enc_f.publish(out)
-            if mb:
-                val = safe_float(mb.group(1))
-                if val is not None:
-                    out = Float32(); out.data = float(val)
-                    self.pub_enc_b.publish(out)
-            return
-
-        # ID 12: Tilt, payload "P12R-3"
+        # ID 12: Tilt (Legacy GY-85 format)
         if dev_id == 12:
             mp = re.search(r'P\s*([-+]?\d+(\.\d+)?)', payload)
             mr = re.search(r'R\s*([-+]?\d+(\.\d+)?)', payload)
             if mp:
                 val = safe_float(mp.group(1))
-                if val is not None:
-                    out = Float32(); out.data = float(val)
-                    self.pub_pitch.publish(out)
+                if val is not None: self.pub_pitch.publish(Float32(data=float(val)))
             if mr:
                 val = safe_float(mr.group(1))
-                if val is not None:
-                    out = Float32(); out.data = float(val)
-                    self.pub_roll.publish(out)
-            return
+                if val is not None: self.pub_roll.publish(Float32(data=float(val)))
 
+        # ID 14: Power Telemetry (V, I, E) - CSV format
+        elif dev_id == 14:
+            parts = payload.split(',')
+            if len(parts) >= 3:
+                v = safe_float(parts[0])
+                i = safe_float(parts[1])
+                e = safe_float(parts[2])
+                if v is not None: self.pub_volt.publish(Float32(data=v))
+                if i is not None: self.pub_curr.publish(Float32(data=i))
+                if e is not None: self.pub_energy.publish(Float32(data=e))
+
+        # ID 15: Encoder Feedback (Enc1, Enc2) - CSV format
+        elif dev_id == 15:
+            parts = payload.split(',')
+            if len(parts) >= 2:
+                e1 = safe_float(parts[0])
+                e2 = safe_float(parts[1])
+                if e1 is not None: self.pub_enc1.publish(Float32(data=e1))
+                if e2 is not None: self.pub_enc2.publish(Float32(data=e2))
 
 def main():
     rclpy.init()
