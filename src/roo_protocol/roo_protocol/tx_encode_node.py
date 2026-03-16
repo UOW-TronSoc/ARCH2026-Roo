@@ -25,18 +25,29 @@ class TxEncodeNode(Node):
 
         self.create_subscription(Float32, '/roo/cmd/motor_left',  self.cb_ml, 20)
         self.create_subscription(Float32, '/roo/cmd/motor_right', self.cb_mr, 20)
+        self.create_subscription(String, '/roo/cmd', self.cb_cmd, 20)
 
         self.get_logger().info(f"TxEncodeNode publishing frames to {tx_topic}")
+
+    def cb_cmd(self, msg: String):
+        parts = msg.data.split(',')
+        if len(parts) == 2:
+            try:
+                dev_id = int(parts[0])
+                payload = parts[1]
+                self.publish_frame(dev_id, payload)
+            except (ValueError, IndexError):
+                self.get_logger().warn(f"Invalid command format: {msg.data}")
 
     def publish_frame(self, dev_id: int, payload: str):
         msg = String()
         msg.data = frame(dev_id, payload)
         self.pub.publish(msg)
 
-    # Servo angles: send as int degrees 0-180 (you can change formatting later)
-    def cb_g1(self, msg: Float32): self.publish_frame(1, str(int(msg.data)))
-    def cb_g2(self, msg: Float32): self.publish_frame(2, str(int(msg.data)))
-    def cb_g3(self, msg: Float32): self.publish_frame(3, str(int(msg.data)))
+    # Gimbal is now speed control (-10 to +10)
+    def cb_g1(self, msg: Float32): self.publish_frame(1, f"{msg.data:.3f}".rstrip('0').rstrip('.'))
+    def cb_g2(self, msg: Float32): self.publish_frame(2, f"{msg.data:.3f}".rstrip('0').rstrip('.'))
+    def cb_g3(self, msg: Float32): self.publish_frame(3, f"{msg.data:.3f}".rstrip('0').rstrip('.'))
 
     # Suspension + motors: your README says -10..+10 (send float but compact)
     def cb_sf(self, msg: Float32): self.publish_frame(4, f"{msg.data:.3f}".rstrip('0').rstrip('.'))
@@ -48,9 +59,14 @@ class TxEncodeNode(Node):
 def main():
     rclpy.init()
     node = TxEncodeNode()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

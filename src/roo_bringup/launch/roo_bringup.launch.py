@@ -59,18 +59,11 @@ def generate_launch_description():
             description='WebBridge websocket port'
         ),
 
-        # Level 4: Serial transport
+        # Level 4: Serial transport (unified RX/TX bridge)
         Node(
             package='roo_serial',
-            executable='serial_rx',
-            name='serial_rx_node',
-            output='screen',
-            parameters=[{'port': port, 'baud': baud}],
-        ),
-        Node(
-            package='roo_serial',
-            executable='serial_tx',
-            name='serial_tx_node',
+            executable='serial_tx', # This is the script we just modified
+            name='serial_bridge_node',
             output='screen',
             parameters=[{'port': port, 'baud': baud}],
         ),
@@ -157,6 +150,8 @@ def generate_launch_description():
                 'image_topic': '/roo/front/image', # Standardized path
                 'width': 480, 'height': 360, 'framerate': 12
             }],
+            respawn=True,
+            respawn_delay=2.0,
         ),
 
         # --- CAMERA 1 (BACK) ---
@@ -170,7 +165,24 @@ def generate_launch_description():
                 'image_topic': '/roo/back/image', # Standardized path
                 'width': 480, 'height': 360, 'framerate': 12
             }],
+            respawn=True,
+            respawn_delay=2.0,
         ),
+        # # --- CAMERA 1 (BACK) ---
+        # # NOTE: Disabled temporarily to resolve "Device or resource busy" error.
+        # Node(
+        #     package='roo_libcamera',
+        #     executable='libcamera_node',
+        #     name='camera_back',
+        #     namespace='roo',
+        #     parameters=[{
+        #         'camera_id': 1,
+        #         'image_topic': '/roo/back/image', # Standardized path
+        #         'width': 480, 'height': 360, 'framerate': 12
+        #     }],
+        #     respawn=True,
+        #     respawn_delay=2.0,
+        # ),
 
         # --- CAMERA 2 (GIMBAL - USB) ---
         Node(
@@ -179,16 +191,33 @@ def generate_launch_description():
             name='camera_gimbal',
             namespace='roo',
             parameters=[{
-                'video_device': '/dev/v4l/by-id/usb-Generic_USB_camera_200901010001-video-index0',
-                'image_size': [480, 360],
+                'video_device': '/dev/roo_camera',
+                'image_size': [640, 480],
                 'pixel_format': 'YUYV',       # Switched from MJPG to avoid the cv_bridge crash
                 'output_encoding': 'rgb8',    # Explicitly set the output
-                'time_per_frame' : [1, 10],   # Keep it at 10fps to save USB bandwidth
+                'time_per_frame' : [1, 30],  # Camera hardware only supports 30fps at 640x480 YUYV
             }],
+            respawn=True,
+            respawn_delay=2.0,
             remappings=[
-                ('/roo/image_raw', '/roo/gimbal/image'),
+                # Remap the node-local 'image_raw' to a global topic
+                ('image_raw', '/roo/gimbal/image'),
             ]
         ),
+
+        # --- Gimbal Image Compressor ---
+        # The v4l2_camera_node outputs raw images. This node compresses them into
+        # JPEG format so that web_video_server can stream them efficiently without
+        # doing its own CPU-intensive compression.
+        Node(
+            package='roo_libcamera',
+            executable='image_compressor',
+            name='gimbal_compressor',
+            parameters=[{'image_topic': '/roo/gimbal/image'}],
+            respawn=True,
+            respawn_delay=2.0,
+        ),
+
         # --- HTTP Video Streamer ---
         Node(
             package='web_video_server',
@@ -200,5 +229,7 @@ def generate_launch_description():
                 'type':'ros_compressed',
                 'ros_threads': 4
             }],
+            respawn=True,
+            respawn_delay=2.0,
         ),
     ])

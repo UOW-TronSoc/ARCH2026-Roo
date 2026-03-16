@@ -50,10 +50,6 @@ class TeleopPS5Node(Node):
 
         # Gimbal behaviour
         self.declare_parameter('gimbal_rate_deg_s', 90.0)  # stick=1.0 -> 90 deg/s
-        self.declare_parameter('gimbal_min_deg', 0.0)
-        self.declare_parameter('gimbal_max_deg', 180.0)
-        self.declare_parameter('gimbal2_start_deg', 90.0)
-        self.declare_parameter('gimbal3_start_deg', 90.0)
 
         # Suspension speed when button held
         self.declare_parameter('susp_speed', 6.0)  # magnitude in -10..+10
@@ -108,10 +104,6 @@ class TeleopPS5Node(Node):
 
         # Gimbal state
         self.gimbal_rate = float(self.get_parameter('gimbal_rate_deg_s').value)
-        self.gimbal_min = float(self.get_parameter('gimbal_min_deg').value)
-        self.gimbal_max = float(self.get_parameter('gimbal_max_deg').value)
-        self.g2 = float(self.get_parameter('gimbal2_start_deg').value)
-        self.g3 = float(self.get_parameter('gimbal3_start_deg').value)
 
         # Publishers
         self.pub_ml = self.create_publisher(Float32, self.get_parameter('motor_left_topic').value, 20)
@@ -167,17 +159,15 @@ class TeleopPS5Node(Node):
             left = clamp(throttle + turn, -1.0, 1.0) * self.max_cmd
             right = clamp(throttle - turn, -1.0, 1.0) * self.max_cmd
 
-        # ----- Gimbal (integrate right stick into angles) -----
-        if enabled and dt > 0.0:
+        # ----- Gimbal (speed control) -----
+        g2_cmd = 0.0
+        g3_cmd = 0.0
+        if enabled:
             g2_axis = self.axis(msg, self.gimbal2_axis, 0.0)
             g3_axis = self.axis(msg, self.gimbal3_axis, 0.0)
 
-            # You may want to invert one axis depending on feel
-            self.g2 += g2_axis * self.gimbal_rate * dt
-            self.g3 += (-g3_axis) * self.gimbal_rate * dt  # invert so up => increase
-
-            self.g2 = clamp(self.g2, self.gimbal_min, self.gimbal_max)
-            self.g3 = clamp(self.g3, self.gimbal_min, self.gimbal_max)
+            g2_cmd = g2_axis * self.max_cmd
+            g3_cmd = (-g3_axis) * self.max_cmd
 
         # ----- Suspension speeds -----
         # Front: L1 up, L2 down
@@ -216,17 +206,22 @@ class TeleopPS5Node(Node):
 
         pub(self.pub_ml, left)
         pub(self.pub_mr, right)
-        pub(self.pub_g2, self.g2)
-        pub(self.pub_g3, self.g3)
+        pub(self.pub_g2, g2_cmd)
+        pub(self.pub_g3, g3_cmd)
         pub(self.pub_sf, front)
         pub(self.pub_sb, back)
 
 def main():
     rclpy.init()
     node = TeleopPS5Node()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

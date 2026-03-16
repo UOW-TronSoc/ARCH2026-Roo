@@ -10,7 +10,7 @@ class SerialRxNode(Node):
         super().__init__('serial_rx_node')
 
         # Parameters
-        self.declare_parameter('port', '/dev/ttyUSB0')
+        self.declare_parameter('port', '/dev/roo_esp32')
         self.declare_parameter('baud', 115200)
         self.declare_parameter('topic', '/roo/rx_buffer')
         self.declare_parameter('frame_end', '`')   # end-of-frame char

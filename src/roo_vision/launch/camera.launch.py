@@ -9,7 +9,7 @@ def generate_launch_description():
             name='roo_camera',
             namespace='roo',
             parameters=[{
-                'video_device': '/dev/video0',
+                'video_device': '/dev/roo_camera',
                 'image_size': [640, 480],
                 'pixel_format': 'YUYV',
                 'io_method': 'mmap',
