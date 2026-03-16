@@ -15,8 +15,8 @@ import websockets
 class CmdState:
     motor_left: float = 0.0
     motor_right: float = 0.0
-    g2: float = 90.0
-    g3: float = 90.0
+    g2: float = 0.0
+    g3: float = 0.0
     susp_front: float = 0.0
     susp_back: float = 0.0
     control_source: str = "web"
@@ -40,22 +40,30 @@ class WebBridgeNode(Node):
         self.pub_sf = self.create_publisher(Float32, '/roo/web_cmd/suspension_front', 10)
         self.pub_sb = self.create_publisher(Float32, '/roo/web_cmd/suspension_back', 10)
         self.pub_src = self.create_publisher(String, '/roo/control_source', 10)
+        self.pub_cmd = self.create_publisher(String, '/roo/cmd', 10)
 
         # Publish control source based on whether any web clients are connected
         self._source_timer = self.create_timer(0.2, self._publish_source_state)
 
         # Telemetry subscriptions (adjust names if yours differ)
-        self.sub_v = self.create_subscription(Float32, '/roo/telemetry/voltage_v', self._on_v, 10)
-        self.sub_i = self.create_subscription(Float32, '/roo/telemetry/current_a', self._on_i, 10)
+        self.sub_v = self.create_subscription(Float32, '/roo/battery/voltage', self._on_v, 10)
+        self.sub_i = self.create_subscription(Float32, '/roo/battery/current', self._on_i, 10)
+        self.sub_e = self.create_subscription(Float32, '/roo/battery/energy', self._on_e, 10)
         self.sub_pitch = self.create_subscription(Float32, '/roo/telemetry/pitch_deg', self._on_pitch, 10)
         self.sub_roll  = self.create_subscription(Float32, '/roo/telemetry/roll_deg', self._on_roll, 10)
+        self.sub_gimbal_enc1 = self.create_subscription(Float32, '/roo/gimbal/enc1_angle', self._on_gimbal_enc1, 10)
+        self.sub_gimbal_enc2 = self.create_subscription(Float32, '/roo/gimbal/enc2_angle', self._on_gimbal_enc2, 10)
 
         self.cmd = CmdState()
         self.telem = {
             "voltage_v": None,
             "current_a": None,
+            "energy_mwh": None,
             "pitch_deg": None,
             "roll_deg": None,
+            "enc1_angle": None,
+            "enc2_angle": None,
+            "battery_pct": None,
         }
 
         self._ws_clients = set()
@@ -67,10 +75,27 @@ class WebBridgeNode(Node):
 
         self.get_logger().info(f'roo_web_bridge listening on ws://{self.ws_host}:{self.ws_port}')
 
-    def _on_v(self, msg: Float32): self.telem["voltage_v"] = float(msg.data)
+    def _on_v(self, msg: Float32):
+        v = float(msg.data)
+        self.telem["voltage_v"] = v
+        
+        # Auto-detect cell count and calculate rough LiPo percentage
+        if v > 13.5:      # 4S LiPo (13.2V empty - 16.8V full)
+            pct = max(0.0, min(100.0, (v - 13.2) / (16.8 - 13.2) * 100))
+        elif v > 9.5:     # 3S LiPo (9.9V empty - 12.6V full)
+            pct = max(0.0, min(100.0, (v - 9.9) / (12.6 - 9.9) * 100))
+        elif v > 6.5:     # 2S LiPo (6.6V empty - 8.4V full)
+            pct = max(0.0, min(100.0, (v - 6.6) / (8.4 - 6.6) * 100))
+        else:
+            pct = 0.0
+        self.telem["battery_pct"] = round(pct, 1)
+
     def _on_i(self, msg: Float32): self.telem["current_a"] = float(msg.data)
+    def _on_e(self, msg: Float32): self.telem["energy_mwh"] = float(msg.data)
     def _on_pitch(self, msg: Float32): self.telem["pitch_deg"] = float(msg.data)
     def _on_roll(self, msg: Float32): self.telem["roll_deg"] = float(msg.data)
+    def _on_gimbal_enc1(self, msg: Float32): self.telem["enc1_angle"] = float(msg.data)
+    def _on_gimbal_enc2(self, msg: Float32): self.telem["enc2_angle"] = float(msg.data)
 
     def _publish_source_state(self):
         # If any WS clients connected -> web. Otherwise -> joy.
@@ -130,15 +155,21 @@ class WebBridgeNode(Node):
                     self.cmd.motor_right = 0.0
                     self.cmd.susp_front = 0.0
                     self.cmd.susp_back = 0.0
+                    self.cmd.g2 = 0.0
+                    self.cmd.g3 = 0.0
                 elif t == "motor":
                     self.cmd.motor_left = float(m.get("left", 0.0))
                     self.cmd.motor_right = float(m.get("right", 0.0))
                 elif t == "gimbal":
-                    self.cmd.g2 = float(m.get("g2", 90.0))
-                    self.cmd.g3 = float(m.get("g3", 90.0))
+                    self.cmd.g2 = float(m.get("g2", 0.0))
+                    self.cmd.g3 = float(m.get("g3", 0.0))
                 elif t == "susp":
                     self.cmd.susp_front = float(m.get("front", 0.0))
                     self.cmd.susp_back = float(m.get("back", 0.0))
+                elif t == "command":
+                    msg = String()
+                    msg.data = f"{m.get('id')},{m.get('value')}"
+                    self.pub_cmd.publish(msg)
                 elif t == "heartbeat":
                     pass
 
@@ -172,9 +203,14 @@ class WebBridgeNode(Node):
 def main():
     rclpy.init()
     node = WebBridgeNode()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':

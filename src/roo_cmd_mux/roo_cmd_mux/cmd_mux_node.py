@@ -10,8 +10,8 @@ import time
 class CmdState:
     motor_left: float = 0.0
     motor_right: float = 0.0
-    gimbal2: float = 90.0
-    gimbal3: float = 90.0
+    gimbal2: float = 0.0
+    gimbal3: float = 0.0
     susp_front: float = 0.0
     susp_back: float = 0.0
     last_update: float = 0.0
@@ -110,14 +110,14 @@ class CmdMuxNode(Node):
         stale = (now - st.last_update) > self.timeout_s if st.last_update > 0.0 else True
 
         # Safety behaviour:
-        # - If stale: motors+susp = 0, keep last gimbal angles (so camera doesn't jump)
+        # - If stale: motors+susp = 0, gimbal = 0 (stop moving)
         if stale:
             motor_left = 0.0
             motor_right = 0.0
             susp_front = 0.0
             susp_back = 0.0
-            g2 = st.gimbal2
-            g3 = st.gimbal3
+            g2 = 0.0
+            g3 = 0.0
         else:
             motor_left = st.motor_left
             motor_right = st.motor_right
@@ -141,9 +141,14 @@ class CmdMuxNode(Node):
 def main():
     rclpy.init()
     node = CmdMuxNode()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
